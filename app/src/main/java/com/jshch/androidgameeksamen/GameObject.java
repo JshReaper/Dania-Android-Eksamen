@@ -9,7 +9,14 @@ public class GameObject {
     GameObject(){
         components = new LinkedList<>();
     }
-
+    Component GetComponent(String component){
+        for (Component c : components){
+            if(c.toString() == component){
+                return c;
+            }
+        }
+        return null;
+    }
     public void LoadContent(){
         for (Component c : components){
             if(c instanceof LoadAble){
