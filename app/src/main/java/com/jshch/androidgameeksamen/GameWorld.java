@@ -25,6 +25,7 @@ public class GameWorld {
         return instance;
     }
 
+
     public void Update(float deltaTime){
         for (GameObject go : gameObjects){
             go.Update();
@@ -36,5 +37,4 @@ public class GameWorld {
             go.Draw();
         }
     }
-
 }
