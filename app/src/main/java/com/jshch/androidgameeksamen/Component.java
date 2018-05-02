@@ -1,18 +1,14 @@
 package com.jshch.androidgameeksamen;
 
-public class Component {
+abstract public class Component {
 
-    private GameObject go;
+    protected GameObject go;
 
-    protected Component(GameObject go){
-        SetGameObject(go);
-    }
-
-    protected void SetGameObject(GameObject go){
+    public Component(GameObject go){
         this.go = go;
     }
 
-    protected GameObject GetGameObject(){
+    public GameObject GetGameObject(){
         return go;
     }
 }

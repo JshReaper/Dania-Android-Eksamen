@@ -14,11 +14,12 @@ public class CollisionChecker implements Runnable {
                         for (GameObject otherGo: ToCheck){
                             if(go != otherGo){
                                 Collider otherCol = (Collider) otherGo.GetComponent("Collider");
-                                if(otherCol != null)
+                                if(otherCol != null){
                                     if(col.InterSectsWidthRect(otherCol)){
                                         go.OnCollisionEnter();
                                         go.OnCollisionStay();
                                     }
+                                }
                             }
                         }
                     }
