@@ -16,8 +16,19 @@ public class CollisionChecker implements Runnable {
                                 Collider otherCol = (Collider) otherGo.GetComponent("Collider");
                                 if(otherCol != null){
                                     if(col.InterSectsWidthRect(otherCol)){
-                                        go.OnCollisionEnter();
-                                        go.OnCollisionStay();
+                                        if(!col.OtherColliders.contains(otherCol)) {
+                                            go.OnCollisionEnter(otherCol);
+                                            col.OtherColliders.add(otherCol);
+                                        }
+                                        else {
+                                            go.OnCollisionStay(otherCol);
+                                        }
+                                    }
+                                    else{
+                                        if(col.OtherColliders.contains(otherCol)) {
+                                            go.OnCollisionExit(otherCol);
+                                            col.OtherColliders.remove(otherCol);
+                                        }
                                     }
                                 }
                             }

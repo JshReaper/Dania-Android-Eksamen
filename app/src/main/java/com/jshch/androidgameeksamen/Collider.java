@@ -2,13 +2,15 @@ package com.jshch.androidgameeksamen;
 
 import android.graphics.Bitmap;
 
+import java.util.LinkedList;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class Collider extends Component {
 
+    public LinkedList<Collider> OtherColliders;
     Collider(GameObject go){
         super(go);
-
+        OtherColliders = new LinkedList<>();
     }
     boolean InterSectsWidthRect(Collider other){
         Renderer renderer =(Renderer) go.GetComponent("Renderer");

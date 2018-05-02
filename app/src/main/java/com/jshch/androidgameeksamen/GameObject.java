@@ -45,26 +45,26 @@ public class GameObject {
         }
     }
 
-    public void OnCollisionEnter(){
+    public void OnCollisionEnter(Collider other){
         for (Component c : components){
             if(c instanceof CollideAble){
-                ((CollideAble) c).OnCollisionEnter();
+                ((CollideAble) c).OnCollisionEnter(other);
             }
         }
     }
 
-    public void OnCollisionStay(){
+    public void OnCollisionStay(Collider other){
         for (Component c : components){
             if(c instanceof CollideAble){
-                ((CollideAble) c).OnCollisionStay();
+                ((CollideAble) c).OnCollisionStay(other);
             }
         }
     }
 
-    public void OnCollisionExit(){
+    public void OnCollisionExit(Collider other){
         for (Component c : components){
             if(c instanceof CollideAble){
-                ((CollideAble) c).OnCollisionExit();
+                ((CollideAble) c).OnCollisionExit(other);
             }
         }
     }
