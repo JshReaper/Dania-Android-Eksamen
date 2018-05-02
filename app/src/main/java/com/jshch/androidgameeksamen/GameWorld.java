@@ -1,5 +1,8 @@
 package com.jshch.androidgameeksamen;
 
+import android.graphics.Canvas;
+import android.graphics.Paint;
+
 import java.util.LinkedList;
 
 public class GameWorld {
@@ -20,5 +23,10 @@ public class GameWorld {
             instance = new GameWorld();
         }
         return instance;
+    }
+    public void Draw(Canvas canvas, Paint paint){
+        for(GameObject go : gameObjects){
+            go.Draw(canvas,paint);
+        }
     }
 }
