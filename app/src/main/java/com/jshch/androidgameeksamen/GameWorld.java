@@ -33,7 +33,7 @@ public class GameWorld {
 
     public void Draw(Canvas canvas, Paint paint){
         for(GameObject go : gameObjects){
-            go.Draw(canvas, paint);
+            go.Draw();
         }
     }
 
