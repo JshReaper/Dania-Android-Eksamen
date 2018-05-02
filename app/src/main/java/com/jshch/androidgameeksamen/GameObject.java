@@ -1,5 +1,8 @@
 package com.jshch.androidgameeksamen;
 
+import android.graphics.Canvas;
+import android.graphics.Paint;
+
 import java.util.LinkedList;
 
 public class GameObject {
@@ -40,10 +43,10 @@ public class GameObject {
         }
     }
 
-    public void Draw(){
+    public void Draw(Canvas canvas, Paint paint){
         for (Component c : components){
             if(c instanceof DrawAble){
-                ((DrawAble) c).Draw();
+                ((DrawAble) c).Draw(canvas,paint);
             }
         }
     }

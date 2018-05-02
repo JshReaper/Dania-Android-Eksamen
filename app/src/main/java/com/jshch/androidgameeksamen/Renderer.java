@@ -1,68 +1,36 @@
 package com.jshch.androidgameeksamen;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Paint;
 
-public class Renderer extends Component implements DrawAble {
+public class Renderer extends Component implements DrawAble,LoadAble {
 
-    Bitmap texture;
-    SurfaceHolder ourHolder;
-    SurfaceView canvas;
-    Paint paint;
+    Bitmap bitmap;
+    int img;
+    Resources resources;
 
-    public Renderer(GameObject go, SurfaceHolder holder) {
+    public Renderer(GameObject go, Resources resources, int img) {
         super(go);
-
-        if(holder != null){
-            ourHolder = holder;
-        }
-        paint = new Paint();
+        this.resources = resources;
+        this.img = img;
     }
 
-    public Renderer(GameObject go,SurfaceHolder holder, Bitmap texture) {
-        super(go);
 
-        this.texture = texture;
-        if(holder != null)
-            ourHolder = holder;
-        paint = new Paint();
-    }
 
-    public void Draw(){
-        if (ourHolder.getSurface().isValid()) {
-            // Lock the canvas ready to draw
-            // Make the drawing surface our canvas object
-            canvas = ourHolder.lockCanvas();
+    public void Draw(Canvas canvas, Paint paint){
+        canvas.drawBitmap(bitmap,go.getTransform().GetPosition().getX(),go.getTransform().GetPosition().getY(),paint );
 
-            // Draw the background color
-            canvas.drawColor(Color.argb(255,  26, 128, 182));
-
-            // Choose the brush color for drawing
-            paint.setColor(Color.argb(255,  249, 129, 0));
-
-            // Make the text a bit bigger
-            paint.setTextSize(45);
-
-            // Display the current fps on the screen
-            canvas.drawText("FPS:" + fps, 20, 40, paint);
-
-            //draw all GO's
-            if(gameObjects.size() > 0) {
-                for (GameObject go : gameObjects) {
-                    go.Draw(canvas, paint);
-                }
-            }
-
-            // Draw everything to the screen
-            // and unlock the drawing surface
-            ourHolder.unlockCanvasAndPost(canvas);
-        }
     }
 
     public Bitmap GetBitmap(){
+        return bitmap;
+    }
 
+    @Override
+    public void LoadContent() {
+       bitmap = BitmapFactory.decodeResource(resources, img);
     }
 }

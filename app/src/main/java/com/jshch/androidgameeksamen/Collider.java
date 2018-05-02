@@ -14,9 +14,9 @@ public class Collider extends Component {
     }
     boolean InterSectsWidthRect(Collider other){
         Renderer renderer =(Renderer) go.GetComponent("Renderer");
-        Bitmap bitmap =renderer.GetBitMap();
+        Bitmap bitmap =renderer.GetBitmap();
         Renderer otherRenderer =(Renderer) other.go.GetComponent("Renderer");
-        Bitmap otherBitMap =otherRenderer.GetBitMap();
+        Bitmap otherBitMap =otherRenderer.GetBitmap();
         float myCenterX = go.getTransform().GetPosition().getX() + bitmap.getWidth() /2;
         float OtherCenterX = go.getTransform().GetPosition().getX() + otherBitMap.getWidth()/2;
         float myCenterY = go.getTransform().GetPosition().getY() + bitmap.getHeight() /2;
