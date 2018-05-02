@@ -12,10 +12,12 @@ public class GameObject {
     Transform getTransform(){
         return transform;
     }
+
     GameObject(Transform transform){
         this.transform = transform;
         components = new LinkedList<>();
     }
+
     Component GetComponent(String component){
         for (Component c : components){
             if(c.toString() == component){
@@ -24,6 +26,7 @@ public class GameObject {
         }
         return null;
     }
+
     public void LoadContent(){
         for (Component c : components){
             if(c instanceof LoadAble){
