@@ -5,8 +5,12 @@ import java.util.LinkedList;
 public class GameObject {
 
     LinkedList<Component> components;
-
-    GameObject(){
+    private Transform transform;
+    Transform getTransform(){
+        return transform;
+    }
+    GameObject(Transform transform){
+        this.transform = transform;
         components = new LinkedList<>();
     }
     Component GetComponent(String component){

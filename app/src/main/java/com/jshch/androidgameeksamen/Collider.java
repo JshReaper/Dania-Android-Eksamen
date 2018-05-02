@@ -5,26 +5,22 @@ import android.graphics.Bitmap;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class Collider extends Component {
-    private Bitmap bitmap;
 
-    public Bitmap GetBitMap(){
-        return bitmap;
-    }
-    private Transform transform;
-    Transform GetTransform(){
-        return transform;
-    }
-    Collider(Bitmap bitmap, Transform transform){
-        this.bitmap = bitmap;
-        this.transform = transform;
+    Collider(GameObject go){
+        super(go);
+
     }
     boolean InterSectsWidthRect(Collider other){
-        float myCenterX = transform.GetPosition().getX() + bitmap.getWidth() /2;
-        float OtherCenterX = other.GetTransform().GetPosition().getX() + other.GetBitMap().getWidth()/2;
-        float myCenterY = transform.GetPosition().getY() + bitmap.getHeight() /2;
-        float OtherCenterY = other.GetTransform().GetPosition().getY() + other.GetBitMap().getHeight()/2;
-        if (Math.abs(myCenterX-OtherCenterX)<=(bitmap.getWidth()+other.GetBitMap().getWidth())/2f
-                && Math.abs(myCenterY-OtherCenterY)<=(bitmap.getHeight()+other.GetBitMap().getHeight())/2f)
+        Renderer renderer =(Renderer) go.GetComponent("Renderer");
+        Bitmap bitmap =renderer.GetBitMap();
+        Renderer otherRenderer =(Renderer) other.go.GetComponent("Renderer");
+        Bitmap otherBitMap =otherRenderer.GetBitMap();
+        float myCenterX = go.getTransform().GetPosition().getX() + bitmap.getWidth() /2;
+        float OtherCenterX = go.getTransform().GetPosition().getX() + otherBitMap.getWidth()/2;
+        float myCenterY = go.getTransform().GetPosition().getY() + bitmap.getHeight() /2;
+        float OtherCenterY = go.getTransform().GetPosition().getY() + otherBitMap.getHeight()/2;
+        if (Math.abs(myCenterX-OtherCenterX)<=(bitmap.getWidth()+otherBitMap.getWidth())/2f
+                && Math.abs(myCenterY-OtherCenterY)<=(bitmap.getHeight()+otherBitMap.getHeight())/2f)
             return true;
         else
             return false;
