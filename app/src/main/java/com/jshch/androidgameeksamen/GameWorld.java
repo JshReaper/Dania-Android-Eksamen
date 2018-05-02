@@ -24,9 +24,17 @@ public class GameWorld {
         }
         return instance;
     }
+
+
+    public void Update(float deltaTime){
+        for (GameObject go : gameObjects){
+            go.Update();
+        }
+    }
+
     public void Draw(Canvas canvas, Paint paint){
         for(GameObject go : gameObjects){
-            go.Draw(canvas,paint);
+            go.Draw(canvas, paint);
         }
     }
 }

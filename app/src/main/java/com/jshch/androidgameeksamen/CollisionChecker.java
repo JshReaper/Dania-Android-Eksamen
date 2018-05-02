@@ -3,6 +3,7 @@ package com.jshch.androidgameeksamen;
 import java.util.LinkedList;
 
 public class CollisionChecker implements Runnable {
+    boolean playing;
     @Override
     public void run() {
         if(GameWorld.getInstance().Playing){
