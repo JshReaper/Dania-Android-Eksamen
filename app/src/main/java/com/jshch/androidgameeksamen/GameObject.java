@@ -37,7 +37,7 @@ public class GameObject {
     public void OnCollisionEnter(){
         for (Component c : components){
             if(c instanceof CollideAble){
-                ((CollideAble) c).OncollisionEnter();
+                ((CollideAble) c).OnCollisionEnter();
             }
         }
     }
@@ -45,7 +45,7 @@ public class GameObject {
     public void OnCollisionStay(){
         for (Component c : components){
             if(c instanceof CollideAble){
-                ((CollideAble) c).OncollisionStay();
+                ((CollideAble) c).OnCollisionStay();
             }
         }
     }

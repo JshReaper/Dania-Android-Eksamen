@@ -1,7 +1,7 @@
 package com.jshch.androidgameeksamen;
 
 public interface CollideAble {
-    void OncollisionEnter();
-    void OncollisionStay();
+    void OnCollisionEnter();
+    void OnCollisionStay();
     void OnCollisionExit();
 }
