@@ -5,11 +5,22 @@ import java.util.LinkedList;
 public class GameObject {
 
     LinkedList<Component> components;
-
-    GameObject(){
+    private Transform transform;
+    Transform getTransform(){
+        return transform;
+    }
+    GameObject(Transform transform){
+        this.transform = transform;
         components = new LinkedList<>();
     }
-
+    Component GetComponent(String component){
+        for (Component c : components){
+            if(c.toString() == component){
+                return c;
+            }
+        }
+        return null;
+    }
     public void LoadContent(){
         for (Component c : components){
             if(c instanceof LoadAble){
