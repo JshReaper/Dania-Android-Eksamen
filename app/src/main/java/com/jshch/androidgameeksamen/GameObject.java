@@ -5,9 +5,11 @@ import java.util.LinkedList;
 public class GameObject {
 
     LinkedList<Component> components;
+    
     GameObject(){
         components = new LinkedList<>();
     }
+
     public void LoadContent(){
         for (Component c : components){
             if(c instanceof LoadAble){
@@ -15,6 +17,7 @@ public class GameObject {
             }
         }
     }
+
     public void Update(){
         for (Component c : components){
             if(c instanceof UpdateAble){
@@ -22,6 +25,7 @@ public class GameObject {
             }
         }
     }
+
     public void Draw(){
         for (Component c : components){
             if(c instanceof DrawAble){
@@ -29,6 +33,7 @@ public class GameObject {
             }
         }
     }
+
     public void OnCollisionEnter(){
         for (Component c : components){
             if(c instanceof CollideAble){
@@ -36,6 +41,7 @@ public class GameObject {
             }
         }
     }
+
     public void OnCollisionStay(){
         for (Component c : components){
             if(c instanceof CollideAble){
@@ -43,6 +49,7 @@ public class GameObject {
             }
         }
     }
+
     public void OnCollisionExit(){
         for (Component c : components){
             if(c instanceof CollideAble){
