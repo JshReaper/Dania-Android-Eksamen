@@ -1,5 +1,5 @@
 package com.jshch.androidgameeksamen;
 
 public interface UpdateAble {
-   void Update();
+   void Update(float deltaTime);
 }

@@ -9,18 +9,29 @@ public class GameWorld {
     boolean Playing = true;
     LinkedList<GameObject> gameObjects;
     CollisionChecker collisionChecker;
-    Thread colThread;
+    Thread colThread = null;
+
     private static GameWorld instance;
     protected GameWorld(){
-        gameObjects = new LinkedList<>();
 
+        //game objects ini
+        gameObjects = new LinkedList<>();
+        AddGameObjects();
+        LoadConent();
 
         //collision
         collisionChecker = new CollisionChecker();
         colThread = new Thread(collisionChecker);
         colThread.start();
     }
-
+    void AddGameObjects(){
+        //add all game objects
+    }
+    void LoadConent(){
+        for(GameObject go: gameObjects){
+            go.LoadContent();
+        }
+    }
     public static GameWorld getInstance() {
         if(instance == null){
             instance = new GameWorld();
@@ -31,7 +42,7 @@ public class GameWorld {
 
     public void Update(float deltaTime){
         for (GameObject go : gameObjects){
-            go.Update();
+            go.Update(deltaTime);
         }
     }
 
