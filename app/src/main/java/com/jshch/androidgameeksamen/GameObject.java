@@ -35,10 +35,10 @@ public class GameObject {
         }
     }
 
-    public void Update(){
+    public void Update(float deltaTime){
         for (Component c : components){
             if(c instanceof UpdateAble){
-                ((UpdateAble) c).Update();
+                ((UpdateAble) c).Update(deltaTime);
             }
         }
     }

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "281307005369",
+    "firebase_url": "https://tanks-squared.firebaseio.com",
+    "project_id": "tanks-squared",
+    "storage_bucket": "tanks-squared.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:281307005369:android:576a510ca70cc015",
+        "android_client_info": {
+          "package_name": "com.jshch.androidgameeksamen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "281307005369-loea2pk5g5i42bvuj0qecm9vcsl8k3i3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jshch.androidgameeksamen",
+            "certificate_hash": "8ea7f4249a9aca9d6b8ac4a1e4d2dc90459e3c20"
+          }
+        },
+        {
+          "client_id": "281307005369-3he5pblbruh95h9dak3r9crbr12ergkc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrgJLWFBhrB7ZagU_XRMKJdM22SA0eCuc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "281307005369-3he5pblbruh95h9dak3r9crbr12ergkc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
