@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         //generate reference to entry in database
         DatabaseReference myRef = database.getReference("message");
         //change value in the referenced entry
-        myRef.setValue("Hello, world");
+        myRef.setValue("Anonym wombat siger: Topper er en gud i tyk form");
 
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {

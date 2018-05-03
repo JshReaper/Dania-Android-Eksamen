@@ -42,7 +42,7 @@ public class Vector2 {
     }
 
     // scale the vector with a given float
-    public Vector2 Scale (Vector2 v1, float scale) {
+    public static Vector2 Scale (Vector2 v1, float scale) {
         return new Vector2(v1.getX() * scale, v1.getY() * scale);
     }
 
