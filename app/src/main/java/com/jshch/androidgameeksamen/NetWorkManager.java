@@ -16,7 +16,7 @@ public class NetWorkManager {
         DatabaseReference myRef = database.getReference("message");
         //change value in the referenced entry
         myRef.setValue("Hello, world: jacob");
-
+        
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
