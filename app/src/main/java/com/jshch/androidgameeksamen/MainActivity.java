@@ -1,23 +1,24 @@
 package com.jshch.androidgameeksamen;
-
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
+import android.os.Debug;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.SurfaceHolder;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.io.Console;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity {
-
-    Button playB;
-    Button exitB;
 
     FileOutputStream fileStream;
 
@@ -25,15 +26,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
         readScore();
 
-        playB = findViewById(R.id.playB);
+
+        Button playB = findViewById(R.id.playB);
         playB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        exitB = findViewById(R.id.ExitB);
-        exitB.setOnClickListener(new View.OnClickListener() {
+        Button exitB = findViewById(R.id.ExitB);
+        exitB.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 System.exit(0);
@@ -51,32 +49,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onPause(){
-        super.onPause();
-
-        playB.setOnClickListener(null);
-        exitB.setOnClickListener(null);
+    protected void onResume() {
+        super.onResume();
+        readScore();
     }
 
     void playButtonEvent(){
-        //Intent intent = new Intent(this,GameActivity.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this,GameActivity.class);
+        startActivity(intent);
     }
 
-    void readScore() {
+    void readScore(){
         TextView tx = findViewById(R.id.scoreView);
 
         final String MY_PREFS_NAME = "MyPrefsFile";
         SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         int score = prefs.getInt("localScore", 0); //0 is the default value.
-        tx.setText("high score: " + score);
+        tx.setText("high score: " +score);
 
-        try {
+        try{
             fileStream = openFileOutput("localScore.txt", Context.MODE_PRIVATE);
 
             InputStream is = getAssets().open("localScore.txt");
             int size = is.available();
-            if (size != 0) {
+            if(size != 0) {
                 byte[] buffer = new byte[size];
 
                 is.read(buffer);
@@ -87,13 +83,13 @@ public class MainActivity extends AppCompatActivity {
                 int currentBestScore = Integer.parseInt(bufferTransfer);
 
                 tx.setText("Best score: " + currentBestScore);
-            } else {
+            }else{
                 tx.setText("No scores recorded");
             }
 
 
-        } catch (Exception e) {
-            Log.e("error", e.getMessage());
+        }catch(Exception e){
+            Log.e("error",e.getMessage());
         }
     }
 }

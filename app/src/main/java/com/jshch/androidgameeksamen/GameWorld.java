@@ -13,6 +13,9 @@ public class GameWorld {
     private static GameWorld instance;
     protected GameWorld(){
         gameObjects = new LinkedList<>();
+
+
+        //collision
         collisionChecker = new CollisionChecker();
         colThread = new Thread(collisionChecker);
         colThread.start();
@@ -34,7 +37,7 @@ public class GameWorld {
 
     public void Draw(Canvas canvas, Paint paint){
         for(GameObject go : gameObjects){
-            go.Draw();
+            go.Draw(canvas,paint);
         }
     }
 }

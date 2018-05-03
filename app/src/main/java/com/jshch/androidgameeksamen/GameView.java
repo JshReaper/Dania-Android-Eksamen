@@ -12,11 +12,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class GameView extends SurfaceView implements Runnable {
-    boolean playing;
     // This variable tracks the game frame rate
     long fps;
 
-    Thread colT;
+    Thread gameThread = null;
     CollisionChecker collisionChecker;
     // This is used to help calculate the fps
     private long timeThisFrame;
@@ -39,7 +38,7 @@ public class GameView extends SurfaceView implements Runnable {
     @Override
     public void run() {
 
-        while (playing) {
+        while (GameWorld.getInstance().Playing) {
 
             // Capture the current time in milliseconds in startFrameTime
             long startFrameTime = System.currentTimeMillis();
@@ -93,10 +92,9 @@ public class GameView extends SurfaceView implements Runnable {
     }
     // shutdown our thread.
     public void pause() {
-        playing = false;
-        collisionChecker.playing = false;
+        GameWorld.getInstance().Playing = false;
         try {
-            colT.join();
+            gameThread.join();
         } catch (InterruptedException e) {
             Log.e("Error:", "joining thread");
         }
@@ -105,10 +103,9 @@ public class GameView extends SurfaceView implements Runnable {
     // If SimpleGameEngine Activity is started theb
     // start our thread.
     public void resume() {
-        playing = true;
-        collisionChecker.playing = true;
-        colT = new Thread(collisionChecker);
-        colT.start();
+        GameWorld.getInstance().Playing = true;
+        gameThread = new Thread(this);
+        gameThread.start();
     }
 
 }
