@@ -8,6 +8,7 @@ import java.util.LinkedList;
 public class GameWorld {
     boolean Playing = true;
     LinkedList<GameObject> gameObjects;
+    LinkedList<GameObject> gameObjectsToDestroy;
     CollisionChecker collisionChecker;
     Thread colThread = null;
 
@@ -16,6 +17,7 @@ public class GameWorld {
 
         //game objects ini
         gameObjects = new LinkedList<>();
+        gameObjectsToDestroy = new LinkedList<>();
         AddGameObjects();
         LoadConent();
 
@@ -39,10 +41,24 @@ public class GameWorld {
         return instance;
     }
 
+    boolean Destroy(GameObject go){
+        boolean success = false;
+        if(gameObjects.contains(go)){
+            success = gameObjectsToDestroy.add(go);
+        }
+
+        return success;
+    }
 
     public void Update(float deltaTime){
         for (GameObject go : gameObjects){
             go.Update(deltaTime);
+        }
+        if(gameObjectsToDestroy.size() > 0) {
+            for (GameObject goD : gameObjectsToDestroy) {
+                gameObjects.remove(goD);
+            }
+            gameObjectsToDestroy = new LinkedList<>();
         }
     }
 

@@ -66,7 +66,7 @@ public class Vector2 {
     }
 
     // returns the length of the given Vector
-    public float Length(Vector2 vec) {
+    public float Distance(Vector2 vec) {
         float length = (float)Math.sqrt((this.getX() - vec.getX()) * (this.getX() - vec.getX()) + (this.getY() - vec.getY()) * (this.getY() - vec.getY()));
         return length;
     }
