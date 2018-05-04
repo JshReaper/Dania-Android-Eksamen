@@ -42,7 +42,7 @@ public class Vector2 {
     }
 
     // scale the vector with a given float
-    public Vector2 Scale (Vector2 v1, float scale) {
+    public static Vector2 Scale (Vector2 v1, float scale) {
         return new Vector2(v1.getX() * scale, v1.getY() * scale);
     }
 
@@ -66,7 +66,7 @@ public class Vector2 {
     }
 
     // returns the length of the given Vector
-    public float Length(Vector2 vec) {
+    public float Distance(Vector2 vec) {
         float length = (float)Math.sqrt((this.getX() - vec.getX()) * (this.getX() - vec.getX()) + (this.getY() - vec.getY()) * (this.getY() - vec.getY()));
         return length;
     }

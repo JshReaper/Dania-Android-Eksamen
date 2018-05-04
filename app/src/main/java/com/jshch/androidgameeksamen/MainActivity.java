@@ -26,6 +26,7 @@ import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity {
 
+    Button playB, exitB;
     FileOutputStream fileStream;
 
     @Override
@@ -33,13 +34,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
         NetWorkManager nm = new NetWorkManager();
         nm.CreateAndJoinLobby("Test lobby","test player");
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         readScore();
 
-
-        Button playB = findViewById(R.id.playB);
+        //MainMenu Buttons
+        playB = findViewById(R.id.playB);
         playB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button exitB = findViewById(R.id.ExitB);
+        exitB = findViewById(R.id.ExitB);
         exitB.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -58,9 +65,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        readScore();
+    protected void onPause(){
+        super.onPause();
+
+        playB.setOnClickListener(null);
+        exitB.setOnClickListener(null);
     }
 
     void playButtonEvent(){
