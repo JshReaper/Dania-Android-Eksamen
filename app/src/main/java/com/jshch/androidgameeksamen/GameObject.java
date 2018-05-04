@@ -9,7 +9,9 @@ public class GameObject {
 
     public String tag;
     LinkedList<Component> components;
-    private Transform transform;
+    Transform transform;
+
+
     Transform getTransform(){
         return transform;
     }
