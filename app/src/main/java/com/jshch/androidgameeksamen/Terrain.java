@@ -19,8 +19,10 @@ public class Terrain extends Component implements DrawAble, UpdateAble{
         this.box_img = box_img;
 
         boxes = new ArrayList<>();
+
         for (int i = 0; i < NrBoxes; i++){
-            boxes.add(new TerrainBox(new GameObject(new Transform(new Vector2(i * 10, 1000), 1f)), box_img));
+
+            boxes.add(new TerrainBox(new GameObject (new Transform(new Vector2(i * 10, 1000), 1f)), box_img));
             //boxes.get(i);
         }
     }

@@ -16,6 +16,7 @@ public class Bullet extends Component implements UpdateAble {
     @Override
     public void Update(float deltaTime){
 
+        //Move the object in a desired direction with a speed/power
 
 
     }
