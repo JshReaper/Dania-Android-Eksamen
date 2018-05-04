@@ -8,7 +8,7 @@ import android.graphics.Paint;
 
 public class Renderer extends Component implements DrawAble,LoadAble {
 
-    Bitmap bitmap;
+    public Bitmap bitmap;
     int img;
     Resources resources;
 
