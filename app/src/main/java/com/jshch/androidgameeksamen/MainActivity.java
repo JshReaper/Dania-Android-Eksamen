@@ -34,8 +34,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        NetWorkManager.HalloWorldExample();
-
+        NetWorkManager nm = new NetWorkManager();
+        nm.CreateAndJoinLobby("Test lobby","test player");
         readScore();
 
 
@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         exitB.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+
                 System.exit(0);
             }
         });
