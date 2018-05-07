@@ -28,6 +28,16 @@ public class GameWorld {
     }
     void AddGameObjects(){
         //add all game objects
+        Transform transTurret = new Transform(new Vector2(100,50),Vector2.Zero());
+        GameObject turretObj = new GameObject(transTurret);
+        Turret turret = new Turret(turretObj);
+        turretObj.components.add(turret);
+
+        Transform trans = new Transform(new Vector2(100,50),Vector2.Zero());
+        GameObject tankObj = new GameObject(trans);
+        Tank tank = new Tank(tankObj,turretObj);
+        tankObj.components.add(tank);
+
     }
     void LoadConent(){
         for(GameObject go: gameObjects){
