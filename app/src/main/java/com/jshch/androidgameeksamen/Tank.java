@@ -46,7 +46,7 @@ public class Tank extends Component implements UpdateAble, CollideAble{
     void Fire(Vector2 direction){
         Transform pos = new Transform(turretOffset.Add(Vector2.Scale(direction.Normalized(),20) ),new Vector2(1,1));
         GameObject bullet = new GameObject(pos);
-        Bullet blt = new Bullet(bullet);
+        Bullet blt = new Bullet(bullet,direction,power);
         bullet.components.add(blt);
 
     }
