@@ -18,8 +18,10 @@ public class Tank extends Component implements UpdateAble, CollideAble{
         super(go);
         turretObject = turret;
         Renderer render = (Renderer) GetGameObject().GetComponent("Renderer");
-        myImageSizeX = render.bitmap.getWidth();
-        myImageSizeY = render.bitmap.getHeight();
+        if(render != null) {
+            myImageSizeX = render.bitmap.getWidth();
+            myImageSizeY = render.bitmap.getHeight();
+        }
     }
     Vector2 lastPos = Vector2.Zero();
     @Override
