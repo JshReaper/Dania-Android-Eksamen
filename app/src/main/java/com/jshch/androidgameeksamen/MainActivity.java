@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void playButtonEvent(){
-        Intent intent = new Intent(this,GameActivity.class);
+        Intent intent = new Intent(this, LobbyActivity.class);
         startActivity(intent);
     }
 
