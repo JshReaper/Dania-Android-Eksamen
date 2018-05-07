@@ -83,7 +83,7 @@ public class Vector2 {
     }
 
     // returns a zero vector
-    public Vector2 Zero() {
+    public static Vector2 Zero() {
         return new Vector2(0, 0);
     }
 
@@ -92,6 +92,17 @@ public class Vector2 {
         float tempX = this.x;
         this.x = -this.y;
         this.y = tempX;
+    }
+
+    public static Vector2 VectorFromAngle(float angle){
+
+        float x = 1;
+        float y = 0;
+
+        x = (1 * (float)Math.cos(angle) - 0 * (float)Math.sin(angle));
+        y = (1 * (float)Math.sin(angle) + 0 * (float) Math.cos(angle));
+
+        return new Vector2(x,y);
     }
 
 }

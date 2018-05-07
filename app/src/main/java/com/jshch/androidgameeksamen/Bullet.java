@@ -7,16 +7,21 @@ public class Bullet extends Component implements UpdateAble {
 
     int blastRadius;
     int damage;
+    Vector2 direction;
 
-    public Bullet(GameObject go){
+    public Bullet(GameObject go, Vector2 direction, float power){
         super(go);
         damage = 50;
+        this.direction = Vector2.Scale(direction,power);
     }
 
     @Override
     public void Update(float deltaTime){
 
+        //Move the object in a desired direction with a speed/power
 
+        GetGameObject().getTransform().Position.Add(Vector2.Scale(direction,deltaTime));
+        direction.Add(Vector2.Scale(new Vector2(0,10), deltaTime));
 
     }
 

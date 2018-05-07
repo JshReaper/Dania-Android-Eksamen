@@ -35,8 +35,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        NetWorkManager.HalloWorldExample();
-
 
     }
 
@@ -58,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         exitB.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+
                 System.exit(0);
             }
         });
