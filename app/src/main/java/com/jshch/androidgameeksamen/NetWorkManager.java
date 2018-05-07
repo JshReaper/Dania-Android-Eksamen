@@ -9,50 +9,41 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.UUID;
 
-class LobbyInfo{
-    String name;
-    String creationTime;
-    LobbyInfo(String name){
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd_HH:mm:ss");
-        Date date = new Date();
-        creationTime = sdf.format(date);
-        this.name = name;
-    }
-}
-class LobbyPlayer{
-    boolean isHost;
-    String name;
-    String id;
-    String color;
-    LobbyPlayer(boolean isHost,String name,String color){
 
-        this.isHost = isHost;
-        this.name = name;
-        this.color = color;
-        id = UUID.randomUUID().toString();
-    }
-}
 public class NetWorkManager {
 
+   private static ArrayList<LobbyInfo> lobbies = new ArrayList<>();
+    public void CreateAndJoinLobby(final String lobbyName,final String playerName){
 
-   private static LinkedList<String> lobbies = new LinkedList<>();
-    public void CreateAndJoinLobby(String lobbyName,String playerName){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference lobbyRef = database.getReference("lobbies/");
+        lobbyRef.addValueEventListener( new ValueEventListener()  {
+            @SuppressWarnings("unchecked")
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
-        String uniqueID = UUID.randomUUID().toString();
-        LobbyInfo lobbyInfo = new LobbyInfo(lobbyName);
-        lobbies.add(uniqueID);
-        DatabaseReference lobbyRef = database.getReference("lobbies/"+uniqueID);
-        lobbyRef.child("lobby info").setValue(lobbyInfo);
+                lobbies.addAll((ArrayList<LobbyInfo>)dataSnapshot.getValue());
+                lobbyRef.removeEventListener(this);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         //add the player
         LinkedList<LobbyPlayer> players = new LinkedList<>();
         players.add(new LobbyPlayer(true,playerName,"white"));
-        lobbyRef.child("players").setValue(players);
+        String uniqueID = UUID.randomUUID().toString();
+        LobbyInfo lobbyInfo = new LobbyInfo(uniqueID,lobbyName,players);
+        lobbies.add(lobbyInfo);
+        lobbyRef.setValue(lobbies);
     }
    public void HalloWorldExample(){
         //setup database instance
