@@ -8,12 +8,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.UUID;
 
 class LobbyInfo{
     String name;
+    String creationTime;
     LobbyInfo(String name){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd_HH:mm:ss");
+        Date date = new Date();
+        creationTime = sdf.format(date);
         this.name = name;
     }
 }
@@ -23,6 +29,7 @@ class LobbyPlayer{
     String id;
     String color;
     LobbyPlayer(boolean isHost,String name,String color){
+
         this.isHost = isHost;
         this.name = name;
         this.color = color;
@@ -32,19 +39,20 @@ class LobbyPlayer{
 public class NetWorkManager {
 
 
-   private static String lobbies[];
+   private static LinkedList<String> lobbies = new LinkedList<>();
     public void CreateAndJoinLobby(String lobbyName,String playerName){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
         String uniqueID = UUID.randomUUID().toString();
         LobbyInfo lobbyInfo = new LobbyInfo(lobbyName);
-
+        lobbies.add(uniqueID);
         DatabaseReference lobbyRef = database.getReference("lobbies/"+uniqueID);
         lobbyRef.child("lobby info").setValue(lobbyInfo);
-        LinkedList<LobbyPlayer> lobbyPlayer = new LinkedList<>();
-        lobbyPlayer.add(new LobbyPlayer(true,playerName,"white"));
-        lobbyRef.child("players").setValue(lobbyPlayer);
 
+        //add the player
+        LinkedList<LobbyPlayer> players = new LinkedList<>();
+        players.add(new LobbyPlayer(true,playerName,"white"));
+        lobbyRef.child("players").setValue(players);
     }
    public void HalloWorldExample(){
         //setup database instance
