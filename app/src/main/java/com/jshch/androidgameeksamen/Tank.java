@@ -29,7 +29,7 @@ public class Tank extends Component implements UpdateAble, CollideAble{
         //apply gravity
         if(!onGround){
             GetGameObject().getTransform().Position.Add(Vector2.Scale(gravity,deltaTime));
-            gravity = Vector2.Scale(gravity,1.01f);
+            //gravity = Vector2.Scale(gravity,1.01f);
         }
 
         if(lastPos != GetGameObject().getTransform().Position) {
@@ -87,7 +87,7 @@ public class Tank extends Component implements UpdateAble, CollideAble{
     public void OnCollisionExit(Collider other){
         if(onGround && other.GetGameObject().tag == "ground"){
             onGround = !onGround;
-            gravity = new Vector2(0,10);
+            //gravity = new Vector2(0,10);
         }
     }
 
