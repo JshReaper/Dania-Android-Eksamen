@@ -24,7 +24,7 @@ public class GameObject {
 
     Component GetComponent(String component){
         for (Component c : components){
-            if(c.toString() == component){
+            if(c.tag == component){
                 return c;
             }
         }

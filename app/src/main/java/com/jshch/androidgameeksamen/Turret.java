@@ -11,7 +11,7 @@ public class Turret extends Component implements LoadAble  {
 
     public Turret(GameObject go){
         super(go);
-
+        tag = "Turret";
     }
 
     @Override

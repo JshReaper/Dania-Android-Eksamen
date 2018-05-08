@@ -17,7 +17,7 @@ public class Terrain extends Component implements DrawAble, UpdateAble{
     public Terrain(GameObject go, Bitmap BG_img, Bitmap box_img) { super(go);
         this.BG_img = BG_img;
         this.box_img = box_img;
-
+        tag = "Terrain";
         boxes = new ArrayList<>();
 
         for (int i = 0; i < NrBoxes; i++){

@@ -10,6 +10,7 @@ public class AudioController extends Component {
     public AudioController(GameObject go, Context context){
         super(go);
         this.context = context;
+        tag = "AudioController";
     }
 
 

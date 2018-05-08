@@ -1,6 +1,9 @@
 package com.jshch.androidgameeksamen;
 
-public class Tank extends Component implements UpdateAble, CollideAble{
+import android.content.res.Resources;
+import android.util.Log;
+
+public class Tank extends Component implements UpdateAble, CollideAble, LoadAble{
 
     int hp = 100;
     float fuel = 100;
@@ -17,12 +20,19 @@ public class Tank extends Component implements UpdateAble, CollideAble{
     public Tank(GameObject go, GameObject turret){
         super(go);
         turretObject = turret;
+        tag = "Tank";
+
+    }
+
+    @Override
+            public void LoadContent(Resources resources){
         Renderer render = (Renderer) GetGameObject().GetComponent("Renderer");
         if(render != null) {
             myImageSizeX = render.bitmap.getWidth();
             myImageSizeY = render.bitmap.getHeight();
         }
     }
+
     Vector2 lastPos = Vector2.Zero();
     @Override
     public void Update(float deltaTime) {
@@ -32,11 +42,13 @@ public class Tank extends Component implements UpdateAble, CollideAble{
             //gravity = Vector2.Scale(gravity,1.01f);
         }
 
-        if(lastPos != GetGameObject().getTransform().Position) {
+
+
+
             //set the turret offset to the right position every frame
-            turretOffset = new Vector2(GetGameObject().getTransform().Position.getX() + myImageSizeX / 2,
-                    GetGameObject().getTransform().Position.getY() + myImageSizeY / 3);
-        }
+            turretOffset = new Vector2(GetGameObject().getTransform().Position.getX() + (myImageSizeX / 2),
+                    GetGameObject().getTransform().Position.getY() + (myImageSizeY / 10));
+
 
         //if the turret object position is different from the expected position place it correctly
         if(turretOffset != turretObject.getTransform().Position){

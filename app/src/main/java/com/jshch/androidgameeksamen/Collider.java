@@ -11,6 +11,7 @@ public class Collider extends Component {
     Collider(GameObject go){
         super(go);
         OtherColliders = new LinkedList<>();
+        tag = "Collider";
     }
     boolean InterSectsWidthRect(Collider other){
         Renderer renderer =(Renderer) go.GetComponent("Renderer");

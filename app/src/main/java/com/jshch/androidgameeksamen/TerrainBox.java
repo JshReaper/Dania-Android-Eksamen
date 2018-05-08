@@ -10,7 +10,7 @@ public class TerrainBox extends Component implements CollideAble, DrawAble {
 
     public TerrainBox(GameObject go, Bitmap box_img) {
         super(go);
-
+        tag = "TerrainBox";
         this.box_img = box_img;
     }
 
