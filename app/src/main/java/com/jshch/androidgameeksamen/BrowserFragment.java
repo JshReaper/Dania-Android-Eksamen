@@ -13,15 +13,18 @@ import android.widget.ListView;
 public class BrowserFragment extends Fragment {
 
     private ListView listV;
+    NetWorkManager netMan;
 
     public BrowserFragment(){
 
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //listV.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,  ));
+        netMan = new NetWorkManager();
+
     }
 
     @Override
@@ -38,6 +41,9 @@ public class BrowserFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
 
+        while(!NetWorkManager.LobbyLoaded){ }
+
+        //listV.setAdapter(new ArrayAdapter<LobbyInfo>(this, android.R.layout.simple_list_item_1, netMan.GetLobbies() ));
 
     }
 
