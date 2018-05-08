@@ -13,13 +13,12 @@ public class LobbyActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-
         FragmentTransaction fragTransaction = fragmentManager.beginTransaction();
+
 
         BrowserFragment browserFragment = new BrowserFragment();
 
         fragTransaction.replace(android.R.id.content, browserFragment);
-
         fragTransaction.commit();
 
 
