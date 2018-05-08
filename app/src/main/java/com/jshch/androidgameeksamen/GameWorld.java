@@ -1,5 +1,6 @@
 package com.jshch.androidgameeksamen;
 
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
@@ -19,7 +20,6 @@ public class GameWorld {
         gameObjects = new LinkedList<>();
         gameObjectsToDestroy = new LinkedList<>();
         AddGameObjects();
-        LoadConent();
 
         //collision
         collisionChecker = new CollisionChecker();
@@ -32,16 +32,14 @@ public class GameWorld {
         GameObject turretObj = new GameObject(transTurret);
         Turret turret = new Turret(turretObj);
         turretObj.components.add(turret);
-
         Transform trans = new Transform(new Vector2(100,50),Vector2.Zero());
         GameObject tankObj = new GameObject(trans);
         Tank tank = new Tank(tankObj,turretObj);
         tankObj.components.add(tank);
-
     }
-    void LoadConent(){
+    void LoadContent(Resources resources){
         for(GameObject go: gameObjects){
-            go.LoadContent();
+            go.LoadContent(resources);
         }
     }
     public static GameWorld getInstance() {

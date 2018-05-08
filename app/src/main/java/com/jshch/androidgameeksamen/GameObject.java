@@ -1,5 +1,6 @@
 package com.jshch.androidgameeksamen;
 
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
@@ -30,10 +31,10 @@ public class GameObject {
         return null;
     }
 
-    public void LoadContent(){
+    public void LoadContent(Resources resources){
         for (Component c : components){
             if(c instanceof LoadAble){
-                ((LoadAble) c).LoadContent();
+                ((LoadAble) c).LoadContent(resources);
             }
         }
     }
