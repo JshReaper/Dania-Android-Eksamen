@@ -10,11 +10,9 @@ public class Renderer extends Component implements DrawAble,LoadAble {
 
     public Bitmap bitmap;
     int img;
-    Resources resources;
 
-    public Renderer(GameObject go, Resources resources, int img) {
+    public Renderer(GameObject go, int img) {
         super(go);
-        this.resources = resources;
         this.img = img;
     }
 
@@ -30,7 +28,7 @@ public class Renderer extends Component implements DrawAble,LoadAble {
     }
 
     @Override
-    public void LoadContent() {
+    public void LoadContent(Resources resources) {
        bitmap = BitmapFactory.decodeResource(resources, img);
     }
 }
