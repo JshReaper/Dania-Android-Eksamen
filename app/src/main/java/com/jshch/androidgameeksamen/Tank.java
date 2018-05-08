@@ -28,7 +28,7 @@ public class Tank extends Component implements UpdateAble, CollideAble{
     public void Update(float deltaTime) {
         //apply gravity
         if(!onGround){
-            GetGameObject().getTransform().Position.Add(Vector2.Scale(gravity,deltaTime));
+//            GetGameObject().getTransform().Position.Add(Vector2.Scale(gravity,deltaTime));
             //gravity = Vector2.Scale(gravity,1.01f);
         }
 

@@ -52,6 +52,8 @@ public class GameWorld {
     }
 
     void LoadContent(Resources resources){
+
+
         for(GameObject go: gameObjects){
             go.LoadContent(resources);
         }

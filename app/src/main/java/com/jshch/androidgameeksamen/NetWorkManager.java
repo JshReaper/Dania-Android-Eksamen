@@ -17,18 +17,17 @@ import java.util.UUID;
 
 public class NetWorkManager {
 
-   private static ArrayList<LobbyInfo> lobbies = new ArrayList<>();
-    public void CreateAndJoinLobby(final String lobbyName,final String playerName){
-
+    private static ArrayList<LobbyInfo> lobbies = new ArrayList<>();
+    static boolean LobbyLoaded;
+    public void LoadLobby(){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference lobbyRef = database.getReference("lobbies/");
         lobbyRef.addValueEventListener( new ValueEventListener()  {
             @SuppressWarnings("unchecked")
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
-                lobbies.addAll((ArrayList<LobbyInfo>)dataSnapshot.getValue());
-                lobbyRef.removeEventListener(this);
+                lobbies =(ArrayList<LobbyInfo>)dataSnapshot.getValue();
+                LobbyLoaded = true;
             }
 
             @Override
@@ -36,16 +35,27 @@ public class NetWorkManager {
 
             }
         });
+    }
+    public void CreateAndJoinLobby(final String lobbyName,final String playerName){
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference lobbyRef = database.getReference("lobbies/");
 
         //add the player
         LinkedList<LobbyPlayer> players = new LinkedList<>();
         players.add(new LobbyPlayer(true,playerName,"white"));
+
+        //generate random ID
         String uniqueID = UUID.randomUUID().toString();
+
+        //add the lobby
         LobbyInfo lobbyInfo = new LobbyInfo(uniqueID,lobbyName,players);
         lobbies.add(lobbyInfo);
+
+        //update database
         lobbyRef.setValue(lobbies);
     }
-   public void HalloWorldExample(){
+    public void HalloWorldExample(){
         //setup database instance
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         //generate reference to entry in database
