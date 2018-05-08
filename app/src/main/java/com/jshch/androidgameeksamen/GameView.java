@@ -35,6 +35,7 @@ public class GameView extends SurfaceView implements Runnable {
         ourHolder = getHolder();
         paint = new Paint();
         GameWorld.getInstance().LoadContent(getResources());
+
     }
 
     @Override

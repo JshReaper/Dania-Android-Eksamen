@@ -37,11 +37,12 @@ public class GameWorld {
 
         Transform trans = new Transform(new Vector2(100,50),Vector2.Zero());
         GameObject tankObj = new GameObject(trans);
-        //Renderer render = new Renderer(tankObj,);
         Tank tank = new Tank(tankObj,turretObj);
         tankObj.components.add(tank);
         tankObj.tag = "player";
 
+        gameObjects.add(turretObj);
+        gameObjects.add(tankObj);
     }
     void LoadContent(Resources resources){
         for(GameObject go: gameObjects){
