@@ -49,7 +49,7 @@ public class GameWorld {
 
     public void AddGameObject(GameObject go){
         gameObjects.add(go);
-        go.LoadContent(GameView.R);
+        go.LoadContent(GameView.resources);
     }
 
     void LoadContent(Resources resources){

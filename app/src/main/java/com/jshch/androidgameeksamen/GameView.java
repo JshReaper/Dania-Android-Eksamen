@@ -2,6 +2,8 @@ package com.jshch.androidgameeksamen;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -26,7 +28,7 @@ public class GameView extends SurfaceView implements Runnable {
     // We will see it in action in the draw method soon.
     SurfaceHolder ourHolder;
 
-    static Resources R;
+    static Resources resources;
 
     // A Canvas and a Paint object
     Canvas canvas;
@@ -36,7 +38,7 @@ public class GameView extends SurfaceView implements Runnable {
         super(context);
         ourHolder = getHolder();
         paint = new Paint();
-        R = getResources();
+        resources = getResources();
         GameWorld.getInstance().LoadContent(getResources());
 
     }
@@ -83,6 +85,11 @@ public class GameView extends SurfaceView implements Runnable {
             // Display the current fps on the screen
             canvas.drawText("FPS:" + fps, 20, 40, paint);
 
+            //test img
+            Bitmap bitmap;
+            bitmap = BitmapFactory.decodeResource(getResources(),R.mipmap.kappa);
+            Log.d("pixels: ", "draw: "+bitmap.getHeight());
+            canvas.drawBitmap(bitmap,50,50,paint );
             //draw all GO's
             GameWorld.getInstance().Draw(canvas,paint);
 
@@ -95,6 +102,7 @@ public class GameView extends SurfaceView implements Runnable {
     private void update() {
         GameWorld.getInstance().Update(deltaTime);
     }
+
     // shutdown our thread.
     public void pause() {
         GameWorld.getInstance().Playing = false;

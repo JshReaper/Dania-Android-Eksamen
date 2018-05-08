@@ -32,5 +32,6 @@ public class Renderer extends Component implements DrawAble,LoadAble {
     @Override
     public void LoadContent(Resources resources) {
        bitmap = BitmapFactory.decodeResource(resources, img);
+
     }
 }

@@ -19,6 +19,11 @@ public class NetWorkManager {
 
     private static ArrayList<LobbyInfo> lobbies = new ArrayList<>();
     static boolean LobbyLoaded;
+
+    public ArrayList<LobbyInfo> GetLobbies(){
+        return lobbies;
+    }
+
     public void LoadLobby(){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference lobbyRef = database.getReference("lobbies/");
