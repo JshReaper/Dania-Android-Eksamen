@@ -44,6 +44,12 @@ public class GameWorld {
         gameObjects.add(turretObj);
         gameObjects.add(tankObj);
     }
+
+    public void AddGameObject(GameObject go){
+        gameObjects.add(go);
+        go.LoadContent(GameView.R);
+    }
+
     void LoadContent(Resources resources){
         for(GameObject go: gameObjects){
             go.LoadContent(resources);
