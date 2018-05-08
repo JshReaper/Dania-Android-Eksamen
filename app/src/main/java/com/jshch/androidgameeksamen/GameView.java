@@ -95,6 +95,7 @@ public class GameView extends SurfaceView implements Runnable {
     private void update() {
         GameWorld.getInstance().Update(deltaTime);
     }
+
     // shutdown our thread.
     public void pause() {
         GameWorld.getInstance().Playing = false;
