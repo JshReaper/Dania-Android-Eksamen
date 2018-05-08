@@ -1,5 +1,6 @@
 package com.jshch.androidgameeksamen;
 
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
@@ -32,11 +33,14 @@ public class GameWorld {
         GameObject turretObj = new GameObject(transTurret);
         Turret turret = new Turret(turretObj);
         turretObj.components.add(turret);
+        turretObj.tag = "turret";
 
         Transform trans = new Transform(new Vector2(100,50),Vector2.Zero());
         GameObject tankObj = new GameObject(trans);
+        //Renderer render = new Renderer(tankObj,);
         Tank tank = new Tank(tankObj,turretObj);
         tankObj.components.add(tank);
+        tankObj.tag = "player";
 
     }
     void LoadConent(){
