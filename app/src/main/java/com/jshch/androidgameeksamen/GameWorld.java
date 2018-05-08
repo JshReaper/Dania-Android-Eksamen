@@ -20,7 +20,6 @@ public class GameWorld {
         gameObjects = new LinkedList<>();
         gameObjectsToDestroy = new LinkedList<>();
         AddGameObjects();
-        LoadConent();
 
         //collision
         collisionChecker = new CollisionChecker();
@@ -35,6 +34,7 @@ public class GameWorld {
         turretObj.components.add(turret);
         turretObj.tag = "turret";
 
+
         Transform trans = new Transform(new Vector2(100,50),Vector2.Zero());
         GameObject tankObj = new GameObject(trans);
         //Renderer render = new Renderer(tankObj,);
@@ -43,9 +43,9 @@ public class GameWorld {
         tankObj.tag = "player";
 
     }
-    void LoadConent(){
+    void LoadContent(Resources resources){
         for(GameObject go: gameObjects){
-            go.LoadContent();
+            go.LoadContent(resources);
         }
     }
     public static GameWorld getInstance() {

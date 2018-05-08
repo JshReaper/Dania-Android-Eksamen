@@ -1,6 +1,7 @@
 package com.jshch.androidgameeksamen;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -33,6 +34,7 @@ public class GameView extends SurfaceView implements Runnable {
         super(context);
         ourHolder = getHolder();
         paint = new Paint();
+        GameWorld.getInstance().LoadContent(getResources());
     }
 
     @Override
