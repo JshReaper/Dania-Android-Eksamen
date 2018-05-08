@@ -15,7 +15,6 @@ public class Renderer extends Component implements DrawAble,LoadAble {
         super(go);
         this.img = img;
         tag = "Renderer";
-        bitmap = BitmapFactory.decodeResource(GameView.R, img);
     }
 
 
