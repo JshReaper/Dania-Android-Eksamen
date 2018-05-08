@@ -38,6 +38,8 @@ public class GameWorld {
         tankObj.components.add(tank);
     }
     void LoadContent(Resources resources){
+
+
         for(GameObject go: gameObjects){
             go.LoadContent(resources);
         }

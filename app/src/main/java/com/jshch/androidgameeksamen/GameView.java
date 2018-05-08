@@ -41,7 +41,6 @@ public class GameView extends SurfaceView implements Runnable {
     public void run() {
 
         while (GameWorld.getInstance().Playing) {
-
             // Capture the current time in milliseconds in startFrameTime
             long startFrameTime = System.currentTimeMillis();
 
