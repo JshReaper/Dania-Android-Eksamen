@@ -26,6 +26,8 @@ public class GameView extends SurfaceView implements Runnable {
     // We will see it in action in the draw method soon.
     SurfaceHolder ourHolder;
 
+    static Resources R;
+
     // A Canvas and a Paint object
     Canvas canvas;
     Paint paint;
@@ -34,6 +36,7 @@ public class GameView extends SurfaceView implements Runnable {
         super(context);
         ourHolder = getHolder();
         paint = new Paint();
+        R = getResources();
         GameWorld.getInstance().LoadContent(getResources());
 
     }

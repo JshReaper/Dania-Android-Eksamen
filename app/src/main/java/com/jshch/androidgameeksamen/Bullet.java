@@ -3,7 +3,7 @@ package com.jshch.androidgameeksamen;
 import android.os.Debug;
 import android.util.Log;
 
-public class Bullet extends Component implements UpdateAble {
+public class Bullet extends Component implements UpdateAble, CollideAble {
 
     int blastRadius;
     int damage;
@@ -39,7 +39,37 @@ public class Bullet extends Component implements UpdateAble {
 
     }
 
+    void CheckForTanksInRange(){
+        GameObject[] gos = new GameObject[2];
+        int i = 0;
+        for (GameObject go : GameWorld.getInstance().gameObjects){
+            if(go.tag == "tank"){
+                gos[0] = go;
+                i++;
+            }
+        }
+
+    }
+
     public static float clamp(float val, float min, float max) {
         return Math.max(min, Math.min(max, val));
+    }
+
+    @Override
+    public void OnCollisionEnter(Collider other){
+        if(other.GetGameObject().tag == "ground" ){
+
+        }
+        if(other.GetGameObject().tag == "tank" ){
+            Boom(other.GetGameObject());
+        }
+    }
+    @Override
+    public void OnCollisionStay(Collider other){
+
+    }
+    @Override
+    public void OnCollisionExit(Collider other){
+
     }
 }
