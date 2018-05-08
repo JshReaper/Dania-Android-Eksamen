@@ -1,15 +1,21 @@
 package com.jshch.androidgameeksamen;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 
-public class Turret extends Component  {
+public class Turret extends Component implements LoadAble  {
 
     Renderer render;
     float lastAngle = 0;
 
     public Turret(GameObject go){
         super(go);
+
+    }
+
+    @Override
+    public void LoadContent(Resources R){
         render = (Renderer)GetGameObject().GetComponent("Renderer");
     }
 
