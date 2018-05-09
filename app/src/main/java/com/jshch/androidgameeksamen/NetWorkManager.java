@@ -37,14 +37,14 @@ public class NetWorkManager {
             }
         });
     }
-    public void CreateAndJoinLobby(final String lobbyName, final String playerName){
+    public void CreateAndJoinLobby(String lobbyName, String playerName, String color){
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference lobbyRef = database.getReference("lobbies/");
 
         //add the player
         LinkedList<LobbyPlayer> players = new LinkedList<>();
-        players.add(new LobbyPlayer(true,playerName,"white"));
+        players.add(new LobbyPlayer(true,playerName,color));
 
         //generate random ID
         String uniqueID = UUID.randomUUID().toString();
