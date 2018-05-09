@@ -18,8 +18,8 @@ import java.util.UUID;
 public class NetWorkManager {
 
     public static ArrayList<LobbyInfo> lobbies = new ArrayList<>();
-    static boolean LobbyLoaded;
-
+    public static boolean LobbyLoaded;
+    public static String MyActiveLobby;
     public void LoadLobby(){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference lobbyRef = database.getReference("lobbies/");
@@ -48,13 +48,27 @@ public class NetWorkManager {
 
         //generate random ID
         String uniqueID = UUID.randomUUID().toString();
-
+        MyActiveLobby = uniqueID;
         //add the lobby
         LobbyInfo lobbyInfo = new LobbyInfo(uniqueID,lobbyName,players);
         lobbies.add(lobbyInfo);
 
         //update database
         lobbyRef.setValue(lobbies);
+    }
+    public void JoinLobby(String id, String name,String color){
+        for (LobbyInfo lobby : lobbies){
+            //connect to lobby
+            if(lobby.id.equals(id)){
+                LobbyPlayer player = new LobbyPlayer(false,name,color);
+                lobby.players.add(player);
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                final DatabaseReference lobbyRef = database.getReference("lobbies/");
+                //update database
+                lobbyRef.setValue(lobbies);
+                MyActiveLobby = id;
+            }
+        }
     }
     public void HalloWorldExample(){
         //setup database instance

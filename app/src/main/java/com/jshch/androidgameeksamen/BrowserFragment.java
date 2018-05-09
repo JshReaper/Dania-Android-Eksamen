@@ -47,7 +47,7 @@ public class BrowserFragment extends Fragment {
 
         RefreshLobbies();
 
-        ArrayAdapter arrAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, NetWorkManager.lobbies);
+       ArrayAdapter arrAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, NetWorkManager.lobbies);
         listV.setAdapter(arrAdapter);
 
     }
