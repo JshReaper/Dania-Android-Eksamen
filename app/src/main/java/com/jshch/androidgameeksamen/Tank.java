@@ -32,7 +32,7 @@ public class Tank extends Component implements UpdateAble, CollideAble, LoadAble
             myImageSizeY = render.bitmap.getHeight();
         }
     }
-
+boolean first = true;
     Vector2 lastPos = Vector2.Zero();
     @Override
     public void Update(float deltaTime) {
@@ -45,6 +45,7 @@ public class Tank extends Component implements UpdateAble, CollideAble, LoadAble
 
 
 
+
             //set the turret offset to the right position every frame
             turretOffset = new Vector2(GetGameObject().getTransform().Position.getX() + (myImageSizeX / 2),
                     GetGameObject().getTransform().Position.getY() + (myImageSizeY / 10));
@@ -53,6 +54,11 @@ public class Tank extends Component implements UpdateAble, CollideAble, LoadAble
         //if the turret object position is different from the expected position place it correctly
         if(turretOffset != turretObject.getTransform().Position){
             turretObject.getTransform().SetPosition(turretOffset);
+        }
+        if(first){
+            SetAngle(-45);
+            first = !first;
+
         }
         lastPos = GetGameObject().getTransform().Position;
     }
@@ -76,7 +82,9 @@ public class Tank extends Component implements UpdateAble, CollideAble, LoadAble
 
         this.angle = angle;
         Turret trt = (Turret) turretObject.GetComponent("Turret");
-        trt.RotateTurretTo(angle,turretOffset);
+        if(trt != null && turretOffset != null) {
+            trt.RotateTurretTo(angle, turretOffset);
+        }
     }
 
     void TakeDamage(int damage){

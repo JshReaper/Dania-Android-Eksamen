@@ -23,8 +23,9 @@ public class Turret extends Component implements LoadAble  {
 
         Bitmap myImg = render.GetBitmap();
         Matrix rotation = new Matrix();
-        rotation.postRotate(angle - lastAngle, pivot.getX(), pivot.getY());
+        rotation.postRotate((angle - lastAngle), 0, myImg.getHeight()/2);
         myImg = Bitmap.createBitmap(myImg,0,0,myImg.getWidth(), myImg.getHeight(),rotation, true);
+        render.bitmap = myImg;
         //set lastAngle to the new angle so that this works next time
         lastAngle = angle;
     }
