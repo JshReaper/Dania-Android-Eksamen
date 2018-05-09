@@ -33,7 +33,7 @@ public class NetWorkManager {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+                Log.w("message", "Failed to read value.", databaseError.toException());
             }
         });
     }
