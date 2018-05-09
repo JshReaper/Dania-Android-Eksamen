@@ -86,10 +86,14 @@ public class GameView extends SurfaceView implements Runnable {
             canvas.drawText("FPS:" + fps, 20, 40, paint);
 
             //test img
+            /*
             Bitmap bitmap;
-            bitmap = BitmapFactory.decodeResource(getResources(),R.mipmap.kappa);
+            bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.kappa);
             Log.d("pixels: ", "draw: "+bitmap.getHeight());
             canvas.drawBitmap(bitmap,50,50,paint );
+            */
+
+            
             //draw all GO's
             GameWorld.getInstance().Draw(canvas,paint);
 
