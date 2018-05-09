@@ -85,6 +85,7 @@ public class GameView extends SurfaceView implements Runnable {
             // Display the current fps on the screen
             canvas.drawText("FPS:" + fps, 20, 40, paint);
 
+
             //test img
             /*Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.mipmap.kappa);
             Log.d("message", "draw: "+bitmap.getHeight());

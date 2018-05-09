@@ -31,7 +31,7 @@ public class GameWorld {
         Transform transTurret = new Transform(new Vector2(100,50),Vector2.Zero());
         GameObject turretObj = new GameObject(transTurret);
         Turret turret = new Turret(turretObj);
-        turretObj.components.add(new Renderer(turretObj, R.mipmap.tankturret));
+        turretObj.components.add(new Renderer(turretObj, R.drawable.tankturret));
         turretObj.components.add(turret);
         turretObj.tag = "turret";
 
@@ -39,7 +39,7 @@ public class GameWorld {
         Transform trans = new Transform(new Vector2(100,50),Vector2.Zero());
         GameObject tankObj = new GameObject(trans);
         Tank tank = new Tank(tankObj,turretObj);
-        tankObj.components.add(new Renderer(tankObj,R.mipmap.tank));
+        tankObj.components.add(new Renderer(tankObj,R.drawable.tank));
         tankObj.components.add(tank);
         tankObj.tag = "player";
 
