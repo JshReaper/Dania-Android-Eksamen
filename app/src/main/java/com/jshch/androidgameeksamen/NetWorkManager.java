@@ -17,12 +17,8 @@ import java.util.UUID;
 
 public class NetWorkManager {
 
-    private static ArrayList<LobbyInfo> lobbies = new ArrayList<>();
+    public static ArrayList<LobbyInfo> lobbies = new ArrayList<>();
     static boolean LobbyLoaded;
-
-    public ArrayList<LobbyInfo> GetLobbies(){
-        return lobbies;
-    }
 
     public void LoadLobby(){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -41,7 +37,7 @@ public class NetWorkManager {
             }
         });
     }
-    public void CreateAndJoinLobby(final String lobbyName,final String playerName){
+    public void CreateAndJoinLobby(final String lobbyName, final String playerName){
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference lobbyRef = database.getReference("lobbies/");

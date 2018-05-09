@@ -9,11 +9,15 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class BrowserFragment extends Fragment {
 
     private ListView listV;
     NetWorkManager netMan;
+
 
     public BrowserFragment(){
 
@@ -41,11 +45,19 @@ public class BrowserFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
 
-        while(!NetWorkManager.LobbyLoaded){ }
+        RefreshLobbies();
 
-        //listV.setAdapter(new ArrayAdapter<LobbyInfo>(this, android.R.layout.simple_list_item_1, netMan.GetLobbies() ));
+        ArrayAdapter arrAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, NetWorkManager.lobbies);
+        listV.setAdapter(arrAdapter);
 
     }
+
+    private void RefreshLobbies(){
+        while(!NetWorkManager.LobbyLoaded){ }
+
+
+    }
+
 
     @Override
     public void onDetach() {

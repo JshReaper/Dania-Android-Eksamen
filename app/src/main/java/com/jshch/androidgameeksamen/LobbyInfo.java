@@ -20,9 +20,14 @@ class LobbyPlayer{
 }
 class LobbyInfo{
     String name;
-   private String creationTime;
+    private String creationTime;
     String id;
     LinkedList<LobbyPlayer> players;
+
+    public String GetName(){
+        return name;
+    }
+
     LobbyInfo(String id,String name, LinkedList<LobbyPlayer> players){
         this.id = id;
         this.players = players;
