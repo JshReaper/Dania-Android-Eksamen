@@ -89,7 +89,6 @@ public class GameView extends SurfaceView implements Runnable {
             /*
             Bitmap bitmap;
             bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.kappa);
-            Log.d("pixels: ", "draw: "+bitmap.getHeight());
             canvas.drawBitmap(bitmap,50,50,paint );
             */
 
