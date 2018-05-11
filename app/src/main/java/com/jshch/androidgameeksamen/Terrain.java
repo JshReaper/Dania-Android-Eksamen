@@ -37,6 +37,10 @@ public class Terrain extends Component implements UpdateAble{
     }
     void AddColliders(){
         for (TerrainBox box : boxes){
+            Collider col =(Collider) box.go.GetComponent("Collider");
+            if(col != null){
+                box.go.components.remove(col);
+            }
             boolean oneAboveMe = false;
             for (TerrainBox other: boxes){
 
