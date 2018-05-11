@@ -1,5 +1,7 @@
 package com.jshch.androidgameeksamen;
 
+import android.support.annotation.Nullable;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
@@ -10,6 +12,11 @@ class LobbyPlayer{
     String name;
     String id;
     String color;
+
+    public String GetPlayerName(){
+        return name;
+    }
+
     LobbyPlayer(boolean isHost,String name,String color){
 
         this.isHost = isHost;
@@ -18,6 +25,7 @@ class LobbyPlayer{
         id = UUID.randomUUID().toString();
     }
 }
+
 class LobbyInfo{
     String name;
     private String creationTime;
@@ -26,6 +34,21 @@ class LobbyInfo{
 
     public String GetName(){
         return name;
+    }
+
+    public String GetId(){
+        return id;
+    }
+
+    public String GetPlayer(@Nullable int player){
+        if ((player > 1 || player == 1) && players.size() > 1) {
+            return players.get(1).GetPlayerName();
+        }else if (player < 0){
+            return players.get(0).GetPlayerName();
+        }
+        return players.get(0).GetPlayerName();
+
+
     }
 
     LobbyInfo(String id,String name, LinkedList<LobbyPlayer> players){

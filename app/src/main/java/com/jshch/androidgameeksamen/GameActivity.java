@@ -23,7 +23,7 @@ public class GameActivity extends AppCompatActivity {
     }
     protected void onResume() {
         super.onResume();
-        
+
         decorView = getWindow().getDecorView();
         if(decorView != null){
             decorView.setSystemUiVisibility(uiOptions);
