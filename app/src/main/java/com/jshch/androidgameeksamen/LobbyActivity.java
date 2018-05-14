@@ -12,7 +12,6 @@ public class LobbyActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         NetWorkManager nm = new NetWorkManager();
         nm.LoadLobby();
 

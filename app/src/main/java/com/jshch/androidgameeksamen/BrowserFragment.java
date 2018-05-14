@@ -6,29 +6,24 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class BrowserFragment extends Fragment {
 
     private ListView listV;
+    private BrowserAdapter browAdapter;
+    private ArrayList<LobbyInfo> lobbies;
     NetWorkManager netMan;
 
-
     public BrowserFragment(){
-
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         netMan = new NetWorkManager();
-
     }
 
     @Override
@@ -38,7 +33,7 @@ public class BrowserFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState){
-        listV = getView().findViewById(R.id.listView);
+        listV = getView().findViewById(R.id.lobbyListView);
     }
 
     @Override
@@ -47,15 +42,16 @@ public class BrowserFragment extends Fragment {
 
         RefreshLobbies();
 
-       //ArrayAdapter arrAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, NetWorkManager.lobbies);
-        //listV.setAdapter(arrAdapter);
-
+        browAdapter = new BrowserAdapter(context, lobbies);
+        if(lobbies != null)
+        listV.setAdapter(browAdapter);
     }
 
     private void RefreshLobbies(){
-        while(!NetWorkManager.LobbyLoaded){ }
-
-
+        if (NetWorkManager.LobbyLoaded){
+            lobbies = null;
+            lobbies.addAll(NetWorkManager.lobbies);
+        }
     }
 
 

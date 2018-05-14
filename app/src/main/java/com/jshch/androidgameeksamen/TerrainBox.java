@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
-public class TerrainBox extends Component implements CollideAble, DrawAble {
+public class TerrainBox extends Component implements CollideAble, DrawAble,UpdateAble {
 
     Bitmap box_img;
 
