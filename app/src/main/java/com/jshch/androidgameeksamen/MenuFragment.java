@@ -12,6 +12,8 @@ import android.widget.Button;
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
+
 public class MenuFragment extends Fragment {
 
     FragmentTransaction fragmentTransaction;
@@ -37,6 +39,14 @@ public class MenuFragment extends Fragment {
                     AuthUI.getInstance().createSignInIntentBuilder().build(),
                     RC_SIGN_IN);
         }
+
+        //game start flow structure test
+      /*
+        NetWorkManager netWorkManager = new NetWorkManager();
+        netWorkManager.CreateAndJoinLobby("testLobby","Player1","white");
+        netWorkManager.JoinLobby(NetWorkManager.MyActiveLobby.id,"player2","blue");
+        netWorkManager.StartGame();
+      */
     }
 
     @Override
@@ -87,7 +97,8 @@ public class MenuFragment extends Fragment {
         playB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(),GameActivity.class);
+                Intent intent = new Intent(getContext(), GameActivity.class);
+                intent.setFlags(FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         });

@@ -19,7 +19,7 @@ public class NetWorkManager {
 
     public static ArrayList<LobbyInfo> lobbies = new ArrayList<>();
     public static boolean LobbyLoaded;
-    public static String MyActiveLobby;
+    public static LobbyInfo MyActiveLobby;
     public void LoadLobby(){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference lobbyRef = database.getReference("lobbies/");
@@ -37,6 +37,7 @@ public class NetWorkManager {
             }
         });
     }
+
     public void CreateAndJoinLobby(String lobbyName, String playerName, String color){
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -48,14 +49,16 @@ public class NetWorkManager {
 
         //generate random ID
         String uniqueID = UUID.randomUUID().toString();
-        MyActiveLobby = uniqueID;
+
         //add the lobby
         LobbyInfo lobbyInfo = new LobbyInfo(uniqueID,lobbyName,players);
+        MyActiveLobby = lobbyInfo;
         lobbies.add(lobbyInfo);
 
         //update database
         lobbyRef.setValue(lobbies);
     }
+
     public void JoinLobby(String id, String name,String color){
         for (LobbyInfo lobby : lobbies){
             //connect to lobby
@@ -66,10 +69,24 @@ public class NetWorkManager {
                 final DatabaseReference lobbyRef = database.getReference("lobbies/");
                 //update database
                 lobbyRef.setValue(lobbies);
-                MyActiveLobby = id;
+                MyActiveLobby = lobby;
             }
         }
     }
+
+    public boolean StartGame(){
+        if(MyActiveLobby.players.size() == 2){
+            GameInfo gameInfo = new GameInfo(MyActiveLobby);
+            //setup database instance
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference gameRef = database.getReference("Games/" + gameInfo.id);
+
+            gameRef.setValue(gameInfo);
+            return true;
+        }
+        return false;
+    }
+
     public void HalloWorldExample(){
         //setup database instance
         FirebaseDatabase database = FirebaseDatabase.getInstance();
