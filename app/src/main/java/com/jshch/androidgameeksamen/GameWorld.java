@@ -45,6 +45,13 @@ public class GameWorld {
 
         gameObjects.add(turretObj);
         gameObjects.add(tankObj);
+
+
+        //test button
+        GameObject btn = new GameObject(new Transform(new Vector2(100,100),1));
+        btn.components.add(new Renderer(btn,R.drawable.kappa));
+        btn.components.add(new  GameButton(btn,"test"));
+        gameObjects.add(btn);
     }
 
     public void AddGameObject(GameObject go){
