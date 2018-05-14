@@ -17,6 +17,6 @@ public static float HeightFromXcoord(float x, float Offset){
 height = A - B + C + D;
 
 
-    return height;
+    return height / 2;
 }
 }
