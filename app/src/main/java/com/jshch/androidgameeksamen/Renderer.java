@@ -15,7 +15,7 @@ public class Renderer extends Component implements DrawAble,LoadAble {
         super(go);
         this.img = img;
         tag = "Renderer";
-        bitmap = BitmapFactory.decodeResource(GameView.resources, img);
+
     }
 
 
@@ -31,7 +31,21 @@ public class Renderer extends Component implements DrawAble,LoadAble {
 
     @Override
     public void LoadContent(Resources resources) {
-       bitmap = BitmapFactory.decodeResource(resources, img);
 
+       bitmap = BitmapFactory.decodeResource(resources, img);
+        if(GetGameObject().getTransform().scale != new Vector2(1,1) && GetGameObject().getTransform().scale != null){
+            bitmap = ScaledBitmap(bitmap);
+        }
+    }
+
+    Bitmap ScaledBitmap(Bitmap toScale){
+        // scale image
+        int width = (int)(toScale.getWidth() * GetGameObject().transform.scale.getX());
+        int height = (int)(toScale.getHeight() * GetGameObject().transform.scale.getY());
+    if(width > 0 && height > 0) {
+        Bitmap scaledMap = Bitmap.createScaledBitmap(toScale, width, height, true);
+        return scaledMap;
+    }
+        return toScale;
     }
 }

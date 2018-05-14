@@ -4,24 +4,20 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
-public class TerrainBox extends Component implements CollideAble, DrawAble,UpdateAble {
+public class TerrainBox extends Component implements CollideAble,UpdateAble {
 
-    Bitmap box_img;
-
-    public TerrainBox(GameObject go, Bitmap box_img) {
+    public TerrainBox(GameObject go) {
         super(go);
         tag = "TerrainBox";
-        this.box_img = box_img;
     }
 
-    @Override
-    public void Draw(Canvas canvas, Paint paint) {
-        canvas.drawBitmap(box_img,go.getTransform().GetPosition().getX(),go.getTransform().GetPosition().getY(),paint );
-
-    }
 
 
     public void Update(float deltaTime) {
+
+        //check if player above me
+        //if so are they on the ground above me?
+        //if so then dont apply gravity anymore
 
     }
 

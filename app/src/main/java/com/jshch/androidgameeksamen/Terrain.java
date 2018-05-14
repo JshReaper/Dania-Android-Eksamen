@@ -22,7 +22,7 @@ public class Terrain extends Component implements UpdateAble{
 
         for (int i = 0; i < NrBoxes; i++){
             //1000 y ??
-            boxes.add(new TerrainBox(new GameObject (new Transform(new Vector2(i * 10, 1000), 1f)), box_img));
+            boxes.add(new TerrainBox(new GameObject (new Transform(new Vector2(i * 10, 1000), 1f))));
             boxes.get(i).go.components.add(new Renderer(boxes.get(i).go,R.drawable.kappa));
             GameWorld.getInstance().AddGameObject(boxes.get(i).go);
 
