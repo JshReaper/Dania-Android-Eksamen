@@ -94,13 +94,12 @@ public class Vector2 {
         this.y = tempX;
     }
 
-    public static Vector2 VectorFromAngle(float angle){
+    public static Vector2 VectorFromAngle(float angle,float x, float y){
 
-        float x = 1;
-        float y = 0;
 
-        x = (1 * (float)Math.cos(angle) - 0 * (float)Math.sin(angle));
-        y = (1 * (float)Math.sin(angle) + 0 * (float) Math.cos(angle));
+
+        x = (x * (float)Math.cos(angle* 0.0174532925f) - y * (float)Math.sin(angle * 0.0174532925f));
+        y = (x * (float)Math.sin(angle * 0.0174532925f) + y * (float) Math.cos(angle * 0.0174532925f));
 
         return new Vector2(x,y);
     }
