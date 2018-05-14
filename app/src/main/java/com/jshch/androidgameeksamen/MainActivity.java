@@ -40,6 +40,14 @@ public class MainActivity extends AppCompatActivity {
                     AuthUI.getInstance().createSignInIntentBuilder().build(),
                     RC_SIGN_IN);
         }
+
+        //game start flow structure test
+      /*
+        NetWorkManager netWorkManager = new NetWorkManager();
+        netWorkManager.CreateAndJoinLobby("testLobby","Player1","white");
+        netWorkManager.JoinLobby(NetWorkManager.MyActiveLobby.id,"player2","blue");
+        netWorkManager.StartGame();
+      */
     }
 
 
