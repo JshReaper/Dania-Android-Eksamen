@@ -3,6 +3,7 @@ package com.jshch.androidgameeksamen;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,11 +11,10 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 
-public class BrowserFragment extends Fragment {
+public class BrowserFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
 
     private ListView listV;
-    private BrowserAdapter browAdapter;
-    private ArrayList<LobbyInfo> lobbies;
+    private BrowserAdapter browserAdapter;
     NetWorkManager netMan;
 
     public BrowserFragment(){
@@ -40,17 +40,14 @@ public class BrowserFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
 
+        browserAdapter = new BrowserAdapter(context);
         RefreshLobbies();
-
-        browAdapter = new BrowserAdapter(context, lobbies);
-        if(lobbies != null)
-        listV.setAdapter(browAdapter);
     }
 
     private void RefreshLobbies(){
         if (NetWorkManager.LobbyLoaded){
-            lobbies = null;
-            lobbies.addAll(NetWorkManager.lobbies);
+            if(NetWorkManager.lobbies != null)
+                listV.setAdapter(browserAdapter);
         }
     }
 
@@ -62,4 +59,9 @@ public class BrowserFragment extends Fragment {
 
     }
 
+    @Override
+    public void onRefresh() {
+        RefreshLobbies();
+
+    }
 }

@@ -15,11 +15,8 @@ import java.util.ArrayList;
 
 public class BrowserAdapter extends ArrayAdapter<LobbyInfo> {
 
-    private ArrayList<LobbyInfo> lobbies;
-
-    public BrowserAdapter(@NonNull Context context, ArrayList<LobbyInfo> lobbies) {
-        super(context, 0, lobbies);
-        this.lobbies = lobbies;
+    public BrowserAdapter(@NonNull Context context) {
+        super(context, 0, NetWorkManager.lobbies);
     }
 
 
@@ -27,15 +24,16 @@ public class BrowserAdapter extends ArrayAdapter<LobbyInfo> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent){
         View listItem = convertView;
-        if(listItem == null)
-            listItem = LayoutInflater.from(getContext().getApplicationContext()).inflate(R.layout.list_item,parent,false);
+        if(listItem == null){
+            listItem = LayoutInflater.from(getContext().getApplicationContext()).inflate(R.layout.list_item, parent,false);
+        }
 
-        LobbyInfo currentLobby = lobbies.get(position);
+        LobbyInfo currentLobby = NetWorkManager.lobbies.get(position);
 
-        TextView lobby_name = (TextView) listItem.findViewById(R.id.textView_lobby_name);
+        TextView lobby_name = listItem.findViewById(R.id.textView_lobby_name);
         lobby_name.setText(currentLobby.name);
 
-        TextView host_name = (TextView) listItem.findViewById(R.id.textView_host);
+        TextView host_name = listItem.findViewById(R.id.textView_host);
         host_name.setText(currentLobby.GetPlayer(0));
 
         return listItem;
