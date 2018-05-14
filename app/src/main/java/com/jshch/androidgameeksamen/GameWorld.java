@@ -92,4 +92,10 @@ public class GameWorld {
             go.Draw(canvas,paint);
         }
     }
+
+    public void Controller(float axisX, float axisY) {
+        for(GameObject go : gameObjects){
+            go.Controller(axisX,axisY);
+        }
+    }
 }
