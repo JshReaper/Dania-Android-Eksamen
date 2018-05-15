@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.util.Log;
 
 import java.util.LinkedList;
 
@@ -56,20 +57,22 @@ public class GameWorld {
         turretObj.components.add(new Renderer(turretObj, R.drawable.tankturretfat));
         turretObj.components.add(turret);
         turretObj.tag = "turret";
-
+        Log.d("message","Turret added");
 
         Transform trans = new Transform(new Vector2(150,500),new Vector2(0.15f,0.15f));
         GameObject tankObj = new GameObject(trans);
         Tank tank = new Tank(tankObj,turretObj);
         AudioController ac = new AudioController(tankObj, GameView.context);
+        Collider col = new Collider(tankObj);
         ac.SetSound(R.raw.tankgunsound);
         tankObj.components.add(new Renderer(tankObj,R.drawable.tank));
+        tankObj.components.add(col);
         tankObj.components.add(tank);
         tankObj.components.add(ac);
         tankObj.tag = "player";
-
         gameObjects.add(turretObj);
         gameObjects.add(tankObj);
+        Log.d("message","Tank added");
     }
 
     public void AddGameObject(GameObject go){

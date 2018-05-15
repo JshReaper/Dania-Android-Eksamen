@@ -7,16 +7,24 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class Collider extends Component {
 
+
     public LinkedList<Collider> OtherColliders;
+    boolean active = true;
     Collider(GameObject go){
         super(go);
         OtherColliders = new LinkedList<>();
         tag = "Collider";
     }
     boolean InterSectsWidthRect(Collider other){
+    if(!active){
+        return false;
+    }
         Renderer renderer =(Renderer) go.GetComponent("Renderer");
         Bitmap bitmap =renderer.GetBitmap();
         Renderer otherRenderer =(Renderer) other.go.GetComponent("Renderer");
+        if(bitmap == null || otherRenderer.bitmap == null){
+            return false;
+        }
         Bitmap otherBitMap =otherRenderer.GetBitmap();
         float myCenterX = go.getTransform().GetPosition().getX() + bitmap.getWidth() /2;
         float OtherCenterX = go.getTransform().GetPosition().getX() + otherBitMap.getWidth()/2;

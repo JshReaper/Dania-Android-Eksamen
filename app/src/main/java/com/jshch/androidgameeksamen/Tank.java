@@ -49,7 +49,7 @@ boolean first = true;
             GetGameObject().getTransform().Position = GetGameObject().getTransform().Position.Add(gravity);
             gravity = Vector2.Scale(gravity,1.01f);
         }else if(!onGround){
-            gravity = new Vector2(0,3);
+            gravity = new Vector2(0,2);
         }
         if(xCoord < 2400){
 
@@ -138,7 +138,7 @@ boolean first = true;
     public void OnCollisionExit(Collider other){
         if(onGround && other.GetGameObject().tag == "ground"){
             onGround = !onGround;
-            gravity = new Vector2(0,10);
+            gravity = new Vector2(0,3);
         }
     }
 
