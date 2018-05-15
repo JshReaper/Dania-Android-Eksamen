@@ -19,7 +19,9 @@ public class CreateLobbyFragment extends Fragment {
 
     Button createLB;
     NetWorkManager netMan;
-    EditText lobbyName, playerName;
+    EditText lobbyName, playerName, lobbyDesc;
+
+
     Spinner colorSpinner;
     String[]items = new String[]{"White", "Black", "Yellow"};
     String color;
@@ -46,7 +48,8 @@ public class CreateLobbyFragment extends Fragment {
 
         createLB = view.findViewById(R.id.createLB);
 
-        lobbyName = view.findViewById(R.id.lobbyText);
+        lobbyName = view.findViewById(R.id.lobby_text);
+        lobbyDesc = view.findViewById(R.id.lobby_desc);
         playerName = view.findViewById(R.id.nameText);
 /*
         colorSpinner = view.findViewById(R.id.colorSpinner);*/
@@ -92,7 +95,7 @@ public class CreateLobbyFragment extends Fragment {
     }
 
     private void CreateButtonEvent(){
-        netMan.CreateAndJoinLobby(lobbyName.toString(), playerName.toString(), color);
+        netMan.CreateAndJoinLobby(lobbyName.getText().toString(), playerName.getText().toString(), lobbyDesc.getText().toString(),color);
 
         fragmentTransaction = getFragmentManager().beginTransaction();
         LobbyFragment lFrag = new LobbyFragment();

@@ -38,7 +38,7 @@ public class NetWorkManager {
         });
     }
 
-    public void CreateAndJoinLobby(String lobbyName, String playerName, String color){
+    public void CreateAndJoinLobby(String lobbyName, String playerName, String description, String color){
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference lobbyRef = database.getReference("lobbies/");
@@ -51,7 +51,7 @@ public class NetWorkManager {
         String uniqueID = UUID.randomUUID().toString();
 
         //add the lobby
-        LobbyInfo lobbyInfo = new LobbyInfo(uniqueID,lobbyName,players);
+        LobbyInfo lobbyInfo = new LobbyInfo(uniqueID, lobbyName, description,players);
         MyActiveLobby = lobbyInfo;
         lobbies.add(lobbyInfo);
 

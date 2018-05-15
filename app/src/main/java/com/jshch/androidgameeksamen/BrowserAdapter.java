@@ -33,8 +33,8 @@ public class BrowserAdapter extends ArrayAdapter<LobbyInfo> {
         TextView lobby_name = listItem.findViewById(R.id.textView_lobby_name);
         lobby_name.setText(currentLobby.name);
 
-        TextView host_name = listItem.findViewById(R.id.textView_host);
-        host_name.setText(currentLobby.GetPlayer(0));
+        TextView host_desc = listItem.findViewById(R.id.textView_description);
+        host_desc.setText(currentLobby.GetPlayer(0));
 
         return listItem;
     }

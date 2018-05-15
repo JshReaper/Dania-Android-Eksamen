@@ -28,6 +28,7 @@ class LobbyPlayer{
 
 class LobbyInfo{
     String name;
+    String description;
     private String creationTime;
     String id;
     LinkedList<LobbyPlayer> players;
@@ -51,12 +52,13 @@ class LobbyInfo{
 
     }
 
-    LobbyInfo(String id,String name, LinkedList<LobbyPlayer> players){
+    LobbyInfo(String id, String name, String desc, LinkedList<LobbyPlayer> players){
         this.id = id;
         this.players = players;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd_HH:mm:ss");
         Date date = new Date();
         creationTime = sdf.format(date);
         this.name = name;
+        this.description = desc;
     }
 }
