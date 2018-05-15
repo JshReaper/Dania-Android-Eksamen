@@ -33,6 +33,7 @@ public class Terrain extends Component implements UpdateAble{
     public void Update(float deltaTime) {
         if(addColliders) {
             AddColliders();
+            addColliders = false;
         }
     }
     void AddColliders(){
