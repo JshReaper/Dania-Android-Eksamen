@@ -47,11 +47,18 @@ public class GameWorld {
         gameObjects.add(tankObj);
 
 
-        //test button
-        GameObject btn = new GameObject(new Transform(new Vector2(100,100),1));
-        btn.components.add(new Renderer(btn,R.drawable.kappa));
-        btn.components.add(new  GameButton(btn,"test"));
-        gameObjects.add(btn);
+        //buttons
+        GameObject btnright = new GameObject(new Transform(new Vector2(300,100),1));
+        btnright.components.add(new Renderer(btnright,R.drawable.rightarrow));
+        btnright.components.add(new  GameButton(btnright,"right"));
+        gameObjects.add(btnright);
+
+        GameObject btnleft = new GameObject(new Transform(new Vector2(100,100),1));
+        btnleft.components.add(new Renderer(btnleft,R.drawable.leftarrow));
+        btnleft.components.add(new  GameButton(btnleft,"left"));
+        gameObjects.add(btnleft);
+
+
     }
 
     public void AddGameObject(GameObject go){
