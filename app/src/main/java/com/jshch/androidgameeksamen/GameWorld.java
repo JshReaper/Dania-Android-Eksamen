@@ -70,6 +70,20 @@ public class GameWorld {
 
         gameObjects.add(turretObj);
         gameObjects.add(tankObj);
+
+
+        //buttons
+        GameObject btnright = new GameObject(new Transform(new Vector2(300,100),1));
+        btnright.components.add(new Renderer(btnright,R.drawable.rightarrow));
+        btnright.components.add(new  GameButton(btnright,"right"));
+        gameObjects.add(btnright);
+
+        GameObject btnleft = new GameObject(new Transform(new Vector2(100,100),1));
+        btnleft.components.add(new Renderer(btnleft,R.drawable.leftarrow));
+        btnleft.components.add(new  GameButton(btnleft,"left"));
+        gameObjects.add(btnleft);
+
+
     }
 
     public void AddGameObject(GameObject go){
@@ -115,6 +129,12 @@ public class GameWorld {
     public void Draw(Canvas canvas, Paint paint){
         for(GameObject go : gameObjects){
             go.Draw(canvas,paint);
+        }
+    }
+
+    public void Controller(float axisX, float axisY) {
+        for(GameObject go : gameObjects){
+            go.Controller(axisX,axisY);
         }
     }
 }
