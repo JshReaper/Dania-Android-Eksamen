@@ -43,8 +43,8 @@ public class MenuFragment extends Fragment {
         //game start flow structure test
       /*
         NetWorkManager netWorkManager = new NetWorkManager();
-        netWorkManager.CreateAndJoinLobby("testLobby","Player1","white");
-        netWorkManager.JoinLobby(NetWorkManager.MyActiveLobby.id,"player2","blue");
+        netWorkManager.CreateAndJoinLobby("testLobby", "Player1", "test Description", "white");
+        netWorkManager.JoinLobby(NetWorkManager.MyActiveLobby.id, "player2", "blue");
         netWorkManager.StartGame();
       */
     }
@@ -98,7 +98,6 @@ public class MenuFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), GameActivity.class);
-                intent.setFlags(FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         });
