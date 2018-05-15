@@ -37,6 +37,7 @@ public class NetWorkManager {
             }
         });
     }
+
     public void CreateAndJoinLobby(String lobbyName, String playerName, String color){
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -57,6 +58,7 @@ public class NetWorkManager {
         //update database
         lobbyRef.setValue(lobbies);
     }
+
     public void JoinLobby(String id, String name,String color){
         for (LobbyInfo lobby : lobbies){
             //connect to lobby
@@ -71,6 +73,7 @@ public class NetWorkManager {
             }
         }
     }
+
     public boolean StartGame(){
         if(MyActiveLobby.players.size() == 2){
             GameInfo gameInfo = new GameInfo(MyActiveLobby);
@@ -83,6 +86,7 @@ public class NetWorkManager {
         }
         return false;
     }
+
     public void HalloWorldExample(){
         //setup database instance
         FirebaseDatabase database = FirebaseDatabase.getInstance();
