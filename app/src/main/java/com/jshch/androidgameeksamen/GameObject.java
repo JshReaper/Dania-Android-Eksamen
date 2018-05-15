@@ -78,4 +78,12 @@ public class GameObject {
             }
         }
     }
+
+    public void Controller(float axisX, float axisY) {
+        for (Component c : components){
+            if(c instanceof ControlAble){
+                ((ControlAble) c).Controller(axisX,axisY);
+            }
+        }
+    }
 }

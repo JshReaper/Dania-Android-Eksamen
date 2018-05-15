@@ -8,6 +8,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -29,13 +30,16 @@ public class GameView extends SurfaceView implements Runnable {
     SurfaceHolder ourHolder;
 
     static Resources resources;
+    static Context context;
 
     // A Canvas and a Paint object
     Canvas canvas;
     Paint paint;
 
+
     public GameView(Context context) {
         super(context);
+        this.context = context;
         ourHolder = getHolder();
         paint = new Paint();
         resources = getResources();
@@ -60,6 +64,7 @@ public class GameView extends SurfaceView implements Runnable {
             // We can then use the result to
             // time animations and more.
             timeThisFrame = System.currentTimeMillis() - startFrameTime;
+            deltaTime = timeThisFrame;
             if (timeThisFrame > 0) {
                 fps = 1000 / timeThisFrame;
             }
@@ -121,5 +126,31 @@ public class GameView extends SurfaceView implements Runnable {
         gameThread = new Thread(this);
         gameThread.start();
     }
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (motionEvent.getAction() & MotionEvent.ACTION_MASK) {
 
-}
+            // Player has touched the screen
+            case MotionEvent.ACTION_DOWN:
+
+
+                //horizontal
+                motionEvent.getAxisValue(0);
+
+                //vertical
+                motionEvent.getAxisValue(1);
+
+                GameWorld.getInstance().Controller(motionEvent.getAxisValue(0),motionEvent.getAxisValue(1));
+                break;
+
+            // Player has removed finger from screen
+            case MotionEvent.ACTION_UP:
+
+                // Set isMoving so Bob does not move
+
+
+                break;
+
+        }
+        return true;
+    }}
