@@ -15,6 +15,7 @@ public class Tank extends Component implements UpdateAble, CollideAble, LoadAble
     Vector2 gravity;
     boolean onGround;
     Turret myTurret;
+    AudioController audio;
 
     int myImageSizeX;
     int myImageSizeY;
@@ -33,18 +34,22 @@ public class Tank extends Component implements UpdateAble, CollideAble, LoadAble
             myImageSizeX = render.bitmap.getWidth();
             myImageSizeY = render.bitmap.getHeight();
         }
+        audio = (AudioController)GetGameObject().GetComponent("AudioController");
     }
 boolean first = true;
     Vector2 lastPos = Vector2.Zero();
 
     //test values
     int xCoord;
+    float time;
     @Override
     public void Update(float deltaTime) {
         //apply gravity
-        if(!onGround){
-//            GetGameObject().getTransform().Position.Add(Vector2.Scale(gravity,deltaTime));
-            //gravity = Vector2.Scale(gravity,1.01f);
+        if(!onGround && gravity != null){
+            GetGameObject().getTransform().Position = GetGameObject().getTransform().Position.Add(gravity);
+            gravity = Vector2.Scale(gravity,1.01f);
+        }else if(!onGround){
+            gravity = new Vector2(0,3);
         }
         if(xCoord < 2400){
 
@@ -52,7 +57,7 @@ boolean first = true;
             xCoord += 50;
 
         }
-
+        time += deltaTime;
 
             //set the turret offset to the right position every frame
             turretOffset = new Vector2(GetGameObject().getTransform().Position.getX() + (myImageSizeX / 2),
@@ -94,6 +99,7 @@ boolean first = true;
         Bullet blt = new Bullet(bullet,direction,power);
         bullet.components.add(blt);
 
+
     }
     void Move(Vector2 direction){
 
@@ -118,7 +124,7 @@ boolean first = true;
 
     @Override
     public void OnCollisionEnter(Collider other){
-
+        Log.d("message","Tag : " + other.GetGameObject().tag);
         if(other.GetGameObject().tag == "ground"){
             onGround = true;
             gravity = Vector2.Zero();
@@ -132,7 +138,7 @@ boolean first = true;
     public void OnCollisionExit(Collider other){
         if(onGround && other.GetGameObject().tag == "ground"){
             onGround = !onGround;
-            //gravity = new Vector2(0,10);
+            gravity = new Vector2(0,10);
         }
     }
 

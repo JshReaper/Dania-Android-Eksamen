@@ -29,13 +29,16 @@ public class GameView extends SurfaceView implements Runnable {
     SurfaceHolder ourHolder;
 
     static Resources resources;
+    static Context context;
 
     // A Canvas and a Paint object
     Canvas canvas;
     Paint paint;
 
+
     public GameView(Context context) {
         super(context);
+        this.context = context;
         ourHolder = getHolder();
         paint = new Paint();
         resources = getResources();
@@ -60,6 +63,7 @@ public class GameView extends SurfaceView implements Runnable {
             // We can then use the result to
             // time animations and more.
             timeThisFrame = System.currentTimeMillis() - startFrameTime;
+            deltaTime = timeThisFrame;
             if (timeThisFrame > 0) {
                 fps = 1000 / timeThisFrame;
             }
