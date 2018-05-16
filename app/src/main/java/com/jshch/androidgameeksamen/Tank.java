@@ -16,15 +16,15 @@ public class Tank extends Component implements UpdateAble, CollideAble, LoadAble
     boolean onGround;
     Turret myTurret;
     AudioController audio;
-
+    String tankTag;
     int myImageSizeX;
     int myImageSizeY;
-    public Tank(GameObject go, GameObject turret){
+    public Tank(GameObject go, GameObject turret, String tankTag){
         super(go);
         turretObject = turret;
         myTurret = (Turret) turret.GetComponent("Turret");
         tag = "Tank";
-
+        this.tankTag = tankTag;
     }
 
     @Override
