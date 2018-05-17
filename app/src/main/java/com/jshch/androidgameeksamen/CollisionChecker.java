@@ -1,17 +1,18 @@
 package com.jshch.androidgameeksamen;
 
-import java.security.PublicKey;
+import android.annotation.SuppressLint;
+
 import java.util.HashMap;
 import java.util.LinkedList;
 
 public class CollisionChecker implements Runnable {
     @Override
     public void run() {
-        if (GameWorld.getInstance().Playing) {
+        while (GameWorld.getInstance().Playing) {
             if (GameWorld.getInstance().gameObjects != null) {
 
                 LinkedList<GameObject> ToCheck = GameWorld.getInstance().gameObjects;
-                HashMap hasBeenAdded = new HashMap(200);
+                @SuppressLint("UseSparseArrays") HashMap<Integer, GameObject> hasBeenAdded = new HashMap<>(200);
                 for (GameObject go : ToCheck) {
                     Collider col = (Collider) go.GetComponent("Collider");
 
@@ -25,7 +26,7 @@ public class CollisionChecker implements Runnable {
 
 
                                         if (col.InterSectsWidthRect(otherCol)) {
-                                            if (col.OtherColliders.contains(otherCol) == false) {
+                                            if (!col.OtherColliders.contains(otherCol)) {
                                                 go.OnCollisionEnter(otherCol);
                                                 otherCol.GetGameObject().OnCollisionEnter(col);
                                                 col.OtherColliders.add(otherCol);
