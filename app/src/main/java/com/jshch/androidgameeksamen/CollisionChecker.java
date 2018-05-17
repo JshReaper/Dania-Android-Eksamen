@@ -46,7 +46,7 @@ public class CollisionChecker implements Runnable {
                                     }
                                 }
                             }
-                            hasBeenAdded.put(go.hashCode(),go);
+                            hasBeenAdded.put(go.hashCode(), go);
                         }
                     }
                     hasBeenAdded.clear();
@@ -54,9 +54,10 @@ public class CollisionChecker implements Runnable {
             }
         }
     }
-     Boolean Contains(LinkedList<GameObject> list, GameObject object){
-        for ( GameObject lookAt : list){
-            if (lookAt == object){
+
+    Boolean Contains(LinkedList<GameObject> list, GameObject object) {
+        for (GameObject lookAt : list) {
+            if (lookAt == object) {
                 return true;
             }
         }

@@ -2,8 +2,6 @@ package com.jshch.androidgameeksamen;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -11,9 +9,6 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-
-import java.util.LinkedList;
-import java.util.List;
 
 public class GameView extends SurfaceView implements Runnable {
     // This variable tracks the game frame rate
@@ -64,7 +59,7 @@ public class GameView extends SurfaceView implements Runnable {
             // We can then use the result to
             // time animations and more.
             timeThisFrame = System.currentTimeMillis() - startFrameTime;
-            deltaTime = timeThisFrame/1000.0f;
+            deltaTime = timeThisFrame / 1000.0f;
             if (timeThisFrame > 0) {
                 fps = 1000 / timeThisFrame;
             }
@@ -79,10 +74,10 @@ public class GameView extends SurfaceView implements Runnable {
             canvas = ourHolder.lockCanvas();
 
             // Draw the background color
-            canvas.drawColor(Color.argb(255,  26, 128, 182));
+            canvas.drawColor(Color.argb(255, 26, 128, 182));
 
             // Choose the brush color for drawing
-            paint.setColor(Color.argb(255,  249, 129, 0));
+            paint.setColor(Color.argb(255, 249, 129, 0));
 
             // Make the text a bit bigger
             paint.setTextSize(45);
@@ -95,9 +90,9 @@ public class GameView extends SurfaceView implements Runnable {
             /*Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.mipmap.kappa);
             Log.d("message", "draw: "+bitmap.getHeight());
             canvas.drawBitmap(bitmap,50,50,paint );*/
-            
+
             //draw all GO's
-            GameWorld.getInstance().Draw(canvas,paint);
+            GameWorld.getInstance().Draw(canvas, paint);
 
             // Draw everything to the screen
             // and unlock the drawing surface
@@ -126,6 +121,7 @@ public class GameView extends SurfaceView implements Runnable {
         gameThread = new Thread(this);
         gameThread.start();
     }
+
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         switch (motionEvent.getAction() & MotionEvent.ACTION_MASK) {
@@ -140,7 +136,7 @@ public class GameView extends SurfaceView implements Runnable {
                 //vertical
                 motionEvent.getAxisValue(1);
 
-                GameWorld.getInstance().Controller(motionEvent.getAxisValue(0),motionEvent.getAxisValue(1));
+                GameWorld.getInstance().Controller(motionEvent.getAxisValue(0), motionEvent.getAxisValue(1));
                 break;
 
             // Player has removed finger from screen
@@ -153,4 +149,5 @@ public class GameView extends SurfaceView implements Runnable {
 
         }
         return true;
-    }}
+    }
+}

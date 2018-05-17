@@ -7,25 +7,26 @@ public class AudioController extends Component {
 
     MediaPlayer audio;
     Context context;
-    public AudioController(GameObject go, Context context){
+
+    public AudioController(GameObject go, Context context) {
         super(go);
         this.context = context;
         tag = "AudioController";
     }
 
 
-    public void SetSound(int id){
-        audio = MediaPlayer.create(context,id);
+    public void SetSound(int id) {
+        audio = MediaPlayer.create(context, id);
     }
 
-    public void Play(){
-        if(audio != null){
+    public void Play() {
+        if (audio != null) {
             audio.start();
         }
     }
 
-    public void Stop(){
-        if(audio != null){
+    public void Stop() {
+        if (audio != null) {
             audio.stop();
         }
     }

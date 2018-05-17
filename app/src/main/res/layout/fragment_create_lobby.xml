@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CreateLobbyFragment"
-    android:background="#2C2F33">
+    android:background="#2C2F33"
+    tools:context=".CreateLobbyFragment">
 
     <EditText
         android:id="@+id/player_name"
@@ -18,7 +17,6 @@
         android:hint="Player Name"
         android:inputType="text"
         android:singleLine="true"
-        android:shadowColor="#FFFFFF"
         android:textColor="#FFFFFF"
         android:textColorHint="#d3d3d3"
         app:layout_constraintEnd_toEndOf="@+id/lobby_desc"
@@ -27,13 +25,13 @@
 
     <EditText
         android:id="@+id/lobby_name"
-        android:hint="Lobby Name"
         android:layout_width="208dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="88dp"
         android:layout_marginStart="88dp"
         android:layout_marginTop="100dp"
         android:ems="10"
+        android:hint="Lobby Name"
         android:inputType="text"
         android:singleLine="true"
         android:textColor="#FFFFFF"

@@ -5,14 +5,16 @@ import java.util.ArrayList;
 public class GameInfo {
     ArrayList<PlayerInfo> players = new ArrayList<>();
     String id;
-    GameInfo(LobbyInfo lobbyInfo){
+
+    GameInfo(LobbyInfo lobbyInfo) {
         id = lobbyInfo.id;
-        for (LobbyPlayer lplayer : lobbyInfo.players){
-            players.add(new PlayerInfo(lplayer.id,lplayer.name,lplayer.color));
+        for (LobbyPlayer lplayer : lobbyInfo.players) {
+            players.add(new PlayerInfo(lplayer.id, lplayer.name, lplayer.color));
         }
     }
 }
-class PlayerInfo{
+
+class PlayerInfo {
     String id;
     String name;
     String color;
