@@ -74,7 +74,8 @@ public class MenuFragment extends Fragment {
             public void onClick(View v) {
                 fragmentTransaction = getFragmentManager().beginTransaction();
                 BrowserFragment bFrag = new BrowserFragment();
-                fragmentTransaction.replace(android.R.id.content, bFrag);
+                fragmentTransaction.add(android.R.id.content, bFrag);
+                fragmentTransaction.addToBackStack("bFrag");
                 fragmentTransaction.commit();
             }
         });
@@ -83,7 +84,8 @@ public class MenuFragment extends Fragment {
             public void onClick(View v) {
                 fragmentTransaction = getFragmentManager().beginTransaction();
                 CreateLobbyFragment cFrag = new CreateLobbyFragment();
-                fragmentTransaction.replace(android.R.id.content, cFrag);
+                fragmentTransaction.add(android.R.id.content, cFrag);
+                fragmentTransaction.addToBackStack("cFrag");
                 fragmentTransaction.commit();
             }
         });
