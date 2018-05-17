@@ -63,7 +63,7 @@ public class GameWorld {
 
         Transform trans = new Transform(new Vector2(150,500),new Vector2(0.15f,0.15f));
         GameObject tankObj = new GameObject(trans);
-        Tank tank = new Tank(tankObj,turretObj);
+        Tank tank = new Tank(tankObj,turretObj, "player");
         AudioController ac = new AudioController(tankObj, GameView.context);
         Collider col = new Collider(tankObj);
         ac.SetSound(R.raw.tankgunsound);

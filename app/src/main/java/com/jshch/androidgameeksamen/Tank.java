@@ -141,7 +141,7 @@ boolean first = true;
     @Override
     public void OnCollisionStay(Collider other){
         if(other.GetGameObject().tag.equals("ground")) {
-            Log.d("message", "Collision resets active from the loop");
+            //something
         }
     }
     @Override
