@@ -25,6 +25,7 @@ public class MainActivity extends FragmentActivity {
         MenuFragment mFrag = new MenuFragment();
 
         fragTransaction.replace(android.R.id.content, mFrag);
+        fragTransaction.addToBackStack("MENU");
         fragTransaction.commit();
     }
 

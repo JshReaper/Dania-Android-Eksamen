@@ -10,21 +10,24 @@
     android:background="#2C2F33">
 
     <EditText
-        android:id="@+id/nameText"
+        android:id="@+id/player_name"
         android:layout_width="208dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:ems="10"
+        android:hint="Player Name"
         android:inputType="text"
         android:singleLine="true"
-        android:text="Player Name"
+        android:shadowColor="#FFFFFF"
         android:textColor="#FFFFFF"
+        android:textColorHint="#d3d3d3"
         app:layout_constraintEnd_toEndOf="@+id/lobby_desc"
         app:layout_constraintStart_toStartOf="@+id/lobby_desc"
         app:layout_constraintTop_toBottomOf="@+id/lobby_desc" />
 
     <EditText
-        android:id="@+id/lobby_text"
+        android:id="@+id/lobby_name"
+        android:hint="Lobby Name"
         android:layout_width="208dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="88dp"
@@ -33,8 +36,8 @@
         android:ems="10"
         android:inputType="text"
         android:singleLine="true"
-        android:text="Lobby Name"
         android:textColor="#FFFFFF"
+        android:textColorHint="#d3d3d3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -45,24 +48,23 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:ems="10"
+        android:hint="Lobby Description"
         android:inputType="text"
         android:singleLine="true"
-        android:text="Lobby Description"
         android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/lobby_text"
-        app:layout_constraintStart_toStartOf="@+id/lobby_text"
-        app:layout_constraintTop_toBottomOf="@+id/lobby_text" />
+        android:textColorHint="#d3d3d3"
+        app:layout_constraintEnd_toEndOf="@+id/lobby_name"
+        app:layout_constraintStart_toStartOf="@+id/lobby_name"
+        app:layout_constraintTop_toBottomOf="@+id/lobby_name" />
 
     <Spinner
-        android:id="@+id/colorSpinner"
-
+        android:id="@+id/color_spinner"
         android:layout_width="208dp"
         android:layout_height="45dp"
         android:layout_marginTop="28dp"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/nameText"
-        app:layout_constraintStart_toStartOf="@+id/nameText"
-        app:layout_constraintTop_toBottomOf="@+id/nameText" />
+        app:layout_constraintEnd_toEndOf="@+id/player_name"
+        app:layout_constraintStart_toStartOf="@+id/player_name"
+        app:layout_constraintTop_toBottomOf="@+id/player_name" />
 
     <Button
         android:id="@+id/createLB"
@@ -72,7 +74,7 @@
         android:layout_marginTop="28dp"
         android:text="Create Lobby"
         android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/colorSpinner"
-        app:layout_constraintStart_toStartOf="@+id/colorSpinner"
-        app:layout_constraintTop_toBottomOf="@+id/colorSpinner" />
+        app:layout_constraintEnd_toEndOf="@+id/color_spinner"
+        app:layout_constraintStart_toStartOf="@+id/color_spinner"
+        app:layout_constraintTop_toBottomOf="@+id/color_spinner" />
 </android.support.constraint.ConstraintLayout>
