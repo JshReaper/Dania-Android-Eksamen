@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MenuFragment"
+    android:background="#2C2F33">
+
+    <Button
+        android:id="@+id/ExitB"
+        style="@android:style/Widget.Holo.Button"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="97dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="24dp"
+        android:text="Exit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/createB"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/createB"
+        app:layout_constraintTop_toBottomOf="@+id/createB"
+        app:layout_constraintVertical_bias="0.0"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/joinB"
+        style="@android:style/Widget.Holo.Button"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="100dp"
+        android:text="Join Lobby"
+        app:layout_constraintEnd_toEndOf="@+id/playB"
+        app:layout_constraintStart_toStartOf="@+id/playB"
+        app:layout_constraintTop_toBottomOf="@+id/playB"
+        android:textColor="#FFFFFF" />
+
+
+    <Button
+        android:id="@+id/createB"
+        style="@android:style/Widget.Holo.Button"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Create Lobby"
+        app:layout_constraintEnd_toEndOf="@+id/joinB"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/joinB"
+        app:layout_constraintTop_toBottomOf="@+id/joinB"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/playB"
+        style="@android:style/Widget.Holo.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="112dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="124dp"
+        android:contentDescription="Shortcut to gameView"
+        android:text="Test Game Button"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</android.support.constraint.ConstraintLayout>

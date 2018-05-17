@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreateLobbyFragment"
+    android:background="#2C2F33">
+
+    <EditText
+        android:id="@+id/player_name"
+        android:layout_width="208dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:hint="Player Name"
+        android:inputType="text"
+        android:singleLine="true"
+        android:shadowColor="#FFFFFF"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#d3d3d3"
+        app:layout_constraintEnd_toEndOf="@+id/lobby_desc"
+        app:layout_constraintStart_toStartOf="@+id/lobby_desc"
+        app:layout_constraintTop_toBottomOf="@+id/lobby_desc" />
+
+    <EditText
+        android:id="@+id/lobby_name"
+        android:hint="Lobby Name"
+        android:layout_width="208dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="88dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="100dp"
+        android:ems="10"
+        android:inputType="text"
+        android:singleLine="true"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#d3d3d3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/lobby_desc"
+        android:layout_width="208dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:hint="Lobby Description"
+        android:inputType="text"
+        android:singleLine="true"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#d3d3d3"
+        app:layout_constraintEnd_toEndOf="@+id/lobby_name"
+        app:layout_constraintStart_toStartOf="@+id/lobby_name"
+        app:layout_constraintTop_toBottomOf="@+id/lobby_name" />
+
+    <Spinner
+        android:id="@+id/color_spinner"
+        android:layout_width="208dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toEndOf="@+id/player_name"
+        app:layout_constraintStart_toStartOf="@+id/player_name"
+        app:layout_constraintTop_toBottomOf="@+id/player_name" />
+
+    <Button
+        android:id="@+id/createLB"
+        style="@android:style/Widget.Holo.Button"
+        android:layout_width="208dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="Create Lobby"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/color_spinner"
+        app:layout_constraintStart_toStartOf="@+id/color_spinner"
+        app:layout_constraintTop_toBottomOf="@+id/color_spinner" />
+</android.support.constraint.ConstraintLayout>
