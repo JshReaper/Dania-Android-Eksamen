@@ -13,6 +13,7 @@ public class GameWorld {
     boolean Playing = true;
     LinkedList<GameObject> gameObjects;
     LinkedList<GameObject> gameObjectsToDestroy;
+    LinkedList<GameObject> gameObjectsToAdd;
     CollisionChecker collisionChecker;
     Thread colThread = null;
 
@@ -22,6 +23,7 @@ public class GameWorld {
         //game objects ini
         gameObjects = new LinkedList<>();
         gameObjectsToDestroy = new LinkedList<>();
+        gameObjectsToAdd = new LinkedList<>();
         AddGameObjects();
 
         //collision
@@ -70,8 +72,8 @@ public class GameWorld {
         tankObj.components.add(tank);
         tankObj.components.add(ac);
         tankObj.tag = "player";
-        gameObjects.add(turretObj);
-        gameObjects.add(tankObj);
+        AddGameObject(turretObj);
+        AddGameObject(tankObj);
         Log.d("message","Tank added");
 
 
@@ -92,7 +94,7 @@ public class GameWorld {
     }
 
     public void AddGameObject(GameObject go){
-        gameObjects.add(go);
+        gameObjectsToAdd.add(go);
         go.LoadContent(GameView.resources);
     }
 
@@ -128,6 +130,12 @@ public class GameWorld {
                 gameObjects.remove(goD);
             }
             gameObjectsToDestroy = new LinkedList<>();
+        }
+        if(gameObjectsToAdd.size() > 0){
+            for (GameObject goA : gameObjectsToAdd) {
+                gameObjects.add(goA);
+            }
+            gameObjectsToAdd.clear();
         }
     }
 

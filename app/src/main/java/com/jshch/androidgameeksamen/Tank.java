@@ -61,7 +61,7 @@ boolean first = true;
         if(time >= 5){
             Log.d("",""+deltaTime);
             Log.d("","Firing");
-            //Fire(new Vector2(50,-50);
+            Fire(new Vector2(50,-50));
             time = 0;
         }
             //set the turret offset to the right position every frame
@@ -99,8 +99,13 @@ boolean first = true;
     void Fire(Vector2 direction){
         Transform pos = new Transform(turretOffset.Add(Vector2.Scale(direction.Normalized(),20) ),new Vector2(1,1));
         GameObject bullet = new GameObject(pos);
+        Renderer render = new Renderer(bullet,R.drawable.bullet);
+        Collider col = new Collider(bullet);
         Bullet blt = new Bullet(bullet,direction,power);
         bullet.components.add(blt);
+        bullet.components.add(render);
+        bullet.components.add(col);
+        GameWorld.getInstance().AddGameObject(bullet);
 
 
     }
