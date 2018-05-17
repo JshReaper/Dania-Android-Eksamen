@@ -128,20 +128,20 @@ boolean first = true;
     @Override
     public void OnCollisionEnter(Collider other){
         Log.d("message","Tag : " + other.GetGameObject().tag);
-        if(other.GetGameObject().tag == "ground"){
+        if(other.GetGameObject().tag.equals("ground")){
             onGround = true;
             gravity = Vector2.Zero();
         }
     }
     @Override
     public void OnCollisionStay(Collider other){
-        if(other.GetGameObject().tag == "ground") {
+        if(other.GetGameObject().tag.equals("ground")) {
             Log.d("message", "Collision resets active from the loop");
         }
     }
     @Override
     public void OnCollisionExit(Collider other){
-        if(onGround && other.GetGameObject().tag == "ground"){
+        if(onGround && other.GetGameObject().tag.equals("ground")){
             onGround = !onGround;
             gravity = new Vector2(0,3);
         }
