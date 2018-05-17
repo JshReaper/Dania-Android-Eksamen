@@ -64,7 +64,7 @@ public class GameView extends SurfaceView implements Runnable {
             // We can then use the result to
             // time animations and more.
             timeThisFrame = System.currentTimeMillis() - startFrameTime;
-            deltaTime = timeThisFrame;
+            deltaTime = timeThisFrame/1000.0f;
             if (timeThisFrame > 0) {
                 fps = 1000 / timeThisFrame;
             }

@@ -1,29 +1,31 @@
 package com.jshch.androidgameeksamen;
 
+import java.security.PublicKey;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 public class CollisionChecker implements Runnable {
     @Override
     public void run() {
-        if(GameWorld.getInstance().Playing){
-            if(GameWorld.getInstance().gameObjects != null){
+        if (GameWorld.getInstance().Playing) {
+            if (GameWorld.getInstance().gameObjects != null) {
 
                 LinkedList<GameObject> ToCheck = GameWorld.getInstance().gameObjects;
-                LinkedList<GameObject> hasBeenChecked = new LinkedList<>();
-                for (GameObject go: ToCheck){
+                HashMap hasBeenAdded = new HashMap(200);
+                for (GameObject go : ToCheck) {
                     Collider col = (Collider) go.GetComponent("Collider");
 
-                    if(col != null){
-                        for (GameObject otherGo: ToCheck){
+                    if (col != null) {
+                        for (GameObject otherGo : ToCheck) {
 
-                            if(go != otherGo){
+                            if (go != otherGo) {
                                 Collider otherCol = (Collider) otherGo.GetComponent("Collider");
-                                if(otherCol != null){
-                                    //if(!hasBeenChecked.contains(otherGo)) {
+                                if (otherCol != null) {
+                                    if (!hasBeenAdded.containsKey(otherGo.hashCode())) {
 
 
                                         if (col.InterSectsWidthRect(otherCol)) {
-                                            if (!col.OtherColliders.contains(otherCol)) {
+                                            if (col.OtherColliders.contains(otherCol) == false) {
                                                 go.OnCollisionEnter(otherCol);
                                                 otherCol.GetGameObject().OnCollisionEnter(col);
                                                 col.OtherColliders.add(otherCol);
@@ -43,13 +45,20 @@ public class CollisionChecker implements Runnable {
                                     }
                                 }
                             }
-                       // }
-                        //hasBeenChecked.add(go);
+                            hasBeenAdded.put(go.hashCode(),go);
+                        }
                     }
-
+                    hasBeenAdded.clear();
                 }
-               // hasBeenChecked.clear();
             }
         }
+    }
+     Boolean Contains(LinkedList<GameObject> list, GameObject object){
+        for ( GameObject lookAt : list){
+            if (lookAt == object){
+                return true;
+            }
+        }
+        return false;
     }
 }

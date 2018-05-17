@@ -58,7 +58,12 @@ boolean first = true;
 
         }
         time += deltaTime;
-
+        if(time >= 5){
+            Log.d("",""+deltaTime);
+            Log.d("","Firing");
+            //Fire(new Vector2(50,-50);
+            time = 0;
+        }
             //set the turret offset to the right position every frame
             turretOffset = new Vector2(GetGameObject().getTransform().Position.getX() + (myImageSizeX / 2),
                     GetGameObject().getTransform().Position.getY() + (myImageSizeY / 10));
@@ -73,9 +78,7 @@ boolean first = true;
         if(turretOffset != turretObject.getTransform().Position){
             turretObject.getTransform().SetPosition(turretOffset);
         }
-        //Log.d("message", "CURRENT OFFSET IS " + myTurret.yOffset);
 
-        //Log.d("message", "Vector is " + myTurret.offset.getY() +" __ "+ pos.getX() + " "+ pos.getY() );
         angle += 0.2f;
         SetAngle(angle);
         if(angle > 180){
