@@ -11,7 +11,7 @@ public class CollisionChecker implements Runnable {
         while (GameWorld.getInstance().Playing) {
             if (GameWorld.getInstance().gameObjects != null) {
 
-                LinkedList<GameObject> ToCheck = GameWorld.getInstance().gameObjects;
+                LinkedList<GameObject> ToCheck = new LinkedList<>(GameWorld.getInstance().gameObjects);
                 @SuppressLint("UseSparseArrays") HashMap<Integer, GameObject> hasBeenAdded = new HashMap<>(200);
                 for (GameObject go : ToCheck) {
                     Collider col = (Collider) go.GetComponent("Collider");
