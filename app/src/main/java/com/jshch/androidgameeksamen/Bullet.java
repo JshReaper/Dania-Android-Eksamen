@@ -13,6 +13,7 @@ public class Bullet extends Component implements UpdateAble, CollideAble {
         damage = 50;
         this.direction = Vector2.Scale(direction, power);
         tag = "Bullet";
+        go.tag = tag;
     }
 
     @Override

@@ -27,8 +27,8 @@ public class GameWorld {
 
         //collision
         collisionChecker = new CollisionChecker();
-        colThread = new Thread(collisionChecker);
-        colThread.start();
+      //  colThread = new Thread(collisionChecker);
+     //   colThread.start();
     }
 
     void AddGameObjects() {
@@ -134,9 +134,7 @@ public class GameWorld {
     }
 
     public void Update(float deltaTime) {
-        for (GameObject go : gameObjects) {
-            go.Update(deltaTime);
-        }
+
         if (gameObjectsToDestroy.size() > 0) {
             for (GameObject goD : gameObjectsToDestroy) {
                 gameObjects.remove(goD);
@@ -148,6 +146,10 @@ public class GameWorld {
                 gameObjects.add(goA);
             }
             gameObjectsToAdd.clear();
+        }
+        collisionChecker.run();
+        for (GameObject go : gameObjects) {
+            go.Update(deltaTime);
         }
     }
 
