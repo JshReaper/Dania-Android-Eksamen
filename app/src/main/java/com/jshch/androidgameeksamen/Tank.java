@@ -56,14 +56,14 @@ public class Tank extends Component implements UpdateAble, CollideAble, LoadAble
         }
         if (xCoord < 2400) {
 
-            Log.d("message", "" + MapInfoGenerator.HeightFromXcoord(xCoord, 0));
+          //  Log.d("message", "" + MapInfoGenerator.HeightFromXcoord(xCoord, 0));
             xCoord += 50;
 
         }
         time += deltaTime;
         if (time >= 5) {
-            Log.d("", "" + deltaTime);
-            Log.d("", "Firing");
+          //  Log.d("", "" + deltaTime);
+         //   Log.d("", "Firing");
             Fire(new Vector2(50, -50));
             time = 0;
         }
@@ -138,7 +138,7 @@ public class Tank extends Component implements UpdateAble, CollideAble, LoadAble
 
     @Override
     public void OnCollisionEnter(Collider other) {
-        Log.d("message", "Tag : " + other.GetGameObject().tag);
+     //   Log.d("message", "Tag : " + other.GetGameObject().tag);
         if (other.GetGameObject().tag.equals("ground")) {
             onGround = true;
             gravity = Vector2.Zero();

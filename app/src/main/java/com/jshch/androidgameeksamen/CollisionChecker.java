@@ -91,8 +91,9 @@ public class CollisionChecker implements Runnable {
                     CollThread collThread = new CollThread(collsToCheck, colliders);
                     Thread t = new Thread(collThread);
                     t.start();
+
                     threads++;
-                    Log.w("Theads: ",""+threads);
+                 //   Log.w("Theads: ",""+threads);
 
                 }
               /*  try {
