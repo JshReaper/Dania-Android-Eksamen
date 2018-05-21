@@ -59,7 +59,7 @@ public class GameWorld {
         turretObj.components.add(new Renderer(turretObj, R.drawable.tankturretfat));
         turretObj.components.add(turret);
         turretObj.tag = "turret";
-        Log.d("message", "Turret added");
+        //Log.d("message", "Turret added");
 
         Transform trans = new Transform(new Vector2(150, 500), new Vector2(0.15f, 0.15f));
         GameObject tankObj = new GameObject(trans);
@@ -74,7 +74,7 @@ public class GameWorld {
         tankObj.tag = "player";
         AddGameObject(turretObj);
         AddGameObject(tankObj);
-        Log.d("message", "Tank added");
+        //Log.d("message", "Tank added");
 
 
         //buttons

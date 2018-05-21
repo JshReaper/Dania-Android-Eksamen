@@ -35,7 +35,7 @@ public class Bullet extends Component implements UpdateAble, CollideAble {
         }
         boolean removed = GameWorld.getInstance().Destroy(this.GetGameObject());
         if (!removed) {
-            Log.d("message", "Error in destroying gameObject");
+            //Log.d("message", "Error in destroying gameObject");
         }
 
     }
