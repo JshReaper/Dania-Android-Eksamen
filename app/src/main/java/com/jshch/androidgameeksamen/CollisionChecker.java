@@ -1,6 +1,7 @@
 package com.jshch.androidgameeksamen;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -84,10 +85,15 @@ public class CollisionChecker implements Runnable {
                     }
                     int check = elementsLeft;
                 }
+                int threads = 0;
                 for (ArrayList<Collider> collsToCheck : colliderLists) {
+
                     CollThread collThread = new CollThread(collsToCheck, colliders);
                     Thread t = new Thread(collThread);
                     t.start();
+                    threads++;
+                    Log.w("Theads: ",""+threads);
+
                 }
               /*  try {
                     Thread.sleep(30);
