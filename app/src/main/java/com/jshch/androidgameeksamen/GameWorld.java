@@ -27,8 +27,8 @@ public class GameWorld {
 
         //collision
         collisionChecker = new CollisionChecker();
-      //  colThread = new Thread(collisionChecker);
-     //   colThread.start();
+        colThread = new Thread(collisionChecker);
+        colThread.start();
     }
 
     void AddGameObjects() {
@@ -147,7 +147,7 @@ public class GameWorld {
             }
             gameObjectsToAdd.clear();
         }
-        collisionChecker.run();
+
         for (GameObject go : gameObjects) {
             go.Update(deltaTime);
         }
