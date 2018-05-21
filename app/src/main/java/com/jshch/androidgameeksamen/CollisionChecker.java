@@ -18,7 +18,7 @@ public class CollisionChecker /*implements Runnable*/ {
 
                     if (col != null) {
                         for (GameObject otherGo : ToCheck) {
-                            if(otherGo!= null){
+                            if (otherGo != null) {
                                 if (go != otherGo) {
                                     Collider otherCol = (Collider) otherGo.GetComponent("Collider");
                                     if (otherCol != null) {
@@ -31,9 +31,11 @@ public class CollisionChecker /*implements Runnable*/ {
                                                     otherCol.GetGameObject().OnCollisionEnter(col);
                                                     col.OtherColliders.add(otherCol);
                                                     otherCol.OtherColliders.add(col);
+
                                                 } else {
                                                     go.OnCollisionStay(otherCol);
                                                     otherCol.GetGameObject().OnCollisionStay(col);
+
                                                 }
                                             } else {
                                                 if (col.OtherColliders.contains(otherCol)) {
@@ -41,6 +43,7 @@ public class CollisionChecker /*implements Runnable*/ {
                                                     otherCol.GetGameObject().OnCollisionExit(col);
                                                     col.OtherColliders.remove(otherCol);
                                                     otherCol.OtherColliders.remove(col);
+
                                                 }
                                             }
                                         }

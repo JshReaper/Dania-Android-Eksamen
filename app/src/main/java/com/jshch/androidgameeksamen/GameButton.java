@@ -46,16 +46,16 @@ public class GameButton extends Component implements ControlAble, CollideAble {
 
     @Override
     public void OnCollisionEnter(Collider other) {
-        Log.w("coll enter", "colliding with" + other.toString());
+        //Log.w("coll enter", "colliding with" + other.toString());
     }
 
     @Override
     public void OnCollisionStay(Collider other) {
-        Log.w("coll enter", "still colliding with" + other.toString());
+        //Log.w("coll enter", "still colliding with" + other.toString());
     }
 
     @Override
     public void OnCollisionExit(Collider other) {
-        Log.w("coll enter", "stopped colliding with" + other.toString());
+        //Log.w("coll enter", "stopped colliding with" + other.toString());
     }
 }
