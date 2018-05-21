@@ -72,7 +72,7 @@ public class Bullet extends Component implements UpdateAble, CollideAble {
     @Override
     public void OnCollisionEnter(Collider other) {
         if (other.GetGameObject().tag == "ground") {
-
+            Boom(null);
         }
         if (other.GetGameObject().tag == "tank") {
             Boom(other.GetGameObject());
