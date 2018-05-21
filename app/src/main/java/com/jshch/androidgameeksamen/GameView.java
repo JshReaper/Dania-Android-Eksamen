@@ -110,7 +110,7 @@ public class GameView extends SurfaceView implements Runnable {
         try {
             gameThread.join();
         } catch (InterruptedException e) {
-            Log.e("Error:", "joining thread");
+            //Log.e("Error:", "joining thread");
         }
     }
 
