@@ -51,7 +51,7 @@ class CollThread implements Runnable {
 public class CollisionChecker implements Runnable {
     @Override
     public void run() {
-        int threads = 0;
+        int threadCount = 0;
         while (GameWorld.getInstance().Playing) {
             if (GameWorld.getInstance().gameObjects != null) {
 
@@ -95,16 +95,29 @@ public class CollisionChecker implements Runnable {
                 }else{
                     colliderLists.add(colliders);
                 }
-
+                ArrayList<Thread> threads = new ArrayList<>();
                 for (ArrayList<Collider> collsToCheck : colliderLists) {
 
-                    CollThread collThread = new CollThread(collsToCheck, colliders, threads);
+                    CollThread collThread = new CollThread(collsToCheck, colliders, threadCount);
                     Thread t = new Thread(collThread);
+                    threads.add(t);
                     t.start();
-
-                    threads++;
+                    threadCount++;
 
                 }
+                for (Thread t : threads){
+                    try {
+                        if(t.isAlive()){
+                        t.join();
+                        }
+                        else {
+                            threadCount--;
+                        }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                threads.clear();
               /*  try {
                     Thread.sleep(30);
                 } catch (InterruptedException e) {

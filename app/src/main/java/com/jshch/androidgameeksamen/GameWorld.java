@@ -164,4 +164,18 @@ public class GameWorld {
             go.Controller(axisX, axisY);
         }
     }
+
+    public void OnPause() {
+        try {
+            colThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void OnResume() {
+        collisionChecker = new CollisionChecker();
+        colThread = new Thread(collisionChecker);
+        colThread.start();
+    }
 }
