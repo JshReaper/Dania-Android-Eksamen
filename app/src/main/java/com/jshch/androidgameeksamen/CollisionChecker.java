@@ -12,7 +12,7 @@ public class CollisionChecker /*implements Runnable*/ {
             if (GameWorld.getInstance().gameObjects != null) {
 
                 LinkedList<GameObject> ToCheck = new LinkedList<>(GameWorld.getInstance().gameObjects);
-                @SuppressLint("UseSparseArrays") HashMap<Integer, GameObject> hasBeenAdded = new HashMap<>(200);
+                @SuppressLint("UseSparseArrays") HashMap<Integer, GameObject> hasBeenAdded = new HashMap<>(ToCheck.size());
                 for (GameObject go : ToCheck) {
                     Collider col = (Collider) go.GetComponent("Collider");
 
@@ -59,12 +59,5 @@ public class CollisionChecker /*implements Runnable*/ {
         }
     }
 
-    Boolean Contains(LinkedList<GameObject> list, GameObject object) {
-        for (GameObject lookAt : list) {
-            if (lookAt == object) {
-                return true;
-            }
-        }
-        return false;
-    }
+
 }
