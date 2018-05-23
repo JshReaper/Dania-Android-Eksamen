@@ -53,8 +53,8 @@ public class CollisionChecker /*implements Runnable*/ {
                             hasBeenAdded.put(go.hashCode(), go);
                         }
                     }
-                    hasBeenAdded.clear();
                 }
+                hasBeenAdded.clear();
             }
         }
     }
