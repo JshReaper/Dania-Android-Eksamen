@@ -10,14 +10,18 @@ import java.util.LinkedList;
 class CollThread implements Runnable {
     private ArrayList<Collider> colliders;
     private ArrayList<Collider> others;
-
-    CollThread(ArrayList<Collider> colliders, ArrayList<Collider> others) {
+    int id;
+    CollThread(ArrayList<Collider> colliders, ArrayList<Collider> others, int id) {
+        this.id = id;
         this.colliders = colliders;
         this.others = others;
     }
 
     @Override
     public void run() {
+        Log.w("time taken: ",""+ System.currentTimeMillis() + " my objects: " + colliders.size() + " My ID " + id);
+
+        @SuppressLint("UseSparseArrays") HashMap<Integer, GameObject> hasBeenAdded = new HashMap<>(colliders.size());
         for (Collider collider : colliders) {
             for (Collider otherCol : others) {
                 if (collider.InterSectsWidthRect(otherCol)) {
@@ -40,17 +44,21 @@ class CollThread implements Runnable {
                 }
             }
         }
+        Log.w("time taken: ",""+ System.currentTimeMillis() + " my objects: " + colliders.size() + " My ID " + id);
     }
 }
 
 public class CollisionChecker implements Runnable {
     @Override
     public void run() {
+        int threads = 0;
         while (GameWorld.getInstance().Playing) {
             if (GameWorld.getInstance().gameObjects != null) {
 
                 LinkedList<GameObject> ToCheck = new LinkedList<>(GameWorld.getInstance().gameObjects);
                 ArrayList<Collider> colliders = new ArrayList<>();
+
+
                 for (GameObject go : ToCheck) {
                     Collider col = (Collider) go.GetComponent("Collider");
 
@@ -72,7 +80,7 @@ public class CollisionChecker implements Runnable {
                         colliderLists.add(tColls);
                     }
                     if (elementsLeft > 0) {
-                        //TODO add the rest
+                        //add the rest
                         ArrayList<Collider> tColls = new ArrayList<>();
                         int forloop = elementsLeft;
                         for (int i = 0; i < forloop; i++) {
@@ -84,16 +92,17 @@ public class CollisionChecker implements Runnable {
 
                     }
                     int check = elementsLeft;
+                }else{
+                    colliderLists.add(colliders);
                 }
-                int threads = 0;
+
                 for (ArrayList<Collider> collsToCheck : colliderLists) {
 
-                    CollThread collThread = new CollThread(collsToCheck, colliders);
+                    CollThread collThread = new CollThread(collsToCheck, colliders, threads);
                     Thread t = new Thread(collThread);
                     t.start();
 
                     threads++;
-                 //   Log.w("Theads: ",""+threads);
 
                 }
               /*  try {
@@ -101,16 +110,8 @@ public class CollisionChecker implements Runnable {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }*/
-            }
-        }
-    }
 
-    Boolean Contains(LinkedList<GameObject> list, GameObject object) {
-        for (GameObject lookAt : list) {
-            if (lookAt == object) {
-                return true;
             }
         }
-        return false;
     }
 }
