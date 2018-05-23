@@ -44,6 +44,7 @@ public class Tank extends Component implements UpdateAble, CollideAble, LoadAble
     //test values
     int xCoord;
     float time;
+    float gravTimer;
 
     @Override
     public void Update(float deltaTime) {
@@ -52,7 +53,10 @@ public class Tank extends Component implements UpdateAble, CollideAble, LoadAble
             GetGameObject().getTransform().Position = GetGameObject().getTransform().Position.Add(gravity);
             gravity = Vector2.Scale(gravity, 1.01f);
         } else if (!onGround) {
-            gravity = new Vector2(0, 2);
+            gravTimer += deltaTime;
+            if(gravTimer >= 2) {
+                gravity = new Vector2(0, 2);
+            }
         }
         if (xCoord < 2400) {
 
@@ -104,7 +108,7 @@ public class Tank extends Component implements UpdateAble, CollideAble, LoadAble
         GameObject bullet = new GameObject(pos);
         Renderer render = new Renderer(bullet, R.drawable.bullet);
         Collider col = new Collider(bullet);
-        Bullet blt = new Bullet(bullet, direction, power);
+        Bullet blt = new Bullet(bullet, direction, 10);
         bullet.components.add(blt);
         bullet.components.add(render);
         bullet.components.add(col);
