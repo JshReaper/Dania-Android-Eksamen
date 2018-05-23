@@ -19,7 +19,7 @@ class CollThread implements Runnable {
 
     @Override
     public void run() {
-        Log.w("time taken: ",""+ System.currentTimeMillis() + " my objects: " + colliders.size() + " My ID " + id);
+      //  Log.w("time taken: ",""+ System.currentTimeMillis() + " my objects: " + colliders.size() + " My ID " + id);
 
         @SuppressLint("UseSparseArrays") HashMap<Integer, GameObject> hasBeenAdded = new HashMap<>(colliders.size());
         for (Collider collider : colliders) {
@@ -44,7 +44,7 @@ class CollThread implements Runnable {
                 }
             }
         }
-        Log.w("time taken: ",""+ System.currentTimeMillis() + " my objects: " + colliders.size() + " My ID " + id);
+       // Log.w("time taken: ",""+ System.currentTimeMillis() + " my objects: " + colliders.size() + " My ID " + id);
     }
 }
 
@@ -54,6 +54,8 @@ public class CollisionChecker implements Runnable {
         int threadCount = 0;
         while (GameWorld.getInstance().Playing) {
             if (GameWorld.getInstance().gameObjects != null) {
+                try {
+
 
                 LinkedList<GameObject> ToCheck = new LinkedList<>(GameWorld.getInstance().gameObjects);
                 ArrayList<Collider> colliders = new ArrayList<>();
@@ -118,12 +120,16 @@ public class CollisionChecker implements Runnable {
                     }
                 }
                 threads.clear();
+                threadCount = 0;
               /*  try {
                     Thread.sleep(30);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }*/
-
+                }
+                catch (Exception e){
+                    Log.e("list crash thingy: ",e.getMessage());
+                }
             }
         }
     }

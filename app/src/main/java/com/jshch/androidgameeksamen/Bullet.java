@@ -11,6 +11,7 @@ public class Bullet extends Component implements UpdateAble, CollideAble {
     public Bullet(GameObject go, Vector2 direction, float power) {
         super(go);
         damage = 50;
+        direction = direction.Normalized();
         this.direction = Vector2.Scale(direction, power);
         tag = "Bullet";
         go.tag = tag;
@@ -21,8 +22,8 @@ public class Bullet extends Component implements UpdateAble, CollideAble {
 
         //Move the object in a desired direction with a speed/power
 
-        GetGameObject().getTransform().Position.Add(Vector2.Scale(direction, deltaTime));
-        direction.Add(Vector2.Scale(new Vector2(0, 10), deltaTime));
+        GetGameObject().getTransform().Position = GetGameObject().getTransform().Position.Add(Vector2.Scale(direction, deltaTime));
+        direction = direction.Add(Vector2.Scale(new Vector2(0, 100), deltaTime));
 
     }
 
@@ -32,12 +33,11 @@ public class Bullet extends Component implements UpdateAble, CollideAble {
             float damageDone = clamp(distanceFromBlast, blastRadius, 0);
 
             ((Tank) tank.GetComponent("Tank")).TakeDamage((int) damageDone);
-        }
-        else{
+        } else {
             GameObject[] gos = CheckForTanksInRange();
 
-            for(int i = 0; i < 1; i++){
-                if(gos[i] != null){
+            for (int i = 0; i < 1; i++) {
+                if (gos[i] != null) {
                     float distanceFromBlast = gos[i].getTransform().Position.Distance(this.GetGameObject().getTransform().Position);
                     float damageDone = clamp(distanceFromBlast, blastRadius, 0);
                     ((Tank) gos[i].GetComponent("Tank")).TakeDamage((int) damageDone);
