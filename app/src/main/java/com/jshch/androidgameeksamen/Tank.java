@@ -60,15 +60,15 @@ public class Tank extends Component implements UpdateAble, CollideAble, LoadAble
         }
         if (xCoord < 2400) {
 
-            Log.d("message", "" + MapInfoGenerator.HeightFromXcoord(xCoord, 0));
+          //  Log.d("message", "" + MapInfoGenerator.HeightFromXcoord(xCoord, 0));
             xCoord += 50;
 
         }
         time += deltaTime;
         if (time >= 5) {
-            Log.d("", "" + deltaTime);
-            Log.d("", "Firing");
-            Fire(new Vector2(50, -50));
+          //  Log.d("", "" + deltaTime);
+         //   Log.d("", "Firing");
+            Fire(new Vector2(1, -10));
             time = 0;
         }
         //set the turret offset to the right position every frame
@@ -104,11 +104,11 @@ public class Tank extends Component implements UpdateAble, CollideAble, LoadAble
     }
 
     void Fire(Vector2 direction) {
-        Transform pos = new Transform(turretOffset.Add(Vector2.Scale(direction.Normalized(), 20)), new Vector2(1, 1));
+        Transform pos = new Transform(turretOffset.Add(Vector2.Scale(direction.Normalized(), 20)), new Vector2(0.05f, 0.05f));
         GameObject bullet = new GameObject(pos);
         Renderer render = new Renderer(bullet, R.drawable.bullet);
         Collider col = new Collider(bullet);
-        Bullet blt = new Bullet(bullet, direction, 10);
+        Bullet blt = new Bullet(bullet, direction, 150);
         bullet.components.add(blt);
         bullet.components.add(render);
         bullet.components.add(col);
@@ -142,7 +142,7 @@ public class Tank extends Component implements UpdateAble, CollideAble, LoadAble
 
     @Override
     public void OnCollisionEnter(Collider other) {
-        Log.d("message", "Tag : " + other.GetGameObject().tag);
+     //   Log.d("message", "Tag : " + other.GetGameObject().tag);
         if (other.GetGameObject().tag.equals("ground")) {
             onGround = true;
             gravity = Vector2.Zero();
