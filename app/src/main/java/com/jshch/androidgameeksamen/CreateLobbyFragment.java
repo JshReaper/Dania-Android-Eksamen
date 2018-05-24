@@ -7,19 +7,15 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 
 
 public class CreateLobbyFragment extends Fragment {
 
     Button createLB;
     NetWorkManager netMan;
-    EditText lobbyName, playerName, lobbyDesc;
-
-    Spinner colorSpinner;
+    EditText lobbyName, lobbyDesc;
 
     FragmentTransaction fragmentTransaction;
 
@@ -46,13 +42,6 @@ public class CreateLobbyFragment extends Fragment {
 
         lobbyName = view.findViewById(R.id.lobby_name);
         lobbyDesc = view.findViewById(R.id.lobby_desc);
-        playerName = view.findViewById(R.id.player_name);
-
-
-        colorSpinner = view.findViewById(R.id.color_spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext().getApplicationContext(), R.array.colors, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        colorSpinner.setAdapter(adapter);
     }
 
     @Override
@@ -63,7 +52,7 @@ public class CreateLobbyFragment extends Fragment {
         createLB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CreateButtonEvent();
+                PlayerDetailsDialog();
             }
         });
     }
@@ -82,13 +71,18 @@ public class CreateLobbyFragment extends Fragment {
 
     }
 
-    private void CreateButtonEvent() {
-        netMan.CreateAndJoinLobby(lobbyName.getText().toString(), playerName.getText().toString(), lobbyDesc.getText().toString(), colorSpinner.getSelectedItem().toString());
+    public void CreateLobby(String playerName, String color) {
+        netMan.CreateAndJoinLobby(lobbyName.getText().toString(), playerName, lobbyDesc.getText().toString(), color);
 
         fragmentTransaction = getFragmentManager().beginTransaction();
         LobbyFragment lFrag = new LobbyFragment();
         fragmentTransaction.replace(android.R.id.content, lFrag);
         fragmentTransaction.commit();
+    }
+
+    private void PlayerDetailsDialog() {
+        CustomDialog cDialog = new CustomDialog(this);
+        cDialog.show(getFragmentManager(), "tag?");
     }
 
 }
