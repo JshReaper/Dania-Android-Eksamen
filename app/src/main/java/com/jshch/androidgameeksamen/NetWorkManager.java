@@ -131,7 +131,7 @@ public class NetWorkManager {
         //generate reference to entry in database
         DatabaseReference myRef = database.getReference("message");
         //change value in the referenced entry
-        myRef.setValue("Hello, world: jacob");
+        myRef.setValue("Hello, world");
 
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {
@@ -140,6 +140,7 @@ public class NetWorkManager {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 String value = dataSnapshot.getValue(String.class);
+                
                 Log.d("message", "Value is: " + value);
             }
 
