@@ -75,7 +75,7 @@ public class CreateLobbyFragment extends Fragment {
         netMan.CreateAndJoinLobby(lobbyName.getText().toString(), playerName, lobbyDesc.getText().toString(), color);
 
         fragmentTransaction = getFragmentManager().beginTransaction();
-        LobbyFragment lFrag = new LobbyFragment(playerName,0);
+        LobbyFragment lFrag = new LobbyFragment();
         fragmentTransaction.replace(android.R.id.content, lFrag);
         fragmentTransaction.commit();
     }

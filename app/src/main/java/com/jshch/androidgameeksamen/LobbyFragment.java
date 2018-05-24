@@ -14,10 +14,10 @@ public class LobbyFragment extends Fragment {
 
     String[] player;
     TextView player1, player2;
+    public LobbyFragment(){
 
-    public LobbyFragment(String playerName, int player) {
-        this.player[player] = playerName;
     }
+
 
 
     @Override
