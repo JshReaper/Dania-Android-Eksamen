@@ -6,10 +6,13 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.UUID;
 
 
@@ -27,7 +30,9 @@ public class NetWorkManager {
             @SuppressWarnings("unchecked")
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                lobbies = (ArrayList<LobbyInfo>) dataSnapshot.getValue();
+               // lobbies = (ArrayList<LobbyInfo>) dataSnapshot.getValue();
+                GenericTypeIndicator<ArrayList<LobbyInfo>> t = new GenericTypeIndicator<ArrayList<LobbyInfo>>() {};
+                lobbies = dataSnapshot.getValue(t);
                 LobbyLoaded = true;
             }
 
@@ -44,9 +49,9 @@ public class NetWorkManager {
         final DatabaseReference lobbyRef = database.getReference("lobbies/");
 
         //add the player
-        LinkedList<LobbyPlayer> players = new LinkedList<>();
+        ArrayList<LobbyPlayer> players = new ArrayList<>();
         players.add(new LobbyPlayer(true, playerName, color));
-        playerID = players.getFirst().id;
+        playerID = players.get(0).id;
         //generate random ID
         String uniqueID = UUID.randomUUID().toString();
 
@@ -96,7 +101,7 @@ public class NetWorkManager {
             gameref.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    GameInfo gameInfo = (GameInfo) dataSnapshot.getValue();
+                    GameInfo gameInfo = dataSnapshot.getValue(GameInfo.class);
                     for (PlayerInfo player : gameInfo.players) {
                         if (!player.id.equals(playerID)) {
                             //update enemy tank with new information, topper is a monkey btw
@@ -131,7 +136,7 @@ public class NetWorkManager {
         //generate reference to entry in database
         DatabaseReference myRef = database.getReference("message");
         //change value in the referenced entry
-        myRef.setValue("Hello, world: jacob");
+        myRef.setValue("Hello, world");
 
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {
@@ -140,6 +145,7 @@ public class NetWorkManager {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 String value = dataSnapshot.getValue(String.class);
+
                 Log.d("message", "Value is: " + value);
             }
 

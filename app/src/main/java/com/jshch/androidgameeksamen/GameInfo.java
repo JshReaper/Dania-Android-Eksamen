@@ -1,8 +1,9 @@
 package com.jshch.androidgameeksamen;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class GameInfo {
+public class GameInfo implements Serializable {
     ArrayList<PlayerInfo> players = new ArrayList<>();
     String id;
 
@@ -14,7 +15,7 @@ public class GameInfo {
     }
 }
 
-class PlayerInfo {
+class PlayerInfo implements Serializable{
     String id;
     String name;
     String color;

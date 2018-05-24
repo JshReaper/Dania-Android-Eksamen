@@ -27,8 +27,8 @@ public class GameWorld {
 
         //collision
         collisionChecker = new CollisionChecker();
-      //  colThread = new Thread(collisionChecker);
-     //   colThread.start();
+        colThread = new Thread(collisionChecker);
+        colThread.start();
     }
 
     void AddGameObjects() {
@@ -78,7 +78,7 @@ public class GameWorld {
 
 
         //buttons
-      /*  GameObject btnright = new GameObject(new Transform(new Vector2(300,100),1));
+        GameObject btnright = new GameObject(new Transform(new Vector2(300,100),1));
         btnright.components.add(new Renderer(btnright,R.drawable.rightarrow));
         btnright.components.add(new  GameButton(btnright,"right"));
         gameObjects.add(btnright);
@@ -87,9 +87,9 @@ public class GameWorld {
         btnleft.components.add(new Renderer(btnleft,R.drawable.leftarrow));
         btnleft.components.add(new  GameButton(btnleft,"left"));
         gameObjects.add(btnleft);
-        */
+
         //collider tests
-        GameObject btnleft = new GameObject(new Transform(new Vector2(100, 100), 1));
+       /* GameObject btnleft = new GameObject(new Transform(new Vector2(100, 100), 1));
         btnleft.components.add(new Renderer(btnleft, R.drawable.leftarrow));
         btnleft.components.add(new GameButton(btnleft, "left"));
         btnleft.components.add(new Collider(btnleft));
@@ -100,7 +100,7 @@ public class GameWorld {
         btnleft2.components.add(new Renderer(btnleft2, R.drawable.leftarrow));
         btnleft2.components.add(new GameButton(btnleft2, "left"));
         btnleft2.components.add(new Collider(btnleft2));
-        gameObjects.add(btnleft2);
+        gameObjects.add(btnleft2);*/
 
     }
 
@@ -147,7 +147,7 @@ public class GameWorld {
             }
             gameObjectsToAdd.clear();
         }
-        collisionChecker.run();
+
         for (GameObject go : gameObjects) {
             go.Update(deltaTime);
         }
@@ -163,5 +163,19 @@ public class GameWorld {
         for (GameObject go : gameObjects) {
             go.Controller(axisX, axisY);
         }
+    }
+
+    public void OnPause() {
+        try {
+            colThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void OnResume() {
+        collisionChecker = new CollisionChecker();
+        colThread = new Thread(collisionChecker);
+        colThread.start();
     }
 }
