@@ -40,7 +40,7 @@ public class CreateLobbyFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState){
+    public void onViewCreated(View view, Bundle savedInstanceState) {
 
         createLB = view.findViewById(R.id.createLB);
 
@@ -56,7 +56,7 @@ public class CreateLobbyFragment extends Fragment {
     }
 
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
 
 
@@ -74,7 +74,6 @@ public class CreateLobbyFragment extends Fragment {
         super.onAttach(context);
 
 
-
     }
 
     @Override
@@ -83,7 +82,7 @@ public class CreateLobbyFragment extends Fragment {
 
     }
 
-    private void CreateButtonEvent(){
+    private void CreateButtonEvent() {
         netMan.CreateAndJoinLobby(lobbyName.getText().toString(), playerName.getText().toString(), lobbyDesc.getText().toString(), colorSpinner.getSelectedItem().toString());
 
         fragmentTransaction = getFragmentManager().beginTransaction();

@@ -1,9 +1,9 @@
 package com.jshch.androidgameeksamen;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +12,6 @@ import android.widget.Button;
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 
-import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
-
 public class MenuFragment extends Fragment {
 
     FragmentTransaction fragmentTransaction;
@@ -21,7 +19,7 @@ public class MenuFragment extends Fragment {
     private static final int RC_SIGN_IN = 123;
 
 
-    public MenuFragment(){
+    public MenuFragment() {
 
     }
 
@@ -55,7 +53,7 @@ public class MenuFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState){
+    public void onViewCreated(View view, Bundle savedInstanceState) {
 
         //Menu Buttons
         joinB = view.findViewById(R.id.joinB);
@@ -89,7 +87,7 @@ public class MenuFragment extends Fragment {
                 fragmentTransaction.commit();
             }
         });
-        exitB.setOnClickListener(new View.OnClickListener(){
+        exitB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 System.exit(0);
@@ -106,7 +104,7 @@ public class MenuFragment extends Fragment {
     }
 
     @Override
-    public void onPause(){
+    public void onPause() {
         super.onPause();
 
         joinB.setOnClickListener(null);

@@ -8,16 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import java.util.ArrayList;
 
 
-public class BrowserFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
+public class BrowserFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     private ListView listV;
     private BrowserAdapter browserAdapter;
     NetWorkManager netMan;
 
-    public BrowserFragment(){
+    public BrowserFragment() {
     }
 
     @Override
@@ -32,7 +31,7 @@ public class BrowserFragment extends Fragment implements SwipeRefreshLayout.OnRe
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState){
+    public void onViewCreated(View view, Bundle savedInstanceState) {
         listV = getView().findViewById(R.id.lobbyListView);
     }
 
@@ -44,9 +43,9 @@ public class BrowserFragment extends Fragment implements SwipeRefreshLayout.OnRe
         RefreshLobbies();
     }
 
-    private void RefreshLobbies(){
-        if (NetWorkManager.LobbyLoaded){
-            if(NetWorkManager.lobbies != null)
+    private void RefreshLobbies() {
+        if (NetWorkManager.LobbyLoaded) {
+            if (NetWorkManager.lobbies != null)
                 listV.setAdapter(browserAdapter);
         }
     }

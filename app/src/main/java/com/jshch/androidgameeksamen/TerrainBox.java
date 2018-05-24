@@ -1,16 +1,11 @@
 package com.jshch.androidgameeksamen;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-
-public class TerrainBox extends Component implements CollideAble,UpdateAble {
+public class TerrainBox extends Component implements CollideAble, UpdateAble {
 
     public TerrainBox(GameObject go) {
         super(go);
         tag = "TerrainBox";
     }
-
 
 
     public void Update(float deltaTime) {

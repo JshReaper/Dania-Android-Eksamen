@@ -1,11 +1,8 @@
 package com.jshch.androidgameeksamen;
 
 import android.content.pm.ActivityInfo;
-import android.content.pm.ConfigurationInfo;
-import android.content.res.Configuration;
-import android.media.VolumeShaper;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 public class GameActivity extends AppCompatActivity {
@@ -21,17 +18,19 @@ public class GameActivity extends AppCompatActivity {
         gameView = new GameView(this);
         setContentView(gameView);
     }
+
     protected void onResume() {
         super.onResume();
 
         decorView = getWindow().getDecorView();
-        if(decorView != null){
+        if (decorView != null) {
             decorView.setSystemUiVisibility(uiOptions);
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }
         // Tell the gameView resume method to execute
         gameView.resume();
     }
+
     // This method executes when the player quits the game
     @Override
     protected void onPause() {
