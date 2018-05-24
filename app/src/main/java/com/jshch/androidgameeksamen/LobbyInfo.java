@@ -2,12 +2,14 @@ package com.jshch.androidgameeksamen;
 
 import android.support.annotation.Nullable;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.UUID;
 
-class LobbyPlayer {
+class LobbyPlayer implements Serializable {
     boolean isHost;
     String name;
     String id;
@@ -16,7 +18,9 @@ class LobbyPlayer {
     public String GetPlayerName() {
         return name;
     }
+    LobbyPlayer(){
 
+    }
     LobbyPlayer(boolean isHost, String name, String color) {
 
         this.isHost = isHost;
@@ -26,12 +30,12 @@ class LobbyPlayer {
     }
 }
 
-class LobbyInfo {
+class LobbyInfo implements Serializable {
     String name;
     String description;
-    private String creationTime;
+    String creationTime;
     String id;
-    LinkedList<LobbyPlayer> players;
+    ArrayList<LobbyPlayer> players;
 
     public String GetName() {
         return name;
@@ -51,8 +55,10 @@ class LobbyInfo {
 
 
     }
+    LobbyInfo(){
 
-    LobbyInfo(String id, String name, String desc, LinkedList<LobbyPlayer> players) {
+    }
+    LobbyInfo(String id, String name, String desc, ArrayList<LobbyPlayer> players) {
         this.id = id;
         this.players = players;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd_HH:mm:ss");
