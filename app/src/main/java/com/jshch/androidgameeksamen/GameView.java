@@ -112,12 +112,14 @@ public class GameView extends SurfaceView implements Runnable {
         } catch (InterruptedException e) {
             //Log.e("Error:", "joining thread");
         }
+        GameWorld.getInstance().OnPause();
     }
 
     // If SimpleGameEngine Activity is started theb
     // start our thread.
     public void resume() {
         GameWorld.getInstance().Playing = true;
+        GameWorld.getInstance().OnResume();
         gameThread = new Thread(this);
         gameThread.start();
     }
