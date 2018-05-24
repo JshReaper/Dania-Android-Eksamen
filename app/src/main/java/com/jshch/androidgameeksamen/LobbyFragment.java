@@ -7,16 +7,25 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 public class LobbyFragment extends Fragment {
 
-    public LobbyFragment() {
+    String[] player;
+    TextView player1, player2;
+
+    public LobbyFragment(String playerName, int player) {
+        this.player[player] = playerName;
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        player1 = (TextView) getActivity().findViewById(R.id.player1_name);
+        player2 = (TextView) getActivity().findViewById(R.id.player2_name);
 
     }
 
@@ -25,10 +34,6 @@ public class LobbyFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_lobby, container, false);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-
-    }
 
     @Override
     public void onAttach(Context context) {
@@ -41,4 +46,6 @@ public class LobbyFragment extends Fragment {
         super.onDetach();
 
     }
+
+
 }

@@ -23,7 +23,7 @@ public class MainActivity extends FragmentActivity {
         fragmentManager = getSupportFragmentManager();
         fragTransaction = fragmentManager.beginTransaction();
 
-
+        
         MenuFragment mFrag = new MenuFragment();
 
         fragTransaction.replace(android.R.id.content, mFrag);

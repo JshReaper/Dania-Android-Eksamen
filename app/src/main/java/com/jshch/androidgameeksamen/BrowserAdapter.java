@@ -19,19 +19,18 @@ public class BrowserAdapter extends ArrayAdapter<LobbyInfo> {
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(int index, @Nullable View convertView, @NonNull ViewGroup parent) {
         View listItem = convertView;
         if (listItem == null) {
             listItem = LayoutInflater.from(getContext().getApplicationContext()).inflate(R.layout.list_item, parent, false);
         }
 
-        LobbyInfo currentLobby = NetWorkManager.lobbies.get(position);
 
         TextView lobby_name = listItem.findViewById(R.id.textView_lobby_name);
-        lobby_name.setText(currentLobby.name);
+        lobby_name.setText(NetWorkManager.lobbies.get(index).name);
 
         TextView host_desc = listItem.findViewById(R.id.textView_description);
-        host_desc.setText(currentLobby.GetPlayer(0));
+        host_desc.setText(NetWorkManager.lobbies.get(index).GetPlayer(0));
 
         return listItem;
     }

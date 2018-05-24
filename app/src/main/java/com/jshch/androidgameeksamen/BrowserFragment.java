@@ -32,7 +32,8 @@ public class BrowserFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        listV = getView().findViewById(R.id.lobbyListView);
+        listV = view.findViewById(R.id.lobbyListView);
+        RefreshLobbies();
     }
 
     @Override
@@ -40,7 +41,7 @@ public class BrowserFragment extends Fragment implements SwipeRefreshLayout.OnRe
         super.onAttach(context);
 
         browserAdapter = new BrowserAdapter(context);
-        RefreshLobbies();
+
     }
 
     private void RefreshLobbies() {
