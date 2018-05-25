@@ -27,7 +27,7 @@ public class BrowserAdapter extends ArrayAdapter<LobbyInfo> {
 
 
         TextView lobby_name = listItem.findViewById(R.id.textView_lobby_name);
-        lobby_name.setText(NetWorkManager.lobbies.get(index).name);
+        lobby_name.setText(NetWorkManager.lobbies.get(index).getName());
 
         TextView host_desc = listItem.findViewById(R.id.textView_description);
         host_desc.setText(NetWorkManager.lobbies.get(index).GetPlayer(0));

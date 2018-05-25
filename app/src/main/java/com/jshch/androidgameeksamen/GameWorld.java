@@ -151,18 +151,23 @@ public class GameWorld {
         for (GameObject go : gameObjects) {
             go.Update(deltaTime);
         }
+        if(isTouched)
+        for (GameObject go : gameObjects) {
+            go.Controller(touchAxisX, touchAxisY);
+        }
     }
-
     public void Draw(Canvas canvas, Paint paint) {
         for (GameObject go : gameObjects) {
             go.Draw(canvas, paint);
         }
     }
-
-    public void Controller(float axisX, float axisY) {
-        for (GameObject go : gameObjects) {
-            go.Controller(axisX, axisY);
-        }
+    boolean isTouched;
+    float touchAxisX;
+    float touchAxisY;
+    public void Controller(float axisX, float axisY, boolean isTouched) {
+        touchAxisX = axisX;
+        touchAxisY = axisY;
+        this.isTouched = isTouched;
     }
 
     public void OnPause() {
