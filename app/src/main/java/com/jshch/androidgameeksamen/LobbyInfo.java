@@ -10,17 +10,43 @@ import java.util.LinkedList;
 import java.util.UUID;
 
 class LobbyPlayer implements Serializable {
-    boolean isHost;
-    String name;
-    String id;
-    String color;
-
-    public String GetPlayerName() {
+    private boolean isHost;
+    private String name;
+    private String id;
+    private String color;
+    public String getName() {
         return name;
     }
-    LobbyPlayer(){
 
+    public void setId(String id) {
+        this.id = id;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public void setHost(boolean host) {
+        isHost = host;
+    }
+
+
+    public String getId() {
+        return id;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public boolean getHost() {
+        return isHost;
+    }
+
     LobbyPlayer(boolean isHost, String name, String color) {
 
         this.isHost = isHost;
@@ -28,30 +54,64 @@ class LobbyPlayer implements Serializable {
         this.color = color;
         id = UUID.randomUUID().toString();
     }
+
+
 }
 
 class LobbyInfo implements Serializable {
-    String name;
-    String description;
-    String creationTime;
-    String id;
-    ArrayList<LobbyPlayer> players;
+    private String name;
+    private String description;
+    private String creationTime;
+    private String id;
+    private ArrayList<LobbyPlayer> players;
 
-    public String GetName() {
+    public String getName() {
         return name;
     }
 
-    public String GetId() {
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public ArrayList<LobbyPlayer> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(ArrayList<LobbyPlayer> players) {
+        this.players = players;
+    }
+
+    public void setCreationTime(String creationTime) {
+        this.creationTime = creationTime;
+    }
+
+    public String getCreationTime() {
+        return creationTime;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public String GetPlayer(@Nullable int player) {
         if ((player > 1 || player == 1) && players.size() > 1) {
-            return players.get(1).GetPlayerName();
+            return players.get(1).getName();
         } else if (player < 0) {
-            return players.get(0).GetPlayerName();
+            return players.get(0).getName();
         }
-        return players.get(0).GetPlayerName();
+        return players.get(0).getName();
 
 
     }

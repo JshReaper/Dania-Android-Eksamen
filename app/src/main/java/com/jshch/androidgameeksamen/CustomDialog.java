@@ -1,5 +1,6 @@
 package com.jshch.androidgameeksamen;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+@SuppressLint("ValidFragment")
 public class CustomDialog extends DialogFragment implements View.OnClickListener {
 
     public CreateLobbyFragment f;
@@ -18,6 +20,9 @@ public class CustomDialog extends DialogFragment implements View.OnClickListener
     public TextView playerName;
     private Spinner colorSpinner;
 
+
+
+    @SuppressLint("ValidFragment")
     public CustomDialog(CreateLobbyFragment f) {
         this.f = f;
     }
