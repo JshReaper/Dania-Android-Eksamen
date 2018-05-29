@@ -18,6 +18,9 @@ public class GameButton extends Component implements ControlAble {
     }
 
     boolean ButtonPressed(float x, float y) {
+        if(renderer == null){
+            return false;
+        }
         float height = renderer.bitmap.getHeight();
         float width = renderer.bitmap.getWidth();
         if (x > go.transform.GetPosition().getX() && x < go.transform.GetPosition().getX() + width) {

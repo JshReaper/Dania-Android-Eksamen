@@ -74,11 +74,7 @@ public class Tank extends Component implements UpdateAble, CollideAble, LoadAble
             turretObject.getTransform().SetPosition(turretOffset);
         }
 
-        angle += 0.2f;
-        SetAngle(angle);
-        if (angle > 180) {
-            angle = 0;
-        }
+
 
 
         if (first) {

@@ -27,6 +27,7 @@ public class Turret extends Component implements LoadAble {
     }
 
     public void RotateTurretTo(float angle, Vector2 pivot) {
+        if(render != null && angle >= 0){
         if (myOriginalPic == null) {
             myOriginalPic = render.bitmap;
             originalWidth = myOriginalPic.getWidth();
@@ -42,7 +43,7 @@ public class Turret extends Component implements LoadAble {
         myImg = Bitmap.createBitmap(myImg, 0, 0, myImg.getWidth(), myImg.getHeight(), rotation, true);
         render.bitmap = myImg;
         width = myImg.getWidth();
-
+        }
     }
 
 

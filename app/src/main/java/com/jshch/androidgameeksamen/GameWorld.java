@@ -120,10 +120,12 @@ public class GameWorld {
         GameButton gameButton = new GameButton(buttonObject,"fireButton");
         buttonObject.components.add(buttonRender);
         buttonObject.components.add(gameButton);
+        gameObjects.add(buttonObject);
         //fireButton ending
 
         if(true) {
             TankController tankController = new TankController(tankObj);
+            tankObj.components.add(tankController);
         }else{
             TankController tankController = new TankController(tankObj1);
         }

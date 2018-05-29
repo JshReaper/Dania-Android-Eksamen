@@ -21,13 +21,16 @@ public class TankController extends Component implements UpdateAble, ControlAble
     public void Update(float deltaTime){
         if(myTurn) {
             if (firstPos != null && secondPos != null) {
-                angle = (secondPos.Subtract(firstPos)).AngleToVector2D(new Vector2(1, 0));
-                if(angle < 0){
-                    angle = 0;
-                }else if(angle > 180){
-                    angle = 180;
+                if (firstPos.getX() != secondPos.getX() && firstPos.getY() != secondPos.getY()) {
+                    Vector2 angled = secondPos.Subtract(firstPos);
+                    angle = angled.AngleToVector2D(new Vector2(1, 0));
+                    if (angle < 0) {
+                        angle = 0;
+                    } else if (angle > 180) {
+                        angle = 180;
+                    }
+                    myTank.SetAngle(angle);
                 }
-                myTank.SetAngle(angle);
             }
             if(fire){
                 myTank.Fire(secondPos.Subtract(firstPos));
