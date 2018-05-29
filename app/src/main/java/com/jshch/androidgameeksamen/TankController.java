@@ -5,7 +5,7 @@ import java.util.Vector;
 public class TankController extends Component implements UpdateAble, ControlAble {
 
 
-    boolean myTurn = false;
+    boolean myTurn = true;
     Vector2 firstPos;
     Vector2 secondPos;
     Tank myTank;
