@@ -6,7 +6,9 @@ import java.util.ArrayList;
 public class GameInfo implements Serializable {
     private ArrayList<PlayerInfo> players = new ArrayList<>();
     private String id;
-
+    GameInfo(){
+        //do not remove
+    }
 
     GameInfo(LobbyInfo lobbyInfo) {
         id = lobbyInfo.getId();
@@ -41,7 +43,9 @@ class PlayerInfo implements Serializable{
    private float cannonAngle;
    private float powerFromLastShot;
    private boolean isAlive;
-
+   PlayerInfo(){
+       //do not remove
+   }
     PlayerInfo(String id, String name, String color) {
         this.color = color;
         this.id = id;

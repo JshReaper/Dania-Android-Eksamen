@@ -46,6 +46,9 @@ class LobbyPlayer implements Serializable {
     public boolean getHost() {
         return isHost;
     }
+    LobbyPlayer(){
+        //do not remove
+    }
 
     LobbyPlayer(boolean isHost, String name, String color) {
 
@@ -116,7 +119,7 @@ class LobbyInfo implements Serializable {
 
     }
     LobbyInfo(){
-
+        //do not remove
     }
     LobbyInfo(String id, String name, String desc, ArrayList<LobbyPlayer> players) {
         this.id = id;
