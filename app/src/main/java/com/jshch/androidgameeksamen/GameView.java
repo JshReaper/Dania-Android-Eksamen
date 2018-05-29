@@ -138,7 +138,7 @@ public class GameView extends SurfaceView implements Runnable {
                 //vertical
                 motionEvent.getAxisValue(1);
 
-                GameWorld.getInstance().Controller(motionEvent.getAxisValue(0), motionEvent.getAxisValue(1));
+                GameWorld.getInstance().Controller(motionEvent.getAxisValue(0), motionEvent.getAxisValue(1),true);
                 break;
 
             // Player has removed finger from screen
@@ -146,6 +146,7 @@ public class GameView extends SurfaceView implements Runnable {
 
                 // Set isMoving so Bob does not move
 
+                GameWorld.getInstance().Controller(motionEvent.getAxisValue(0), motionEvent.getAxisValue(1),false);
 
                 break;
 

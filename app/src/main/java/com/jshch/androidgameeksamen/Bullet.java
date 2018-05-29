@@ -46,7 +46,7 @@ public class Bullet extends Component implements UpdateAble, CollideAble {
         }
         boolean removed = GameWorld.getInstance().Destroy(this.GetGameObject());
         if (!removed) {
-            //Log.d("message", "Error in destroying gameObject");
+            Log.d("message", "Error in destroying gameObject");
         }
 
     }
@@ -55,7 +55,7 @@ public class Bullet extends Component implements UpdateAble, CollideAble {
         GameObject[] gos = new GameObject[2];
         int i = 0;
         for (GameObject go : GameWorld.getInstance().gameObjects) {
-            if (go.tag == "tank") {
+            if (go.tag == "Tank") {
                 if (go.getTransform().GetPosition().Distance(this.GetGameObject().getTransform().GetPosition()) < blastRadius) {
                     gos[0] = go;
                     i++;

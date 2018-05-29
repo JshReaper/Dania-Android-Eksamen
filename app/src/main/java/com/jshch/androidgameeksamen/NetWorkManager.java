@@ -2,14 +2,18 @@ package com.jshch.androidgameeksamen;
 
 import android.util.Log;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.UUID;
 
 
@@ -21,13 +25,19 @@ public class NetWorkManager {
     public static String playerID;
 
     public void LoadLobby() {
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        if (auth.getCurrentUser() != null) {
+            // already signed in
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference lobbyRef = database.getReference("lobbies/");
         lobbyRef.addValueEventListener(new ValueEventListener() {
             @SuppressWarnings("unchecked")
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                lobbies = (ArrayList<LobbyInfo>) dataSnapshot.getValue();
+               // lobbies = (ArrayList<LobbyInfo>) dataSnapshot.getValue();
+                GenericTypeIndicator<ArrayList<LobbyInfo>> t = new GenericTypeIndicator<ArrayList<LobbyInfo>>() {};
+                lobbies = dataSnapshot.getValue(t);
                 LobbyLoaded = true;
             }
 
@@ -36,17 +46,21 @@ public class NetWorkManager {
                 Log.w("message", "Failed to read value.", databaseError.toException());
             }
         });
+        }
     }
 
     public void CreateAndJoinLobby(String lobbyName, String playerName, String description, String color) {
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        if (auth.getCurrentUser() != null) {
+            // already signed in
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference lobbyRef = database.getReference("lobbies/");
 
         //add the player
-        LinkedList<LobbyPlayer> players = new LinkedList<>();
+        ArrayList<LobbyPlayer> players = new ArrayList<>();
         players.add(new LobbyPlayer(true, playerName, color));
-        playerID = players.getFirst().id;
+        playerID = players.get(0).getId();
         //generate random ID
         String uniqueID = UUID.randomUUID().toString();
 
@@ -57,15 +71,20 @@ public class NetWorkManager {
 
         //update database
         lobbyRef.setValue(lobbies);
+        }
     }
 
     public void JoinLobby(String id, String name, String color) {
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        if (auth.getCurrentUser() != null) {
+            // already signed in
+
         for (LobbyInfo lobby : lobbies) {
             //connect to lobby
-            if (lobby.id.equals(id)) {
+            if (lobby.getId().equals(id)) {
                 LobbyPlayer player = new LobbyPlayer(false, name, color);
-                playerID = player.id;
-                lobby.players.add(player);
+                playerID = player.getId();
+                lobby.getPlayers().add(player);
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 final DatabaseReference lobbyRef = database.getReference("lobbies/");
                 //update database
@@ -73,55 +92,66 @@ public class NetWorkManager {
                 MyActiveLobby = lobby;
             }
         }
+        }
     }
 
     public boolean StartGame() {
-        if (MyActiveLobby.players.size() == 2) {
-            GameInfo gameInfo = new GameInfo(MyActiveLobby);
-            //setup database instance
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference gameRef = database.getReference("Games/" + gameInfo.id);
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        if (auth.getCurrentUser() != null) {
+            // already signed in
 
-            gameRef.setValue(gameInfo);
-            return true;
+            if (MyActiveLobby.getPlayers().size() == 2) {
+                GameInfo gameInfo = new GameInfo(MyActiveLobby);
+                //setup database instance
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference gameRef = database.getReference("Games/" + gameInfo.getId());
+
+                gameRef.setValue(gameInfo);
+                return true;
+            }
         }
         return false;
     }
 
     void UpdateGame() {
-        if (MyActiveLobby != null) {
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        if (auth.getCurrentUser() != null) {
+            // already signed in
 
-            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-            DatabaseReference gameref = firebaseDatabase.getReference("Games/" + MyActiveLobby.id);
-            gameref.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    GameInfo gameInfo = (GameInfo) dataSnapshot.getValue();
-                    for (PlayerInfo player : gameInfo.players) {
-                        if (!player.id.equals(playerID)) {
-                            //update enemy tank with new information, topper is a monkey btw
-                            for (GameObject enemy : GameWorld.getInstance().gameObjects) {
-                                Tank tank = (Tank) enemy.GetComponent("Tank");
-                                if (tank != null) {
-                                    if (tank.tankTag.equals("Enemy")) {
-                                        enemy.transform.SetPosition(new Vector2(player.posX, player.posY));
-                                        tank.angle = player.cannonAngle;
-                                        tank.power = player.powerFromLastShot;
+            if (MyActiveLobby != null) {
+
+                FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                DatabaseReference gameref = firebaseDatabase.getReference("Games/" + MyActiveLobby.getId());
+                gameref.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        GameInfo gameInfo = dataSnapshot.getValue(GameInfo.class);
+                        for (PlayerInfo player : gameInfo.getPlayers()) {
+                            if (!player.getId().equals(playerID)) {
+                                //update enemy tank with new information, topper is a monkey btw
+                                for (GameObject enemy : GameWorld.getInstance().gameObjects) {
+                                    Tank tank = (Tank) enemy.GetComponent("Tank");
+                                    if (tank != null) {
+                                        if (tank.tankTag.equals("Enemy")) {
+                                            enemy.transform.SetPosition(new Vector2(player.getPosX(), player.getPosY()));
+                                            tank.angle = player.getCannonAngle();
+                                            tank.power = player.getPowerFromLastShot();
+                                        }
                                     }
                                 }
                             }
                         }
                     }
-                }
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    //failed to read value
-                    Log.w("message", "Failed to read value.", databaseError.toException());
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        //failed to read value
+                        Log.w("message", "Failed to read value.", databaseError.toException());
 
-                }
-            });
+                    }
+                });
 
+            }
         }
     }
 
@@ -140,7 +170,7 @@ public class NetWorkManager {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 String value = dataSnapshot.getValue(String.class);
-                
+
                 Log.d("message", "Value is: " + value);
             }
 

@@ -16,7 +16,6 @@ public class MenuFragment extends Fragment {
 
     FragmentTransaction fragmentTransaction;
     Button joinB, createB, exitB, playB;
-    private static final int RC_SIGN_IN = 123;
 
 
     public MenuFragment() {
@@ -28,15 +27,7 @@ public class MenuFragment extends Fragment {
         super.onCreate(savedInstanceState);
         //TODO setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        if (auth.getCurrentUser() != null) {
-            // already signed in
-        } else {
-            startActivityForResult(
-                    // Get an instance of AuthUI based on the default app
-                    AuthUI.getInstance().createSignInIntentBuilder().build(),
-                    RC_SIGN_IN);
-        }
+
 
         //game start flow structure test
       /*
