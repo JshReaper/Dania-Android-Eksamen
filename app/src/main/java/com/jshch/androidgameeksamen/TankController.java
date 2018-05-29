@@ -1,5 +1,7 @@
 package com.jshch.androidgameeksamen;
 
+import android.util.Log;
+
 import java.util.Vector;
 
 public class TankController extends Component implements UpdateAble, ControlAble {
@@ -21,7 +23,8 @@ public class TankController extends Component implements UpdateAble, ControlAble
         if(myTurn) {
             if(firstPos != null){
                     Vector2 temp = firstPos.Subtract(myTank.turretOffset);
-                    angle = temp.AngleToVector2D(new Vector2(1, 0));
+                    angle = temp.AngleToVector2D(new Vector2(10, 0));
+                Log.d("MSG","TEMP vector is:" + angle);
                     if (angle < 0) {
                         angle = 0;
                     } else if (angle > 180) {
@@ -44,7 +47,7 @@ public class TankController extends Component implements UpdateAble, ControlAble
         if(isToutched) {
 
                 firstPos = new Vector2(x, y);
-
+            Log.w("firstpos: ", ""+ firstPos.getX()+","+firstPos.getY());
         }
     }
 
