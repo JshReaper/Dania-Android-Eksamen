@@ -33,6 +33,7 @@ public class GameWorld {
 
     void AddGameObjects() {
         //add all game objects
+        //Terrain first:
         int standardYpos = 700;
         int blockCount = 240;
         int xPos = 0;
@@ -52,7 +53,7 @@ public class GameWorld {
             AddGameObject(go);
 
         }
-
+        //Player1 tank:
         Transform transTurret = new Transform(new Vector2(100, 50), new Vector2(0.15f, 0.15f));
         GameObject turretObj = new GameObject(transTurret);
         Turret turret = new Turret(turretObj);
@@ -63,7 +64,7 @@ public class GameWorld {
 
         Transform trans = new Transform(new Vector2(150, 500), new Vector2(0.15f, 0.15f));
         GameObject tankObj = new GameObject(trans);
-        Tank tank = new Tank(tankObj, turretObj, "player");
+        Tank tank = new Tank(tankObj, turretObj, "Player1");
         AudioController ac = new AudioController(tankObj, GameView.context);
         Collider col = new Collider(tankObj);
         ac.SetSound(R.raw.tankgunsound);
@@ -71,11 +72,33 @@ public class GameWorld {
         tankObj.components.add(col);
         tankObj.components.add(tank);
         tankObj.components.add(ac);
-        tankObj.tag = "player";
+        tankObj.tag = "Tank";
         AddGameObject(turretObj);
         AddGameObject(tankObj);
         //Log.d("message", "Tank added");
 
+        //player2 tank
+        Transform transTurret1 = new Transform(new Vector2(1000, 50), new Vector2(0.15f, 0.15f));
+        GameObject turretObj1 = new GameObject(transTurret1);
+        Turret turret1 = new Turret(turretObj1);
+        turretObj1.components.add(new Renderer(turretObj1, R.drawable.tankturretfat));
+        turretObj1.components.add(turret1);
+        turretObj1.tag = "turret";
+        //Log.d("message", "Turret added");
+
+        Transform trans1 = new Transform(new Vector2(1000, 500), new Vector2(0.15f, 0.15f));
+        GameObject tankObj1 = new GameObject(trans1);
+        Tank tank1 = new Tank(tankObj1, turretObj1, "Player2");
+        AudioController ac1 = new AudioController(tankObj1, GameView.context);
+        Collider col1 = new Collider(tankObj1);
+        ac1.SetSound(R.raw.tankgunsound);
+        tankObj.components.add(new Renderer(tankObj1, R.drawable.tank));
+        tankObj.components.add(col1);
+        tankObj.components.add(tank1);
+        tankObj.components.add(ac1);
+        tankObj.tag = "Tank";
+        AddGameObject(turretObj);
+        AddGameObject(tankObj);
 
         //buttons
         GameObject btnright = new GameObject(new Transform(new Vector2(300,100),1));
