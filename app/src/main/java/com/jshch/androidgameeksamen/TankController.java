@@ -7,7 +7,6 @@ public class TankController extends Component implements UpdateAble, ControlAble
 
     boolean myTurn = true;
     Vector2 firstPos;
-    Vector2 secondPos;
     Tank myTank;
     boolean toutch;
     boolean fire = false;
@@ -20,20 +19,19 @@ public class TankController extends Component implements UpdateAble, ControlAble
     @Override
     public void Update(float deltaTime){
         if(myTurn) {
-            if (firstPos != null && secondPos != null) {
-                if (firstPos.getX() != secondPos.getX() && firstPos.getY() != secondPos.getY()) {
-                    Vector2 angled = secondPos.Subtract(firstPos);
-                    angle = angled.AngleToVector2D(new Vector2(1, 0));
+            if(firstPos != null){
+                    Vector2 temp = firstPos.Subtract(myTank.turretOffset);
+                    angle = temp.AngleToVector2D(new Vector2(1, 0));
                     if (angle < 0) {
                         angle = 0;
                     } else if (angle > 180) {
                         angle = 180;
                     }
                     myTank.SetAngle(angle);
-                }
+
             }
-            if(fire){
-                myTank.Fire(secondPos.Subtract(firstPos));
+            if(fire && firstPos != null){
+                myTank.Fire(firstPos.Subtract(myTank.turretOffset));
                 myTurn = false;
             }
         }
@@ -42,20 +40,11 @@ public class TankController extends Component implements UpdateAble, ControlAble
 
     @Override
     public void Controller(float x, float y, boolean isToutched){
-        if(!toutch && isToutched){
-            firstPos = null;
-            secondPos = null;
-        }
-        toutch = isToutched;
+
         if(isToutched) {
-            if (firstPos == null) {
+
                 firstPos = new Vector2(x, y);
-            } else if (secondPos == null) {
-                secondPos = new Vector2(x, y);
-            } else {
-                secondPos.setX(x);
-                secondPos.setY(y);
-            }
+
         }
     }
 
