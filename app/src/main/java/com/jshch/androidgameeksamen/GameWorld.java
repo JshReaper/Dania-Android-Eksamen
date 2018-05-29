@@ -53,6 +53,7 @@ public class GameWorld {
             AddGameObject(go);
 
         }
+
         //Player1 tank:
         Transform transTurret = new Transform(new Vector2(100, 50), new Vector2(0.15f, 0.15f));
         GameObject turretObj = new GameObject(transTurret);
@@ -60,7 +61,6 @@ public class GameWorld {
         turretObj.components.add(new Renderer(turretObj, R.drawable.tankturretfat));
         turretObj.components.add(turret);
         turretObj.tag = "turret";
-        //Log.d("message", "Turret added");
 
         Transform trans = new Transform(new Vector2(150, 500), new Vector2(0.15f, 0.15f));
         GameObject tankObj = new GameObject(trans);
@@ -75,7 +75,8 @@ public class GameWorld {
         tankObj.tag = "Tank";
         AddGameObject(turretObj);
         AddGameObject(tankObj);
-        //Log.d("message", "Tank added");
+        //Tank 1 ending
+
 
         //player2 tank
         Transform transTurret1 = new Transform(new Vector2(1000, 50), new Vector2(0.15f, 0.15f));
@@ -84,7 +85,6 @@ public class GameWorld {
         turretObj1.components.add(new Renderer(turretObj1, R.drawable.tankturretfat));
         turretObj1.components.add(turret1);
         turretObj1.tag = "turret";
-        //Log.d("message", "Turret added");
 
         Transform trans1 = new Transform(new Vector2(1000, 500), new Vector2(0.15f, 0.15f));
         GameObject tankObj1 = new GameObject(trans1);
@@ -99,6 +99,8 @@ public class GameWorld {
         tankObj.tag = "Tank";
         AddGameObject(turretObj);
         AddGameObject(tankObj);
+        //Tank 2 ending
+
 
         //buttons
         GameObject btnright = new GameObject(new Transform(new Vector2(300,100),1));
@@ -111,20 +113,20 @@ public class GameWorld {
         btnleft.components.add(new  GameButton(btnleft,"left"));
         gameObjects.add(btnleft);
 
-        //collider tests
-       /* GameObject btnleft = new GameObject(new Transform(new Vector2(100, 100), 1));
-        btnleft.components.add(new Renderer(btnleft, R.drawable.leftarrow));
-        btnleft.components.add(new GameButton(btnleft, "left"));
-        btnleft.components.add(new Collider(btnleft));
-        gameObjects.add(btnleft);
+        //firebutton
+        Transform buttonPosition = new Transform(new Vector2(100,10),new Vector2(1,1));
+        GameObject buttonObject = new GameObject(buttonPosition);
+        Renderer buttonRender = new Renderer(buttonObject, R.drawable.tankturretfat);
+        GameButton gameButton = new GameButton(buttonObject,"fireButton");
+        buttonObject.components.add(buttonRender);
+        buttonObject.components.add(gameButton);
+        //fireButton ending
 
-
-        GameObject btnleft2 = new GameObject(new Transform(new Vector2(100, 100), 1));
-        btnleft2.components.add(new Renderer(btnleft2, R.drawable.leftarrow));
-        btnleft2.components.add(new GameButton(btnleft2, "left"));
-        btnleft2.components.add(new Collider(btnleft2));
-        gameObjects.add(btnleft2);*/
-
+        if(true) {
+            TankController tankController = new TankController(tankObj);
+        }else{
+            TankController tankController = new TankController(tankObj1);
+        }
     }
 
     public void AddGameObject(GameObject go) {
@@ -174,9 +176,9 @@ public class GameWorld {
         for (GameObject go : gameObjects) {
             go.Update(deltaTime);
         }
-        if(isTouched)
+
         for (GameObject go : gameObjects) {
-            go.Controller(touchAxisX, touchAxisY);
+            go.Controller(touchAxisX, touchAxisY, isTouched);
         }
     }
     public void Draw(Canvas canvas, Paint paint) {

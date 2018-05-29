@@ -79,10 +79,10 @@ public class GameObject {
         }
     }
 
-    public void Controller(float axisX, float axisY) {
+    public void Controller(float axisX, float axisY, boolean isToutched) {
         for (Component c : components) {
             if (c instanceof ControlAble) {
-                ((ControlAble) c).Controller(axisX, axisY);
+                ((ControlAble) c).Controller(axisX, axisY, isToutched);
             }
         }
     }

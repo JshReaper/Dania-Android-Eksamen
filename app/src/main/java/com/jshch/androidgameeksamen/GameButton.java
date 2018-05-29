@@ -2,10 +2,13 @@ package com.jshch.androidgameeksamen;
 
 import android.util.Log;
 
-public class GameButton extends Component implements ControlAble, CollideAble {
+import java.util.LinkedList;
+
+public class GameButton extends Component implements ControlAble {
 
     String btnTag;
     Renderer renderer;
+   public LinkedList<Boolean> subscribers = new LinkedList<>();
 
     public GameButton(GameObject go, String btnTag) {
         super(go);
@@ -14,7 +17,7 @@ public class GameButton extends Component implements ControlAble, CollideAble {
         renderer = (Renderer) go.GetComponent("Renderer");
     }
 
-    boolean IsTouched(float x, float y) {
+    boolean ButtonPressed(float x, float y) {
         float height = renderer.bitmap.getHeight();
         float width = renderer.bitmap.getWidth();
         if (x > go.transform.GetPosition().getX() && x < go.transform.GetPosition().getX() + width) {
@@ -26,10 +29,12 @@ public class GameButton extends Component implements ControlAble, CollideAble {
     }
 
     @Override
-    public void Controller(float x, float y) {
+    public void Controller(float x, float y, boolean isToutched) {
 
-
-        if (IsTouched(x, y)) {
+        for (Boolean bool : subscribers  ){
+            bool = ButtonPressed(x,y);
+        }
+        if (ButtonPressed(x, y)) {
             switch (btnTag) {
                 case "left":
                     Vector2 translate = new Vector2(go.getTransform().GetPosition().getX() - 10, go.getTransform().GetPosition().getY());
@@ -39,23 +44,11 @@ public class GameButton extends Component implements ControlAble, CollideAble {
                     translate = new Vector2(go.getTransform().GetPosition().getX() + 10, go.getTransform().GetPosition().getY());
                     go.getTransform().SetPosition(translate);
                     break;
+
+
+
             }
 
         }
-    }
-
-    @Override
-    public void OnCollisionEnter(Collider other) {
-        //Log.w("coll enter", "colliding with" + other.toString());
-    }
-
-    @Override
-    public void OnCollisionStay(Collider other) {
-        //Log.w("coll enter", "still colliding with" + other.toString());
-    }
-
-    @Override
-    public void OnCollisionExit(Collider other) {
-        //Log.w("coll enter", "stopped colliding with" + other.toString());
     }
 }

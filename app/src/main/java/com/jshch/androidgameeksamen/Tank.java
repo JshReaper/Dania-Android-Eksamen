@@ -42,7 +42,7 @@ public class Tank extends Component implements UpdateAble, CollideAble, LoadAble
     Vector2 lastPos = Vector2.Zero();
 
     //test values
-    int xCoord;
+
     float time;
     float gravTimer;
 
@@ -58,19 +58,7 @@ public class Tank extends Component implements UpdateAble, CollideAble, LoadAble
                 gravity = new Vector2(0, 2);
             }
         }
-        if (xCoord < 2400) {
 
-          //  Log.d("message", "" + MapInfoGenerator.HeightFromXcoord(xCoord, 0));
-            xCoord += 50;
-
-        }
-        time += deltaTime;
-        if (time >= 5) {
-          //  Log.d("", "" + deltaTime);
-         //   Log.d("", "Firing");
-            Fire(new Vector2(1, -10));
-            time = 0;
-        }
         //set the turret offset to the right position every frame
         turretOffset = new Vector2(GetGameObject().getTransform().Position.getX() + (myImageSizeX / 2),
                 GetGameObject().getTransform().Position.getY() + (myImageSizeY / 10));
