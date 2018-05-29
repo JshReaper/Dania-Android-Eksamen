@@ -64,7 +64,7 @@ public class Vector2 {
         float lengthV2 = (float) Math.sqrt((V1.getX() * V1.getX()) + (V1.getY() * V1.getY()));
         float total = ((this.getX() * V1.getY()) + (this.getY() * V1.getY())) / (length * lengthV2);
         float toReturn = (float) Math.acos(total);
-        return ((float) (toReturn * (180 / Math.PI)));
+        return ((float) Math.toDegrees(toReturn));
     }
 
     // returns the length of the given Vector
