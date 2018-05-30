@@ -1,14 +1,16 @@
 package com.jshch.androidgameeksamen;
 
+import android.arch.core.util.Function;
 import android.util.Log;
 
 import java.util.LinkedList;
+import java.util.concurrent.Callable;
 
 public class GameButton extends Component implements ControlAble {
 
     String btnTag;
     Renderer renderer;
-   public LinkedList<Boolean> subscribers = new LinkedList<>();
+   public LinkedList<Runnable> subscribers = new LinkedList<>();
 
     public GameButton(GameObject go, String btnTag) {
         super(go);
@@ -34,9 +36,7 @@ public class GameButton extends Component implements ControlAble {
     @Override
     public void Controller(float x, float y, boolean isToutched) {
 
-        for (Boolean bool : subscribers  ){
-            bool = ButtonPressed(x,y);
-        }
+
         if (ButtonPressed(x, y)) {
             switch (btnTag) {
                 case "left":
@@ -47,7 +47,11 @@ public class GameButton extends Component implements ControlAble {
                     translate = new Vector2(go.getTransform().GetPosition().getX() + 10, go.getTransform().GetPosition().getY());
                     go.getTransform().SetPosition(translate);
                     break;
-
+                default:
+                    for (Runnable method : subscribers){
+                        method.run();
+                    }
+                    break;
 
 
             }

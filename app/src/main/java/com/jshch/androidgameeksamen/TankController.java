@@ -33,11 +33,17 @@ public class TankController extends Component implements UpdateAble, ControlAble
             }
             if(fire && firstPos != null){
                 myTank.Fire(firstPos.Subtract(myTank.turretOffset));
+                fire = false;
                 myTurn = false;
+            }else{
+                fire = false;
             }
         }
 
     }
+void Fire(){
+        fire = true;
+}
 
     @Override
     public void Controller(float x, float y, boolean isToutched){
