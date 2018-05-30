@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.Log;
 
+import java.lang.ref.Reference;
 import java.util.LinkedList;
 
 public class GameWorld {
@@ -116,7 +117,7 @@ public class GameWorld {
         //firebutton
         Transform buttonPosition = new Transform(new Vector2(100,10),new Vector2(1,1));
         GameObject buttonObject = new GameObject(buttonPosition);
-        Renderer buttonRender = new Renderer(buttonObject, R.drawable.tankturretfat);
+        Renderer buttonRender = new Renderer(buttonObject, R.drawable.tank);
         GameButton gameButton = new GameButton(buttonObject,"fireButton");
         buttonObject.components.add(buttonRender);
         buttonObject.components.add(gameButton);
