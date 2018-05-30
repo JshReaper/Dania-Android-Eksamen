@@ -4,7 +4,7 @@ import android.util.Log;
 
 import java.util.Vector;
 
-public class TankController extends Component implements UpdateAble, ControlAble {
+public class TankController extends Component implements UpdateAble, ControlAble, IButtonListener{
 
 
     boolean myTurn = true;
@@ -41,9 +41,10 @@ public class TankController extends Component implements UpdateAble, ControlAble
         }
 
     }
-void Fire(){
+    @Override
+    public void ButtonClickedEvent(){
         fire = true;
-}
+    }
 
     @Override
     public void Controller(float x, float y, boolean isToutched){

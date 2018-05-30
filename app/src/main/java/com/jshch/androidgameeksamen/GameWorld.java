@@ -126,7 +126,7 @@ public class GameWorld {
 
         if(true) {
             final TankController tankController = new TankController(tankObj);
-            gameButton.subscribers.add(() -> tankController.Fire());
+            gameButton.subscribers.add(tankController);
             tankObj.components.add(tankController);
         }else{
             TankController tankController = new TankController(tankObj1);

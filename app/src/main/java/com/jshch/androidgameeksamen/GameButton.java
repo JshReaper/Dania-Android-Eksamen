@@ -10,7 +10,7 @@ public class GameButton extends Component implements ControlAble {
 
     String btnTag;
     Renderer renderer;
-   public LinkedList<Runnable> subscribers = new LinkedList<>();
+   public LinkedList<IButtonListener> subscribers = new LinkedList<>();
 
     public GameButton(GameObject go, String btnTag) {
         super(go);
@@ -48,8 +48,8 @@ public class GameButton extends Component implements ControlAble {
                     go.getTransform().SetPosition(translate);
                     break;
                 default:
-                    for (Runnable method : subscribers){
-                        method.run();
+                    for (IButtonListener listender : subscribers){
+                        listender.ButtonClickedEvent();
                     }
                     break;
 
