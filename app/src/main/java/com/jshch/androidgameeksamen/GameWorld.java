@@ -115,18 +115,15 @@ public class GameWorld {
         gameObjects.add(btnleft);
 
         //firebutton
-        Transform buttonPosition = new Transform(new Vector2(100,10),new Vector2(1,1));
-        GameObject buttonObject = new GameObject(buttonPosition);
-        Renderer buttonRender = new Renderer(buttonObject, R.drawable.tank);
-        GameButton gameButton = new GameButton(buttonObject,"fireButton");
-        buttonObject.components.add(buttonRender);
-        buttonObject.components.add(gameButton);
+        GameObject buttonObject = new GameObject(new Transform(new Vector2(100,100),1));
+        buttonObject.components.add(new Renderer(buttonObject,R.drawable.leftarrow));
+        buttonObject.components.add(new  GameButton(buttonObject,"topper"));
         gameObjects.add(buttonObject);
         //fireButton ending
 
         if(true) {
             final TankController tankController = new TankController(tankObj);
-            gameButton.subscribers.add(tankController);
+            ((GameButton)buttonObject.GetComponent("GameButton")).subscribers.add(tankController);
             tankObj.components.add(tankController);
         }else{
             TankController tankController = new TankController(tankObj1);

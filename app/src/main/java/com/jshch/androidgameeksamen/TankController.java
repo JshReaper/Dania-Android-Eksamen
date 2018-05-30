@@ -49,7 +49,7 @@ public class TankController extends Component implements UpdateAble, ControlAble
     @Override
     public void Controller(float x, float y, boolean isToutched){
 
-        if(isToutched && y > 150) {
+        if(isToutched && y > 300) {
 
                 firstPos = new Vector2(x, y);
         }

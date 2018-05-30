@@ -14,7 +14,7 @@ public class GameButton extends Component implements ControlAble {
 
     public GameButton(GameObject go, String btnTag) {
         super(go);
-        tag = "button";
+        tag = "GameButton";
         this.btnTag = btnTag;
         renderer = (Renderer) go.GetComponent("Renderer");
     }
@@ -37,23 +37,9 @@ public class GameButton extends Component implements ControlAble {
     public void Controller(float x, float y, boolean isToutched) {
 
 
-        if (ButtonPressed(x, y)) {
-            switch (btnTag) {
-                case "left":
-                    Vector2 translate = new Vector2(go.getTransform().GetPosition().getX() - 10, go.getTransform().GetPosition().getY());
-                    go.getTransform().SetPosition(translate);
-                    break;
-                case "right":
-                    translate = new Vector2(go.getTransform().GetPosition().getX() + 10, go.getTransform().GetPosition().getY());
-                    go.getTransform().SetPosition(translate);
-                    break;
-                default:
-                    for (IButtonListener listender : subscribers){
-                        listender.ButtonClickedEvent();
-                    }
-                    break;
-
-
+        if (ButtonPressed(x, y) && isToutched) {
+            for (IButtonListener listender : subscribers){
+                listender.ButtonClickedEvent();
             }
 
         }
