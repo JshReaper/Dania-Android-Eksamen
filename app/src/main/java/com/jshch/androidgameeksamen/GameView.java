@@ -140,7 +140,9 @@ public class GameView extends SurfaceView implements Runnable {
 
                 GameWorld.getInstance().Controller(motionEvent.getAxisValue(0), motionEvent.getAxisValue(1),true);
                 break;
-
+            case MotionEvent.ACTION_MOVE:
+                GameWorld.getInstance().Controller(motionEvent.getAxisValue(0), motionEvent.getAxisValue(1),true);
+                break;
             // Player has removed finger from screen
             case MotionEvent.ACTION_UP:
 

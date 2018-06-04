@@ -1,18 +1,20 @@
 package com.jshch.androidgameeksamen;
 
+import android.arch.core.util.Function;
 import android.util.Log;
 
 import java.util.LinkedList;
+import java.util.concurrent.Callable;
 
 public class GameButton extends Component implements ControlAble {
 
     String btnTag;
     Renderer renderer;
-   public LinkedList<Boolean> subscribers = new LinkedList<>();
+   public LinkedList<IButtonListener> subscribers = new LinkedList<>();
 
     public GameButton(GameObject go, String btnTag) {
         super(go);
-        tag = "button";
+        tag = "GameButton";
         this.btnTag = btnTag;
         renderer = (Renderer) go.GetComponent("Renderer");
     }
@@ -34,22 +36,9 @@ public class GameButton extends Component implements ControlAble {
     @Override
     public void Controller(float x, float y, boolean isTouched) {
 
-        for (Boolean bool : subscribers  ){
-            bool = ButtonPressed(x,y);
-        }
-        if (ButtonPressed(x, y)) {
-            switch (btnTag) { // switch for scalability rather than if's
-                case "left":
-                    Vector2 translate = new Vector2(go.getTransform().GetPosition().getX() - 10, go.getTransform().GetPosition().getY());
-                    go.getTransform().SetPosition(translate);
-                    break;
-                case "right":
-                    translate = new Vector2(go.getTransform().GetPosition().getX() + 10, go.getTransform().GetPosition().getY());
-                    go.getTransform().SetPosition(translate);
-                    break;
-
-
-
+        if (ButtonPressed(x, y) && isTouched) {
+            for (IButtonListener listener : subscribers){
+                listener.ButtonClickedEvent();
             }
 
         }

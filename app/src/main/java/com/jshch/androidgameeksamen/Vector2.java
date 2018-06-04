@@ -62,7 +62,7 @@ public class Vector2 {
     public float AngleToVector2D(Vector2 V1) {
         float length = (float) Math.sqrt((this.getX() * this.getX()) + (this.getY() * this.getY()));
         float lengthV2 = (float) Math.sqrt((V1.getX() * V1.getX()) + (V1.getY() * V1.getY()));
-        float total = ((this.getX() * V1.getY()) + (this.getY() * V1.getY())) / (length * lengthV2);
+        float total = ((this.getX() * V1.getX()) + (this.getY() * V1.getY())) / (length * lengthV2);
         float toReturn = (float) Math.acos(total);
         return ((float) Math.toDegrees(toReturn));
     }

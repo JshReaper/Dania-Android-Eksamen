@@ -1,14 +1,15 @@
 package com.jshch.androidgameeksamen;
 
+import android.util.Log;
+
 import java.util.Vector;
 
-public class TankController extends Component implements UpdateAble, ControlAble {
+public class TankController extends Component implements UpdateAble, ControlAble, IButtonListener{
 
 
     boolean myTurn = true;
     Vector2 firstPos;
     Tank myTank;
-    boolean toutch;
     boolean fire = false;
 
     public TankController(GameObject go){
@@ -21,7 +22,7 @@ public class TankController extends Component implements UpdateAble, ControlAble
         if(myTurn) {
             if(firstPos != null){
                     Vector2 temp = firstPos.Subtract(myTank.turretOffset);
-                    angle = temp.AngleToVector2D(new Vector2(1, 0));
+                    angle = temp.AngleToVector2D(new Vector2(10, 0));
                     if (angle < 0) {
                         angle = 0;
                     } else if (angle > 180) {
@@ -32,19 +33,25 @@ public class TankController extends Component implements UpdateAble, ControlAble
             }
             if(fire && firstPos != null){
                 myTank.Fire(firstPos.Subtract(myTank.turretOffset));
+                fire = false;
                 myTurn = false;
+            }else{
+                fire = false;
             }
         }
 
+    }
+    @Override
+    public void ButtonClickedEvent(){
+        fire = true;
     }
 
     @Override
     public void Controller(float x, float y, boolean isToutched){
 
-        if(isToutched) {
+        if(isToutched && y > 300) {
 
                 firstPos = new Vector2(x, y);
-
         }
     }
 
