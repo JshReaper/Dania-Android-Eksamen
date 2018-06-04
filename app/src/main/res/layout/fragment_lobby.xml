@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2C2F33"
     tools:context=".LobbyFragment">
 
     <TextView
@@ -17,7 +16,6 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="100dp"
         android:text="Player 1"
-        android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/textview2"
         app:layout_constraintHorizontal_bias="0.053"
@@ -33,21 +31,21 @@
         android:layout_marginEnd="40dp"
         android:layout_marginTop="100dp"
         android:text="Player 2"
-        android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button2"
-        style="@android:style/Widget.Holo.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="248dp"
         android:text="Start Game"
-        tools:layout_editor_absoluteX="137dp"
-        tools:layout_editor_absoluteY="386dp" />
+        app:layout_constraintEnd_toStartOf="@+id/player2_name"
+        app:layout_constraintStart_toEndOf="@+id/player1_name"
+        app:layout_constraintTop_toBottomOf="@+id/player1_name" />
 
     <TextView
         android:id="@+id/player1_name"

@@ -32,13 +32,13 @@ public class GameButton extends Component implements ControlAble {
     }
 
     @Override
-    public void Controller(float x, float y, boolean isToutched) {
+    public void Controller(float x, float y, boolean isTouched) {
 
         for (Boolean bool : subscribers  ){
             bool = ButtonPressed(x,y);
         }
         if (ButtonPressed(x, y)) {
-            switch (btnTag) {
+            switch (btnTag) { // switch for scalability rather than if's
                 case "left":
                     Vector2 translate = new Vector2(go.getTransform().GetPosition().getX() - 10, go.getTransform().GetPosition().getY());
                     go.getTransform().SetPosition(translate);

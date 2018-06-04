@@ -5,7 +5,6 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2C2F33"
     tools:context=".CreateLobbyFragment">
 
     <EditText
@@ -19,8 +18,6 @@
         android:hint="Lobby Name"
         android:inputType="text"
         android:singleLine="true"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#d3d3d3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,20 +32,16 @@
         android:hint="Lobby Description"
         android:inputType="text"
         android:singleLine="true"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#d3d3d3"
         app:layout_constraintEnd_toEndOf="@+id/lobby_name"
         app:layout_constraintStart_toStartOf="@+id/lobby_name"
         app:layout_constraintTop_toBottomOf="@+id/lobby_name" />
 
     <Button
         android:id="@+id/createLB"
-        style="@android:style/Widget.Holo.Button"
         android:layout_width="208dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="84dp"
         android:text="Create Lobby"
-        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="@+id/lobby_desc"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/lobby_desc"

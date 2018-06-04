@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#2C2F33">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/title"
@@ -11,7 +10,6 @@
         android:layout_marginTop="15dp"
         android:layout_gravity="center_horizontal"
         android:text="Player"
-        android:textColor="#FFFFFF"
         android:textSize="25sp"
         android:textStyle="bold" />
 
@@ -25,9 +23,7 @@
         android:hint="Name"
         android:textAlignment="center"
         android:inputType="textPersonName"
-        android:singleLine="true"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#d3d3d3" />
+        android:singleLine="true"/>
 
     <Spinner
         android:id="@+id/color_spinner"
@@ -37,7 +33,6 @@
 
     <Button
         android:id="@+id/continuebtn"
-        style="@android:style/Widget.Holo.Button"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginTop="250dp"
@@ -45,7 +40,6 @@
 
     <Button
         android:id="@+id/cancelbtn"
-        style="@android:style/Widget.Holo.Button"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginTop="191dp"
